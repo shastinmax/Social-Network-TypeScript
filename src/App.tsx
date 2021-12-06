@@ -1,13 +1,12 @@
 import React from 'react';
 import './App.css';
+import Header from "./components/Header";
+
 
 function App() {
     return (
         <div className='app-wrapper'>
-            <header className='header'>
-                <img className='logo'
-                     src='http://pngimg.com/uploads/magic_hat/small/magic_hat_PNG102.png'/>
-            </header>
+           <Header/>
             <nav className='nav'>
                 <div>
                     <a>Profile</a>
