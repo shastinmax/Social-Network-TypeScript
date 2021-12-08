@@ -1,12 +1,11 @@
 import React from "react";
-import './Header.css'
+import s from './Header.module.css'
 
-const Header=()=>{
+export const Header=()=>{
     return(
-        <header className='header'>
-            <img className='logo'
+        <header className={s.header}>
+            <img
                  src='http://pngimg.com/uploads/magic_hat/small/magic_hat_PNG102.png'/>
         </header>
     )
 }
-export default Header
