@@ -4,7 +4,9 @@
     height: 70px;
 }
 .item{
-    color: red;
     margin-left: 15px;
     margin-bottom: 15px;
+}
+span{
+    margin-left: 15px;
 }

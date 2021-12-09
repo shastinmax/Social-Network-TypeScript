@@ -10,10 +10,9 @@ export const MyPosts=()=>{
                 <textarea></textarea>
                 <button>Add post</button>
             </div>
-           <Post/>
-           <Post/>
-           <Post/>
-           <Post/>
+           <Post message={'Hello'} likescount={15}/>
+           <Post message={'Yo'} likescount={7}/>
+           <Post message={'Goodbye'}/>
         </div>
     )
 }
