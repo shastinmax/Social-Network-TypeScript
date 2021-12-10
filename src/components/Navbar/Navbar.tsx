@@ -1,25 +1,16 @@
 import React from "react";
 import s from './Navbar.module.css'
+import {StyledNavLink} from "../StyledNavLink/StyledNavLink";
+import {routes} from "../../constants/constans";
 
-export const Navbar=()=>{
-    return(
-        <nav className={s.nav}>
-            <div className={s.item}>
-                <a href='/profile'>Profile</a>
-            </div>
-            <div className={`${s.item} ${s.active}`}>
-                <a href='/message'>Messages</a>
-            </div>
-            <div className={s.item}>
-                <a>News</a>
-            </div>
-            <div className={s.item}>
-                <a>Music</a>
-            </div>
-            <div className={s.item}>
-                <a>Settings</a>
-            </div>
 
-        </nav>
+export const Navbar = () => {
+
+    return (
+        <div>
+            <nav className={s.nav}>
+                {routes.map(({title,path,key}) => (<StyledNavLink title={title} path={path} key={key}/>))}
+            </nav>
+        </div>
     )
 }
