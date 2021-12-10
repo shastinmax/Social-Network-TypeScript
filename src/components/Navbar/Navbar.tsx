@@ -9,7 +9,7 @@ export const Navbar = () => {
     return (
         <div>
             <nav className={s.nav}>
-                {routes.map(({title,path}) => (<div key={path+title}><StyledNavLink title={title} path={path}/></div>))}
+                {routes.map(({title,path}) => (<React.Fragment key={path+title}><StyledNavLink title={title} path={path}/></React.Fragment>))}
             </nav>
         </div>
     )
