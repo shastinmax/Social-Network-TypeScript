@@ -7,8 +7,8 @@ import {routes} from "../../constants/constans";
 export const Navbar = () => {
 
     return (
-        <div>
-            <nav className={s.nav}>
+        <div className={s.nav}>
+            <nav >
                 {routes.map(({title,path}) => (<React.Fragment key={path+title}><StyledNavLink title={title} path={path}/></React.Fragment>))}
             </nav>
         </div>

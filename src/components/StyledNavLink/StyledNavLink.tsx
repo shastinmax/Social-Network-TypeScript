@@ -5,7 +5,6 @@ import React from "react";
 type StyledNavLinkProps = {
     title: string
     path: string
-
 }
 
 export const StyledNavLink: React.FC<StyledNavLinkProps> = (props) => {

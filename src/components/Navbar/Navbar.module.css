@@ -1,4 +1,5 @@
-.nav{
+.nav {
     grid-area: n;
     background-color: burlywood;
+    padding-left: 15px;
 }
