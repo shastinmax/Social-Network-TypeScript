@@ -9,7 +9,7 @@ export const Navbar = () => {
     return (
         <div>
             <nav className={s.nav}>
-                {routes.map(({title,path,key}) => (<StyledNavLink title={title} path={path} key={key}/>))}
+                {routes.map(({title,path}) => (<div key={path+title}><StyledNavLink title={title} path={path}/></div>))}
             </nav>
         </div>
     )

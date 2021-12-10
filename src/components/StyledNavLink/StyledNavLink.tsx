@@ -10,7 +10,7 @@ type StyledNavLinkProps = {
 
 export const StyledNavLink: React.FC<StyledNavLinkProps> = (props) => {
     return (
-        <div className={s.item}>
+        <div  className={s.item}>
             <NavLink className={({isActive}) => `${s.item} ${isActive ? s.active : ''}`}
                      to={props.path}>{props.title}</NavLink>
         </div>
