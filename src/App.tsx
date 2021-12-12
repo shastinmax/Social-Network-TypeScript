@@ -19,9 +19,9 @@ function App() {
                 <Routes>
                     <Route path='/profile' element={<Profile/>}/>
                     <Route path='/dialogs/*' element={<Dialogs/>}/>
-                    <Route path='/news' element={<Dialogs/>}/>
-                    <Route path='/music' element={<Dialogs/>}/>
-                    <Route path='/settings' element={<Dialogs/>}/>
+                    <Route path='/news' element={<h2>News</h2>}/>
+                    <Route path='/music' element={<h2>Music</h2>}/>
+                    <Route path='/settings' element={<h2>Settings</h2>}/>
                 </Routes>
 
             </div>
