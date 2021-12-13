@@ -1,7 +1,12 @@
 import s from './MyPosts.module.css'
 import {Post} from "./Post/Post";
+import {posts} from "../../../constants/constans";
+import React from "react";
 
 export const MyPosts = () => {
+    let post = posts.map(({message, likesCount}) => (
+        <React.Fragment key={message + likesCount}><Post message={message} likesCount={likesCount}/></React.Fragment>))
+
     return (
         <div className={s.myposts}>
             <h3>My Posts</h3>
@@ -10,9 +15,8 @@ export const MyPosts = () => {
                 <button>Add post</button>
             </div>
             <div className={s.posts}>
-                <Post message={'Hello'} likesCount={15}/>
-                <Post message={'Yo'} likesCount={7}/>
-                <Post message={'Goodbye'}/></div>
+                {post}
+            </div>
         </div>
     )
 }

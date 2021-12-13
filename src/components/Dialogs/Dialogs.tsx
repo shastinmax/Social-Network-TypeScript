@@ -21,10 +21,11 @@ export const Dialogs = () => {
 
                 {dialogs}
 
-
             </div>
             <div className={s.messages}>
+
                 {message}
+
             </div>
         </div>
     )
