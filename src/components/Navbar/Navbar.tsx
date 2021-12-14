@@ -1,6 +1,6 @@
 import React from "react";
 import s from './Navbar.module.css'
-import {StyledNavLink} from "../StyledNavLink/StyledNavLink";
+import {StyledNavLink} from "./StyledNavLink/StyledNavLink";
 import {routes} from "../../constants/constans";
 
 

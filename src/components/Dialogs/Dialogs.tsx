@@ -2,7 +2,7 @@ import React from "react";
 import s from './Dialogs.module.css'
 import {NavLink} from "react-router-dom";
 import {dialog} from "../../constants/constans";
-import {StyledNavLinkDialog} from "../StyledNavLinkDialog/StyledNavLinkDialog";
+import {StyledNavLinkDialog} from "./StyledNavLinkDialog/StyledNavLinkDialog";
 import {Dialog} from "./Dialog/Dialog";
 
 export const Dialogs = () => {
