@@ -1,16 +1,19 @@
 import React from "react";
 import s from './Dialogs.module.css'
-import {NavLink} from "react-router-dom";
-import {dialog} from "../../constants/constans";
 import {StyledNavLinkDialog} from "./StyledNavLinkDialog/StyledNavLinkDialog";
 import {Dialog} from "./Dialog/Dialog";
+import {DialogType} from "../../index";
 
-export const Dialogs = () => {
+type DialogsTypeProps={
+    dialog:Array<DialogType>
+}
 
-    let dialogs = dialog.map(({pathDialog, name}) => (<React.Fragment key={pathDialog + name}><StyledNavLinkDialog
+export const Dialogs:React.FC<DialogsTypeProps> = (props) => {
+
+    let dialogs = props.dialog.map(({pathDialog, name}) => (<React.Fragment key={pathDialog + name}><StyledNavLinkDialog
         pathDialog={pathDialog} name={name}/></React.Fragment>))
 
-    let message=dialog.map(({pathDialog, name,dialog})=>(<React.Fragment key={pathDialog + name}>
+    let message=props.dialog.map(({pathDialog, name,dialog})=>(<React.Fragment key={pathDialog + name}>
         <Dialog dialog={dialog}/>
     </React.Fragment>))
 

@@ -1,15 +1,18 @@
 import React from "react";
 import s from './Navbar.module.css'
 import {StyledNavLink} from "./StyledNavLink/StyledNavLink";
-import {routes} from "../../constants/constans";
+import {RouteType} from "../../index";
 
+type NavbarProps={
+    routes:Array<RouteType>
+}
 
-export const Navbar = () => {
+export const Navbar:React.FC<NavbarProps> = (props) => {
 
     return (
         <div className={s.nav}>
             <nav >
-                {routes.map(({title,path}) => (<React.Fragment key={path+title}><StyledNavLink title={title} path={path}/></React.Fragment>))}
+                {props.routes.map(({title,path}) => (<React.Fragment key={path+title}><StyledNavLink title={title} path={path}/></React.Fragment>))}
             </nav>
         </div>
     )

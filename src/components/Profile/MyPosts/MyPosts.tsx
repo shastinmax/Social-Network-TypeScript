@@ -1,10 +1,14 @@
 import s from './MyPosts.module.css'
 import {Post} from "./Post/Post";
-import {posts} from "../../../constants/constans";
 import React from "react";
+import {PostsType} from "../../../index";
 
-export const MyPosts = () => {
-    let post = posts.map(({message, likesCount}) => (
+type MyPostsProps={
+    posts:Array<PostsType>
+}
+
+export const MyPosts:React.FC<MyPostsProps> = (props) => {
+    let post = props.posts.map(({message, likesCount}) => (
         <React.Fragment key={message + likesCount}><Post message={message} likesCount={likesCount}/></React.Fragment>))
 
     return (
