@@ -5,7 +5,7 @@ import {Navbar} from "./components/Navbar/Navbar";
 import {Profile} from "./components/Profile/Profile";
 import {Dialogs} from "./components/Dialogs/Dialogs";
 import {BrowserRouter,Routes, Route} from "react-router-dom";
-import {DialogType, PostsType, RouteType} from "./index";
+import {DialogType, PostsType, RouteType} from "./redux/state";
 
 export type AppTypeProps={
     posts:Array<PostsType>

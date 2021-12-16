@@ -2,7 +2,7 @@ import React from "react";
 import s from './Dialogs.module.css'
 import {StyledNavLinkDialog} from "./StyledNavLinkDialog/StyledNavLinkDialog";
 import {Dialog} from "./Dialog/Dialog";
-import {DialogType} from "../../index";
+import {DialogType} from "../../redux/state";
 
 type DialogsTypeProps={
     dialog:Array<DialogType>

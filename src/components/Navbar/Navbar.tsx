@@ -1,7 +1,7 @@
 import React from "react";
 import s from './Navbar.module.css'
 import {StyledNavLink} from "./StyledNavLink/StyledNavLink";
-import {RouteType} from "../../index";
+import {RouteType} from "../../redux/state";
 
 type NavbarProps={
     routes:Array<RouteType>
