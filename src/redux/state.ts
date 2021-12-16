@@ -12,7 +12,7 @@ export type PostsType={
     message:string
     likesCount:number
 }
-type StateType={
+export type StateType={
     routes:Array<RouteType>
     dialog:Array<DialogType>
     posts:Array<PostsType>

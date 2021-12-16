@@ -9,7 +9,7 @@ import {state} from "./redux/state";
 
 ReactDOM.render(
   <React.StrictMode>
-      <App routes={state.routes} dialog={state.dialog} posts={state.posts} />
+      <App appState={state}/>
   </React.StrictMode>,
   document.getElementById('root')
 );
