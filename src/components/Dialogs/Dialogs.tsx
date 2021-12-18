@@ -17,6 +17,11 @@ export const Dialogs:React.FC<DialogsTypeProps> = (props) => {
         <Dialog dialog={dialog}/>
     </React.Fragment>))
 
+    const newMessageElement=React.createRef<HTMLTextAreaElement>()
+
+    const addMessage=()=>{
+        alert(newMessageElement.current?.value)
+    }
 
     return (
         <div className={s.dialogs}>
@@ -28,8 +33,12 @@ export const Dialogs:React.FC<DialogsTypeProps> = (props) => {
             <div className={s.messages}>
 
                 {message}
-
+                <textarea ref={newMessageElement}></textarea>
+                <div>
+                    <button onClick={addMessage}>Add message</button>
+                </div>
             </div>
+
         </div>
     )
 }
