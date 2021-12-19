@@ -2,7 +2,7 @@ import s from "./Post.module.css";
 import React, {FC} from "react";
 
 type PostPropsType = {
-    message: string
+    message: string| undefined
     likesCount?: number
 }
 

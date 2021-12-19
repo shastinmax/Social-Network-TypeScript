@@ -10,10 +10,10 @@ type DialogsTypeProps={
 
 export const Dialogs:React.FC<DialogsTypeProps> = (props) => {
 
-    let dialogs = props.dialog.map(({pathDialog, name}) => (<React.Fragment key={pathDialog + name}><StyledNavLinkDialog
+    let dialogs = props.dialog.map(({id,pathDialog, name}) => (<React.Fragment key={id}><StyledNavLinkDialog
         pathDialog={pathDialog} name={name}/></React.Fragment>))
 
-    let message=props.dialog.map(({pathDialog, name,dialog})=>(<React.Fragment key={pathDialog + name}>
+    let message=props.dialog.map(({id,pathDialog, name,dialog})=>(<React.Fragment key={id}>
         <Dialog dialog={dialog}/>
     </React.Fragment>))
 
