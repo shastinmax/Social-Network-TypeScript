@@ -13,14 +13,22 @@ export const MyPosts:React.FC<MyPostsProps> = (props) => {
         <React.Fragment key={id}><Post message={message} likesCount={likesCount}/></React.Fragment>))
 
     let newPostElement=React.createRef<HTMLTextAreaElement>()
-    let text=newPostElement.current?.value
+
+
+    let addPost=()=>{
+        if (newPostElement.current) {
+            props.addPost(newPostElement.current.value)
+            newPostElement.current.value = ''
+        }
+    }
+
 
     return (
         <div className={s.myposts}>
             <h3>My Posts</h3>
             <div>
                 <div><textarea ref={newPostElement}></textarea></div>
-                <button onClick={()=>props.addPost(text)}>Add post</button>
+                <button onClick={()=>addPost()}>Add post</button>
             </div>
             <div className={s.posts}>
                 {post}

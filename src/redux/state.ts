@@ -1,3 +1,5 @@
+import {rerenderEntireTree} from "../render";
+
 export type RouteType = {
     path: string
     title: string
@@ -67,9 +69,7 @@ export const addPost: AddPostType = (postMessage) => {
         id: 5,
         message: postMessage,
         likesCount: 0,
-
-
     }
-
     state.dialogsPage.posts.push(newPost)
+    rerenderEntireTree(state)
 }
