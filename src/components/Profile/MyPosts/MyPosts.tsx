@@ -1,11 +1,13 @@
 import s from './MyPosts.module.css'
 import {Post} from "./Post/Post";
 import React, {RefObject} from "react";
-import {AddPostType, PostsType} from "../../../redux/state";
+import {AddPostType, PostsType, UpdateNewPostTextType} from "../../../redux/state";
 
 type MyPostsProps={
     posts:Array<PostsType>
     addPost:AddPostType
+    newPostText:string
+    updateNewPostText:UpdateNewPostTextType
 }
 
 export const MyPosts:React.FC<MyPostsProps> = (props) => {
@@ -17,17 +19,21 @@ export const MyPosts:React.FC<MyPostsProps> = (props) => {
 
     let addPost=()=>{
         if (newPostElement.current) {
-            props.addPost(newPostElement.current.value)
-            newPostElement.current.value = ''
+            props.addPost()
         }
     }
+    const onPostChange=()=>{
+        if(newPostElement.current){
+            props.updateNewPostText(newPostElement.current.value)
+        }
 
+    }
 
     return (
         <div className={s.myposts}>
             <h3>My Posts</h3>
             <div>
-                <div><textarea ref={newPostElement}></textarea></div>
+                <div><textarea onChange={onPostChange} ref={newPostElement} value={props.newPostText}/></div>
                 <button onClick={()=>addPost()}>Add post</button>
             </div>
             <div className={s.posts}>
