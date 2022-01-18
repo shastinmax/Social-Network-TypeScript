@@ -19,7 +19,7 @@ export const MyPosts:React.FC<MyPostsProps> = (props) => {
 
     let addPost=()=>{
         if (newPostElement.current) {
-            props.addPost()
+            props.addPost(newPostElement.current.value)
         }
     }
     const onPostChange=()=>{

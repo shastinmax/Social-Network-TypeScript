@@ -1,5 +1,3 @@
-
-
 export type RouteType = {
     path: string
     title: string
@@ -26,7 +24,7 @@ export type DialogsType = {
     newPostText: string
     dialog: Array<DialogType>
 }
-export type AddPostType = () => void
+export type AddPostType = (postText: string) => void
 export type NewPostType = {
     id: number
     message: string
@@ -39,15 +37,16 @@ export type StateType = {
 }
 export type UpdateNewPostTextType = (title: string) => void
 
-export type StoreType={
-    _state:StateType
-    rerenderEntireTree:()=>void
+export type StoreType = {
+    _state: StateType
+    callSubscriber: () => void
     addPost: AddPostType
-    updateNewPostText:(text:string)=>void
-    subscribe:(observer:()=>void)=>void
+    updateNewPostText: (text: string) => void
+    subscribe: (observer: (state: StateType) => void) => void
+    getState: () => StateType
 }
 
-export const store= {
+export const store: StoreType = {
     _state: {
         profilePage: {
             routes: [
@@ -71,14 +70,14 @@ export const store= {
                 {id: 4, pathDialog: '/dialogs/4', name: 'Viktor', dialog: 'YES ABHSS'}]
         }
     },
-    _rerenderEntireTree() {
-        console.log('jhvjhv')
+    callSubscriber() {
+        console.log('store changes')
     },
     updateNewPostText(text: string) {
         this._state.dialogsPage.newPostText = text
-        this._rerenderEntireTree()
+        this.callSubscriber()
     },
-    addPost(postText:string)  {
+    addPost(postText: string) {
         let newPost: NewPostType = {
             id: 5,
             message: postText,
@@ -86,10 +85,13 @@ export const store= {
         }
         this._state.dialogsPage.posts.push(newPost)
         this._state.dialogsPage.newPostText = ''
-        this._rerenderEntireTree()
+        this.callSubscriber()
     },
-    subscribe (observer: ()=>void) {
-        this._rerenderEntireTree = observer
+    subscribe(observer: any) {
+        this.callSubscriber = observer
+    },
+    getState() {
+        return this._state
     }
 }
 
