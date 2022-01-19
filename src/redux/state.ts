@@ -61,8 +61,6 @@ export const updateNewPostTextAC=(newText:string):UpdateNewPostTextActionType=>(
         text: newText
     })
 
-
-
 export const store: StoreType = {
     _state: {
         profilePage: {
