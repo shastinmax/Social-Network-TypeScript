@@ -52,6 +52,15 @@ export type StoreType = {
     getState: () => StateType
     dispatch: (action: AddPostActionType | UpdateNewPostTextActionType) => void
 }
+const ADD_POST = 'ADD-POST';
+const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
+export const addPostAC=():AddPostActionType=> ({type: ADD_POST})
+
+export const updateNewPostTextAC=(newText:string):UpdateNewPostTextActionType=>({
+        type: UPDATE_NEW_POST_TEXT,
+        text: newText
+    })
+
 
 
 export const store: StoreType = {
@@ -88,7 +97,7 @@ export const store: StoreType = {
         return this._state
     },
     dispatch(action) {
-        if (action.type === 'ADD-POST') {
+        if (action.type === ADD_POST) {
 
             let newPost: NewPostType = {
                 id: 5,
@@ -98,7 +107,7 @@ export const store: StoreType = {
             this._state.dialogsPage.posts.push(newPost)
             this._state.dialogsPage.newPostText = ''
             this._callSubscriber()
-        } else if (action.type === "UPDATE-NEW-POST-TEXT") {
+        } else if (action.type === UPDATE_NEW_POST_TEXT) {
             this._state.dialogsPage.newPostText = action.text
             this._callSubscriber()
         }

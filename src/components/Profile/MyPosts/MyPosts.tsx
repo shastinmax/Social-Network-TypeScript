@@ -2,9 +2,10 @@ import s from './MyPosts.module.css'
 import {Post} from "./Post/Post";
 import React, {RefObject} from "react";
 import {
+    addPostAC,
     AddPostActionType,
     AddPostType, allCreator,
-    PostsType,
+    PostsType, updateNewPostTextAC,
     UpdateNewPostTextActionType,
     UpdateNewPostTextType
 } from "../../../redux/state";
@@ -16,17 +17,7 @@ type MyPostsProps={
 
 }
 
-const addPostAC=():AddPostActionType=>{
-    return {
-        type:'ADD-POST'
-    }
-}
-const UpdateNewPostText=(newText:string):UpdateNewPostTextActionType=>{
-    return {
-        type: "UPDATE-NEW-POST-TEXT",
-        text: newText
-    }
-}
+
 
 export const MyPosts:React.FC<MyPostsProps> = (props) => {
     let post = props.posts.map(({id,message, likesCount}) => (
@@ -43,7 +34,7 @@ export const MyPosts:React.FC<MyPostsProps> = (props) => {
     const onPostChange=()=>{
         let text: string = newPostElement.current?.value || ""
         if(newPostElement.current){
-            props.dispatch(UpdateNewPostText(text))
+            props.dispatch(updateNewPostTextAC(text))
         }
 
     }
