@@ -24,7 +24,7 @@ export type DialogsType = {
     newPostText: string
     dialog: Array<DialogType>
 }
-export type AddPostType = (postText: string) => void
+export type AddPostType = () => void
 export type NewPostType = {
     id: number
     message: string
@@ -36,15 +36,22 @@ export type StateType = {
 
 }
 export type UpdateNewPostTextType = (title: string) => void
+export type AddPostActionType = {
+    type: 'ADD-POST'
+}
 
+export type UpdateNewPostTextActionType = {
+    type: "UPDATE-NEW-POST-TEXT"
+    text: string
+}
 export type StoreType = {
     _state: StateType
-    callSubscriber: () => void
-    addPost: AddPostType
-    updateNewPostText: (text: string) => void
+    _callSubscriber: () => void
     subscribe: (observer: (state: StateType) => void) => void
     getState: () => StateType
+    dispatch: (action: AddPostActionType | UpdateNewPostTextActionType) => void
 }
+
 
 export const store: StoreType = {
     _state: {
@@ -70,29 +77,31 @@ export const store: StoreType = {
                 {id: 4, pathDialog: '/dialogs/4', name: 'Viktor', dialog: 'YES ABHSS'}]
         }
     },
-    callSubscriber() {
+    _callSubscriber() {
         console.log('store changes')
     },
-    updateNewPostText(text: string) {
-        this._state.dialogsPage.newPostText = text
-        this.callSubscriber()
-    },
-    addPost(postText: string) {
-        let newPost: NewPostType = {
-            id: 5,
-            message: postText,
-            likesCount: 0,
-        }
-        this._state.dialogsPage.posts.push(newPost)
-        this._state.dialogsPage.newPostText = ''
-        this.callSubscriber()
-    },
     subscribe(observer: any) {
-        this.callSubscriber = observer
+        this._callSubscriber = observer
     },
     getState() {
         return this._state
-    }
+    },
+    dispatch(action) {
+        if (action.type === 'ADD-POST') {
+
+            let newPost: NewPostType = {
+                id: 5,
+                message: this._state.dialogsPage.newPostText,
+                likesCount: 0,
+            }
+            this._state.dialogsPage.posts.push(newPost)
+            this._state.dialogsPage.newPostText = ''
+            this._callSubscriber()
+        } else if (action.type === "UPDATE-NEW-POST-TEXT") {
+            this._state.dialogsPage.newPostText = action.text
+            this._callSubscriber()
+        }
+    },
 }
 
 

@@ -23,7 +23,7 @@ const App:React.FC<AppTypeProps>=(props)=>{
             <Navbar state={state.profilePage.routes}/>
             <div className='app-wrapper-content'>
                 <Routes>
-                    <Route path='/profile' element={<Profile posts={state.dialogsPage.posts} newPostText={state.dialogsPage.newPostText} addPost={props.store.addPost.bind(props.store)} updateNewPostText={props.store.updateNewPostText.bind(props.store)}/>}/>
+                    <Route path='/profile' element={<Profile posts={state.dialogsPage.posts} newPostText={state.dialogsPage.newPostText} dispatch={props.store.dispatch.bind(props.store)} />}/>
                     <Route path='/dialogs/*' element={<Dialogs dialog={state.dialogsPage.dialog}/>}/>
                     <Route path='/news' element={<h2>News</h2>}/>
                     <Route path='/music' element={<h2>Music</h2>}/>
