@@ -44,6 +44,7 @@ export type UpdateNewPostTextActionType = {
     type: "UPDATE-NEW-POST-TEXT"
     text: string
 }
+export type allCreator = AddPostActionType | UpdateNewPostTextActionType
 export type StoreType = {
     _state: StateType
     _callSubscriber: () => void

@@ -3,7 +3,7 @@ import {Post} from "./Post/Post";
 import React, {RefObject} from "react";
 import {
     AddPostActionType,
-    AddPostType,
+    AddPostType, allCreator,
     PostsType,
     UpdateNewPostTextActionType,
     UpdateNewPostTextType
@@ -11,9 +11,21 @@ import {
 
 type MyPostsProps={
     posts:Array<PostsType>
-    dispatch:(action:AddPostActionType|UpdateNewPostTextActionType)=>void
+    dispatch:(action:allCreator)=>void
     newPostText:string
 
+}
+
+const addPostAC=():AddPostActionType=>{
+    return {
+        type:'ADD-POST'
+    }
+}
+const UpdateNewPostText=(newText:string):UpdateNewPostTextActionType=>{
+    return {
+        type: "UPDATE-NEW-POST-TEXT",
+        text: newText
+    }
 }
 
 export const MyPosts:React.FC<MyPostsProps> = (props) => {
@@ -25,12 +37,13 @@ export const MyPosts:React.FC<MyPostsProps> = (props) => {
 
     let addPost=()=>{
         if (newPostElement.current) {
-            props.dispatch({type:'ADD-POST'})
+            props.dispatch(addPostAC())
         }
     }
     const onPostChange=()=>{
+        let text: string = newPostElement.current?.value || ""
         if(newPostElement.current){
-            props.dispatch({type:"UPDATE-NEW-POST-TEXT",text:newPostElement.current.value})
+            props.dispatch(UpdateNewPostText(text))
         }
 
     }
