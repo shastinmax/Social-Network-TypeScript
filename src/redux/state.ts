@@ -22,6 +22,7 @@ export type ProfileType = {
 export type DialogsType = {
     posts: Array<PostsType>
     newPostText: string
+    newMessageBody:string
     dialog: Array<DialogType>
 }
 export type AddPostType = () => void
@@ -36,6 +37,7 @@ export type StateType = {
 
 }
 export type UpdateNewPostTextType = (title: string) => void
+
 export type AddPostActionType = {
     type: 'ADD-POST'
 }
@@ -44,22 +46,40 @@ export type UpdateNewPostTextActionType = {
     type: "UPDATE-NEW-POST-TEXT"
     text: string
 }
-export type allCreator = AddPostActionType | UpdateNewPostTextActionType
+export type UpdateNewMessageBodyActionType = {
+    type: "UPDATE-NEW-MESSAGE-BODY"
+    body: string
+}
+export type SendMessageActionType = {
+    type: "SEND-MESSAGE"
+
+}
+export type allCreator = AddPostActionType | UpdateNewPostTextActionType|UpdateNewMessageBodyActionType|SendMessageActionType
 export type StoreType = {
     _state: StateType
     _callSubscriber: () => void
     subscribe: (observer: (state: StateType) => void) => void
     getState: () => StateType
-    dispatch: (action: AddPostActionType | UpdateNewPostTextActionType) => void
+    dispatch: (action: AddPostActionType | UpdateNewPostTextActionType|UpdateNewMessageBodyActionType|SendMessageActionType) => void
 }
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
+const UPDATE_NEW_MESSAGE_BODY = "UPDATE-NEW-MESSAGE-BODY";
+const SEND_MESSAGE = "SEND-MESSAGE";
 export const addPostAC=():AddPostActionType=> ({type: ADD_POST})
 
 export const updateNewPostTextAC=(newText:string):UpdateNewPostTextActionType=>({
         type: UPDATE_NEW_POST_TEXT,
         text: newText
     })
+export const updateNewMessageBodyAC=(newText:string):UpdateNewMessageBodyActionType=>({
+    type: UPDATE_NEW_MESSAGE_BODY,
+    body: newText
+})
+export const sendMessageAC=():SendMessageActionType=>({
+    type: SEND_MESSAGE
+
+})
 
 export const store: StoreType = {
     _state: {
@@ -78,6 +98,7 @@ export const store: StoreType = {
                 {id: 2, message: "Yo", likesCount: 7},
                 {id: 3, message: "Goodbye", likesCount: 0}],
             newPostText: 'it-kamas',
+            newMessageBody:"",
             dialog: [
                 {id: 1, pathDialog: '/dialogs/1', name: 'Slava', dialog: 'Hello'},
                 {id: 2, pathDialog: '/dialogs/2', name: 'Borya', dialog: 'YO-YO'},
@@ -107,6 +128,14 @@ export const store: StoreType = {
             this._callSubscriber()
         } else if (action.type === UPDATE_NEW_POST_TEXT) {
             this._state.dialogsPage.newPostText = action.text
+            this._callSubscriber()
+        }else if(action.type===UPDATE_NEW_MESSAGE_BODY){
+            this._state.dialogsPage.newMessageBody=action.body
+            this._callSubscriber()
+        }else if(action.type===SEND_MESSAGE){
+          let body=this._state.dialogsPage.newMessageBody
+            this._state.dialogsPage.newMessageBody=''
+            this._state.dialogsPage.dialog.push({id: 5, pathDialog: '/dialogs/4', name: 'Viktor', dialog: body})
             this._callSubscriber()
         }
     },

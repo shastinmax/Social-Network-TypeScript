@@ -10,30 +10,27 @@ import {
     UpdateNewPostTextType
 } from "../../../redux/state";
 
-type MyPostsProps={
-    posts:Array<PostsType>
-    dispatch:(action:allCreator)=>void
-    newPostText:string
-
+type MyPostsProps = {
+    posts: Array<PostsType>
+    dispatch: (action: allCreator) => void
+    newPostText: string
 }
 
-
-
-export const MyPosts:React.FC<MyPostsProps> = (props) => {
-    let post = props.posts.map(({id,message, likesCount}) => (
+export const MyPosts: React.FC<MyPostsProps> = (props) => {
+    let post = props.posts.map(({id, message, likesCount}) => (
         <React.Fragment key={id}><Post message={message} likesCount={likesCount}/></React.Fragment>))
 
-    let newPostElement=React.createRef<HTMLTextAreaElement>()
+    const newPostElement = React.createRef<HTMLTextAreaElement>()
 
 
-    let addPost=()=>{
+    let addPost = () => {
         if (newPostElement.current) {
             props.dispatch(addPostAC())
         }
     }
-    const onPostChange=()=>{
+    const onPostChange = () => {
         let text: string = newPostElement.current?.value || ""
-        if(newPostElement.current){
+        if (newPostElement.current) {
             props.dispatch(updateNewPostTextAC(text))
         }
 

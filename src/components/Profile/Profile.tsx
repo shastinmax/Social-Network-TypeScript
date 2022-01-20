@@ -3,7 +3,7 @@ import {MyPosts} from "./MyPosts/MyPosts";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 import {
     AddPostActionType,
-    AddPostType,
+    AddPostType, allCreator,
     PostsType,
     UpdateNewPostTextActionType,
     UpdateNewPostTextType
@@ -12,7 +12,7 @@ import {
 type ProfileTypeProps={
     posts:Array<PostsType>
     newPostText:string
-    dispatch:(action:AddPostActionType|UpdateNewPostTextActionType)=>void
+    dispatch:(action:allCreator)=>void
 }
 
 export const Profile:React.FC<ProfileTypeProps> = (props) => {
