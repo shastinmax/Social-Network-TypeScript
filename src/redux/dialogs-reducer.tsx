@@ -1,4 +1,4 @@
-import {DialogsType, NewPostType, StateType} from "./state";
+import {AddPostActionType, DialogsType, NewPostType, StateType, UpdateNewPostTextActionType} from "./state";
 
 
 export type UpdateNewMessageBodyActionType = {
@@ -9,12 +9,12 @@ export type SendMessageActionType = {
     type: "SEND-MESSAGE"
 
 }
-export type ActionDialogsReducerType=UpdateNewMessageBodyActionType|SendMessageActionType
+export type ActionDialogsReducerType=AddPostActionType | UpdateNewPostTextActionType|UpdateNewMessageBodyActionType|SendMessageActionType
 
 const UPDATE_NEW_MESSAGE_BODY = "UPDATE-NEW-MESSAGE-BODY";
 const SEND_MESSAGE = "SEND-MESSAGE";
 
-const dialogsReducer=(state:DialogsType,action:ActionDialogsReducerType)=>{
+export const dialogsReducer=(state:DialogsType,action:ActionDialogsReducerType)=>{
 
      if(action.type===UPDATE_NEW_MESSAGE_BODY){
         state.newMessageBody=action.body

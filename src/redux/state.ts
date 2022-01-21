@@ -1,3 +1,6 @@
+import {profileReducer} from "./profile-reducer";
+import {dialogsReducer} from "./dialogs-reducer";
+
 export type RouteType = {
     path: string
     title: string
@@ -117,28 +120,10 @@ export const store: StoreType = {
         return this._state
     },
     dispatch(action) {
-        if (action.type === ADD_POST) {
 
-            let newPost: NewPostType = {
-                id: 5,
-                message: this._state.dialogsPage.newPostText,
-                likesCount: 0,
-            }
-            this._state.dialogsPage.posts.push(newPost)
-            this._state.dialogsPage.newPostText = ''
-            this._callSubscriber()
-        } else if (action.type === UPDATE_NEW_POST_TEXT) {
-            this._state.dialogsPage.newPostText = action.text
-            this._callSubscriber()
-        }else if(action.type===UPDATE_NEW_MESSAGE_BODY){
-            this._state.dialogsPage.newMessageBody=action.body
-            this._callSubscriber()
-        }else if(action.type===SEND_MESSAGE){
-          let body=this._state.dialogsPage.newMessageBody
-            this._state.dialogsPage.newMessageBody=''
-            this._state.dialogsPage.dialog.push({id: 5, pathDialog: '/dialogs/4', name: 'Viktor', dialog: body})
-            this._callSubscriber()
-        }
+        this._state.dialogsPage= profileReducer(this._state.dialogsPage,action)
+        this._state.dialogsPage= dialogsReducer(this._state.dialogsPage,action)
+        this._callSubscriber()
     },
 }
 
