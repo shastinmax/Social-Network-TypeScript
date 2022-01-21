@@ -105,6 +105,7 @@ export const store: StoreType = {
                 {id: 3, pathDialog: '/dialogs/3', name: 'Igor', dialog: 'Goodbay'},
                 {id: 4, pathDialog: '/dialogs/4', name: 'Viktor', dialog: 'YES ABHSS'}]
         }
+    //    sidebar:{}
     },
     _callSubscriber() {
         console.log('store changes')
