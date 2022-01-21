@@ -5,9 +5,8 @@ import {Dialog} from "./Dialog/Dialog";
 import {
     allCreator,
     DialogsType,
-    sendMessageAC,
-    updateNewMessageBodyAC,
 } from "../../redux/state";
+import {sendMessageAC, updateNewMessageBodyAC} from "../../redux/dialogs-reducer";
 
 type DialogsTypeProps={
     dialog:DialogsType

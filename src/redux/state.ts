@@ -25,7 +25,7 @@ export type ProfileType = {
 export type DialogsType = {
     posts: Array<PostsType>
     newPostText: string
-    newMessageBody:string
+    newMessageBody: string
     dialog: Array<DialogType>
 }
 export type AddPostType = () => void
@@ -57,32 +57,18 @@ export type SendMessageActionType = {
     type: "SEND-MESSAGE"
 
 }
-export type allCreator = AddPostActionType | UpdateNewPostTextActionType|UpdateNewMessageBodyActionType|SendMessageActionType
+export type allCreator =
+    AddPostActionType
+    | UpdateNewPostTextActionType
+    | UpdateNewMessageBodyActionType
+    | SendMessageActionType
 export type StoreType = {
     _state: StateType
     _callSubscriber: () => void
     subscribe: (observer: (state: StateType) => void) => void
     getState: () => StateType
-    dispatch: (action: AddPostActionType | UpdateNewPostTextActionType|UpdateNewMessageBodyActionType|SendMessageActionType) => void
+    dispatch: (action: AddPostActionType | UpdateNewPostTextActionType | UpdateNewMessageBodyActionType | SendMessageActionType) => void
 }
-const ADD_POST = 'ADD-POST';
-const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
-const UPDATE_NEW_MESSAGE_BODY = "UPDATE-NEW-MESSAGE-BODY";
-const SEND_MESSAGE = "SEND-MESSAGE";
-export const addPostAC=():AddPostActionType=> ({type: ADD_POST})
-
-export const updateNewPostTextAC=(newText:string):UpdateNewPostTextActionType=>({
-        type: UPDATE_NEW_POST_TEXT,
-        text: newText
-    })
-export const updateNewMessageBodyAC=(newText:string):UpdateNewMessageBodyActionType=>({
-    type: UPDATE_NEW_MESSAGE_BODY,
-    body: newText
-})
-export const sendMessageAC=():SendMessageActionType=>({
-    type: SEND_MESSAGE
-
-})
 
 export const store: StoreType = {
     _state: {
@@ -101,14 +87,14 @@ export const store: StoreType = {
                 {id: 2, message: "Yo", likesCount: 7},
                 {id: 3, message: "Goodbye", likesCount: 0}],
             newPostText: 'it-kamas',
-            newMessageBody:"",
+            newMessageBody: "",
             dialog: [
                 {id: 1, pathDialog: '/dialogs/1', name: 'Slava', dialog: 'Hello'},
                 {id: 2, pathDialog: '/dialogs/2', name: 'Borya', dialog: 'YO-YO'},
                 {id: 3, pathDialog: '/dialogs/3', name: 'Igor', dialog: 'Goodbay'},
                 {id: 4, pathDialog: '/dialogs/4', name: 'Viktor', dialog: 'YES ABHSS'}]
         }
-    //    sidebar:{}
+        //    sidebar:{}
     },
     _callSubscriber() {
         console.log('store changes')
@@ -121,8 +107,8 @@ export const store: StoreType = {
     },
     dispatch(action) {
 
-        this._state.dialogsPage= profileReducer(this._state.dialogsPage,action)
-        this._state.dialogsPage= dialogsReducer(this._state.dialogsPage,action)
+        this._state.dialogsPage = profileReducer(this._state.dialogsPage, action)
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
         this._callSubscriber()
     },
 }

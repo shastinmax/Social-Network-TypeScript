@@ -14,16 +14,27 @@ export type ActionDialogsReducerType=AddPostActionType | UpdateNewPostTextAction
 const UPDATE_NEW_MESSAGE_BODY = "UPDATE-NEW-MESSAGE-BODY";
 const SEND_MESSAGE = "SEND-MESSAGE";
 
-export const dialogsReducer=(state:DialogsType,action:ActionDialogsReducerType)=>{
+export const updateNewMessageBodyAC=(newText:string):UpdateNewMessageBodyActionType=>({
+    type: UPDATE_NEW_MESSAGE_BODY,
+    body: newText
+})
+export const sendMessageAC=():SendMessageActionType=>({
+    type: SEND_MESSAGE
 
-     if(action.type===UPDATE_NEW_MESSAGE_BODY){
-        state.newMessageBody=action.body
+})
 
-    }else if(action.type===SEND_MESSAGE){
-        let body=state.newMessageBody
-        state.newMessageBody=''
-        state.dialog.push({id: 5, pathDialog: '/dialogs/4', name: 'Viktor', dialog: body})
+export const dialogsReducer=(state:DialogsType,action:ActionDialogsReducerType)=> {
 
-    }
-    return state
+switch (action.type){
+        case UPDATE_NEW_MESSAGE_BODY:
+            state.newMessageBody=action.body;
+            return state;
+        case SEND_MESSAGE:
+            let body=state.newMessageBody
+            state.newMessageBody=''
+            state.dialog.push({id: 5, pathDialog: '/dialogs/4', name: 'Viktor', dialog: body})
+            return state;
+    default:
+        return state
+}
 }
