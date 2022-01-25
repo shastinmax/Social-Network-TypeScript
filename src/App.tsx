@@ -5,7 +5,7 @@ import {Navbar} from "./components/Navbar/Navbar";
 import {Profile} from "./components/Profile/Profile";
 import {Dialogs} from "./components/Dialogs/Dialogs";
 import {Routes, Route, HashRouter} from "react-router-dom";
-import {StoreType} from "./redux/state";
+import {StoreType} from "./redux/store";
 
 export type AppTypeProps={
     store:StoreType
@@ -20,10 +20,10 @@ const App:React.FC<AppTypeProps>=(props)=>{
         <HashRouter>
             <div className='app-wrapper'>
             <Header/>
-            <Navbar state={state.profilePage.routes}/>
+            <Navbar state={state.navBarPage.routes}/>
             <div className='app-wrapper-content'>
                 <Routes>
-                    <Route path='/profile' element={<Profile posts={state.dialogsPage.posts} newPostText={state.dialogsPage.newPostText} dispatch={props.store.dispatch.bind(props.store)} />}/>
+                    <Route path='/profile' element={<Profile posts={state.profilePage.posts} newPostText={state.profilePage.newPostText} dispatch={props.store.dispatch.bind(props.store)} />}/>
                     <Route path='/dialogs/*' element={<Dialogs dialog={state.dialogsPage} dispatch={props.store.dispatch.bind(props.store)}/>}/>
                     <Route path='/news' element={<h2>News</h2>}/>
                     <Route path='/music' element={<h2>Music</h2>}/>

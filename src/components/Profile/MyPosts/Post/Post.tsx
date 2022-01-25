@@ -10,7 +10,7 @@ export const Post: FC<PostPropsType> = (props) => {
     return (
         <div>
             <div className={s.item}>
-                <img src='https://cdn.pixabay.com/photo/2017/01/26/13/00/mom-2010524__340.png'/>
+                <img src='https://cdn.pixabay.com/photo/2017/01/26/13/00/mom-2010524__340.png' alt={'logo'}/>
                 <span>{props.message}</span>
                 <div><span> like {props.likesCount}</span></div>
             </div>

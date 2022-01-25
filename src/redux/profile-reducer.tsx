@@ -1,4 +1,4 @@
-import {DialogsType, NewPostType, SendMessageActionType, UpdateNewMessageBodyActionType} from "./state";
+import {DialogsType, NewPostType, ProfileType, SendMessageActionType, UpdateNewMessageBodyActionType} from "./store";
 
 export type AddPostActionType = {
     type: 'ADD-POST'
@@ -20,7 +20,7 @@ export const updateNewPostTextAC=(newText:string):UpdateNewPostTextActionType=>(
     text: newText
 })
 
-export const profileReducer = (state: DialogsType, action:AddPostActionType | UpdateNewPostTextActionType|UpdateNewMessageBodyActionType|SendMessageActionType) => {
+export const profileReducer = (state: ProfileType, action:AddPostActionType | UpdateNewPostTextActionType|UpdateNewMessageBodyActionType|SendMessageActionType) => {
 
     switch (action.type) {
         case ADD_POST:

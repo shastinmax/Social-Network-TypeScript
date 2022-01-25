@@ -1,4 +1,4 @@
-import {AddPostActionType, DialogsType, NewPostType, StateType, UpdateNewPostTextActionType} from "./state";
+import {AddPostActionType, DialogsType, UpdateNewPostTextActionType} from "./store";
 
 
 export type UpdateNewMessageBodyActionType = {
@@ -32,7 +32,7 @@ switch (action.type){
         case SEND_MESSAGE:
             let body=state.newMessageBody
             state.newMessageBody=''
-            state.dialog.push({id: 5, pathDialog: '/dialogs/4', name: 'Viktor', dialog: body})
+            state.messages.push({id: 5, message: body})
             return state;
     default:
         return state

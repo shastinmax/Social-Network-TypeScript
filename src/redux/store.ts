@@ -2,31 +2,34 @@ import {profileReducer} from "./profile-reducer";
 import {dialogsReducer} from "./dialogs-reducer";
 
 export type RouteType = {
-    path: string
-    title: string
+    likesCount: number
+    message: string
     id: number
 
 }
 export type DialogType = {
-    pathDialog: string
-    name: string
-    dialog: string
+    message: string
     id: number
 }
 export type PostsType = {
-    message: string | undefined
-    likesCount: number
+    name: string
     id: number
 }
+export type NavbarRoutesType={
+    path:string
+    title:string
+}
 export type ProfileType = {
-    routes: Array<RouteType>
-
+    posts: Array<RouteType>
+    newPostText: string,
 }
 export type DialogsType = {
-    posts: Array<PostsType>
-    newPostText: string
+    dialogs: Array<PostsType>
+    messages: Array<DialogType>
     newMessageBody: string
-    dialog: Array<DialogType>
+}
+export type NavBarType = {
+    routes:Array<NavbarRoutesType>
 }
 export type AddPostType = () => void
 export type NewPostType = {
@@ -37,6 +40,7 @@ export type NewPostType = {
 export type StateType = {
     profilePage: ProfileType
     dialogsPage: DialogsType
+    navBarPage: NavBarType
 
 }
 export type UpdateNewPostTextType = (title: string) => void
@@ -73,28 +77,37 @@ export type StoreType = {
 export const store: StoreType = {
     _state: {
         profilePage: {
-            routes: [
-                {id: 1, path: '/profile', title: 'Profile'},
-                {id: 2, path: '/dialogs', title: 'Message'},
-                {id: 3, path: '/news', title: 'News'},
-                {id: 4, path: '/music', title: 'Music'},
-                {id: 5, path: '/settings', title: 'Settings'}],
-
+            posts: [
+                {id: 1, message: 'Hi,how are you', likesCount: 12},
+                {id: 2, message: 'Hi, you', likesCount: 11},
+                {id: 3, message: 'Hi,how are you', likesCount: 11},
+                {id: 4, message: 'how are you', likesCount: 12}
+            ],
+            newPostText: 'it-kamas',
         },
         dialogsPage: {
-            posts: [
-                {id: 1, message: "Hello", likesCount: 15},
-                {id: 2, message: "Yo", likesCount: 7},
-                {id: 3, message: "Goodbye", likesCount: 0}],
-            newPostText: 'it-kamas',
+            dialogs: [
+                {id: 1, name: 'Slava'},
+                {id: 2, name: 'Borya'},
+                {id: 3, name: 'Igor'},
+                {id: 4, name: 'Viktor'}],
+            messages: [
+                {id: 1, message: 'Hi Kaktus'},
+                {id: 2, message: 'Hi klaus'},
+                {id: 3, message: 'Hi Valeron'},
+                {id: 4, message: 'Hi hello'},
+                {id: 5, message: 'Hi you'}
+            ],
+
             newMessageBody: "",
-            dialog: [
-                {id: 1, pathDialog: '/dialogs/1', name: 'Slava', dialog: 'Hello'},
-                {id: 2, pathDialog: '/dialogs/2', name: 'Borya', dialog: 'YO-YO'},
-                {id: 3, pathDialog: '/dialogs/3', name: 'Igor', dialog: 'Goodbay'},
-                {id: 4, pathDialog: '/dialogs/4', name: 'Viktor', dialog: 'YES ABHSS'}]
+        },
+        navBarPage: {
+            routes: [
+                {path: '/profile', title: 'Profile'},
+                {path: '/dialogs', title: 'Message'},
+            ]
         }
-        //    sidebar:{}
+
     },
     _callSubscriber() {
         console.log('store changes')
@@ -107,7 +120,7 @@ export const store: StoreType = {
     },
     dispatch(action) {
 
-        this._state.dialogsPage = profileReducer(this._state.dialogsPage, action)
+        this._state.profilePage = profileReducer(this._state.profilePage, action)
         this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
         this._callSubscriber()
     },

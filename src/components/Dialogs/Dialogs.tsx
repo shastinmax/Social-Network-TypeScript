@@ -5,7 +5,7 @@ import {Dialog} from "./Dialog/Dialog";
 import {
     allCreator,
     DialogsType,
-} from "../../redux/state";
+} from "../../redux/store";
 import {sendMessageAC, updateNewMessageBodyAC} from "../../redux/dialogs-reducer";
 
 type DialogsTypeProps={
@@ -15,11 +15,10 @@ type DialogsTypeProps={
 
 export const Dialogs:React.FC<DialogsTypeProps> = (props) => {
 
-    let dialogs = props.dialog.dialog.map(({id,pathDialog, name}) => (<React.Fragment key={id}><StyledNavLinkDialog
-        pathDialog={pathDialog} name={name}/></React.Fragment>))
+    let dialogs = props.dialog.dialogs.map(({id, name}) => (<div key={id}>{name}</div>))
 
-    let message=props.dialog.dialog.map(({id,pathDialog, name,dialog})=>(<React.Fragment key={id}>
-        <Dialog dialog={dialog}/>
+    let message=props.dialog.messages.map(({id,message})=>(<React.Fragment key={id}>
+        <Dialog dialog={message}/>
     </React.Fragment>))
     let newMessageBody=props.dialog.newMessageBody
 
