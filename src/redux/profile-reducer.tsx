@@ -20,7 +20,17 @@ export const updateNewPostTextAC=(newText:string):UpdateNewPostTextActionType=>(
     text: newText
 })
 
-export const profileReducer = (state: ProfileType, action:AddPostActionType | UpdateNewPostTextActionType|UpdateNewMessageBodyActionType|SendMessageActionType) => {
+let initialState={
+    posts: [
+        {id: 1, message: 'Hi,how are you', likesCount: 12},
+        {id: 2, message: 'Hi, you', likesCount: 11},
+        {id: 3, message: 'Hi,how are you', likesCount: 11},
+        {id: 4, message: 'how are you', likesCount: 12}
+    ],
+    newPostText: 'it-kamas',
+}
+
+export const profileReducer = (state: ProfileType=initialState, action:AddPostActionType | UpdateNewPostTextActionType|UpdateNewMessageBodyActionType|SendMessageActionType) => {
 
     switch (action.type) {
         case ADD_POST:

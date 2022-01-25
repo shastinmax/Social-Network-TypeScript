@@ -23,7 +23,23 @@ export const sendMessageAC=():SendMessageActionType=>({
 
 })
 
-export const dialogsReducer=(state:DialogsType,action:ActionDialogsReducerType)=> {
+let initialState={
+    dialogs: [
+        {id: 1, name: 'Slava'},
+        {id: 2, name: 'Borya'},
+        {id: 3, name: 'Igor'},
+        {id: 4, name: 'Viktor'}],
+    messages: [
+        {id: 1, message: 'Hi Kaktus'},
+        {id: 2, message: 'Hi klaus'},
+        {id: 3, message: 'Hi Valeron'},
+        {id: 4, message: 'Hi hello'},
+        {id: 5, message: 'Hi you'}
+    ],
+    newMessageBody: "",
+}
+
+export const dialogsReducer=(state:DialogsType=initialState,action:ActionDialogsReducerType)=> {
 
 switch (action.type){
         case UPDATE_NEW_MESSAGE_BODY:

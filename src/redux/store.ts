@@ -1,5 +1,6 @@
 import {profileReducer} from "./profile-reducer";
 import {dialogsReducer} from "./dialogs-reducer";
+import {navbarReducer} from "./navbar-reducer";
 
 export type RouteType = {
     likesCount: number
@@ -105,6 +106,9 @@ export const store: StoreType = {
             routes: [
                 {path: '/profile', title: 'Profile'},
                 {path: '/dialogs', title: 'Message'},
+                {path: '/news', title: 'News'},
+                {path: '/music', title: 'Music'},
+                {path: '/settings', title: 'Settings'},
             ]
         }
 
@@ -122,6 +126,7 @@ export const store: StoreType = {
 
         this._state.profilePage = profileReducer(this._state.profilePage, action)
         this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
+        // this._state.navBarPage = navbarReducer(this._state.navBarPage, action)
         this._callSubscriber()
     },
 }
