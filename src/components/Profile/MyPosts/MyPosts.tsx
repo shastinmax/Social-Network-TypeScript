@@ -1,11 +1,9 @@
 import s from './MyPosts.module.css'
 import {Post} from "./Post/Post";
 import React from "react";
-import {
-    allCreator,
-    PostsType, RouteType
+import { RouteType
 } from "../../../redux/store";
-import {addPostAC, updateNewPostTextAC} from "../../../redux/profile-reducer";
+
 
 type MyPostsProps = {
     posts: Array<RouteType>

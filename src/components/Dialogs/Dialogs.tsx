@@ -1,53 +1,48 @@
-import React from "react";
+import React, {ChangeEvent} from "react";
 import s from './Dialogs.module.css'
-import {StyledNavLinkDialog} from "./StyledNavLinkDialog/StyledNavLinkDialog";
 import {Dialog} from "./Dialog/Dialog";
-import {
-    allCreator,
-    DialogsType,
-} from "../../redux/store";
-import {sendMessageAC, updateNewMessageBodyAC} from "../../redux/dialogs-reducer";
+import {DialogsType} from "../../redux/store";
 
-type DialogsTypeProps={
-    dialog:DialogsType
-    dispatch: (action: allCreator) => void
+
+type DialogsTypeProps = {
+    sendMessage: () => void
+    dialogsPage: DialogsType
+    updateNewMessageBody: (body: string) => void
 }
 
-export const Dialogs:React.FC<DialogsTypeProps> = (props) => {
+export const Dialogs: React.FC<DialogsTypeProps> = (props) => {
+    let state = props.dialogsPage
+    let dialogsElements = state.dialogs.map(({id, name}) => (<div key={id}>{name}</div>))
 
-    let dialogs = props.dialog.dialogs.map(({id, name}) => (<div key={id}>{name}</div>))
-
-    let message=props.dialog.messages.map(({id,message})=>(<React.Fragment key={id}>
+    let messageElements = state.messages.map(({id, message}) => (<React.Fragment key={id}>
         <Dialog dialog={message}/>
     </React.Fragment>))
-    let newMessageBody=props.dialog.newMessageBody
+    let newMessageBody = state.newMessageBody
 
-    const newMessageElement=React.createRef<HTMLTextAreaElement>()
+    const newMessageElement = React.createRef<HTMLTextAreaElement>()
 
-    const addMessage=()=>{
-        if(newMessageElement.current){
-            props.dispatch(sendMessageAC())
-        }
+    const onSendMessageClick = () => {
+        props.sendMessage()
     }
- const onNewMessageChange=()=>{
-     let text: string = newMessageElement.current?.value || ""
-     if (newMessageElement.current) {
-         props.dispatch(updateNewMessageBodyAC(text))
-     }
- }
+    const onNewMessageChange = (e: ChangeEvent<HTMLTextAreaElement>
+    ) => {
+        let body = e.target.value
+        props.updateNewMessageBody(body)
+    }
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>
 
-                {dialogs}
+                {dialogsElements}
 
             </div>
             <div className={s.messages}>
 
-                {message}
-                <textarea value={newMessageBody} onChange={onNewMessageChange} ref={newMessageElement} placeholder='Enter your message'></textarea>
+                {messageElements}
+                <textarea value={newMessageBody} onChange={onNewMessageChange} ref={newMessageElement}
+                          placeholder='Enter your message'></textarea>
                 <div>
-                    <button onClick={addMessage}>Add message</button>
+                    <button onClick={onSendMessageClick}>Add message</button>
                 </div>
             </div>
 

@@ -8,14 +8,14 @@ import {
 import {MyPostsContainer} from "./MyPosts/MyPostContainers";
 
 type ProfileTypeProps = {
-    store:StoreType
+
 }
 
 export const Profile: React.FC<ProfileTypeProps> = (props) => {
     return (
         <div>
             <ProfileInfo/>
-            <MyPostsContainer store={props.store}/>
+            <MyPostsContainer/>
         </div>
     )
 }
