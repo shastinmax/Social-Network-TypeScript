@@ -6,6 +6,7 @@ import {Profile} from "./components/Profile/Profile";
 import {Routes, Route, HashRouter} from "react-router-dom";
 import {StoreType} from "./redux/store";
 import { DialogsContainer } from './components/Dialogs/DialogsContainer';
+import {NavbarContainer} from "./components/Navbar/NavbarContainer";
 
 export type AppTypeProps={
 
@@ -14,13 +15,13 @@ export type AppTypeProps={
 
 const App:React.FC<AppTypeProps>=(props)=>{
 
-    const state=props.store.getState()
+    // const state=props.store.getState()
 
     return (
         <HashRouter>
             <div className='app-wrapper'>
             <Header/>
-            <Navbar state={state.navBarPage.routes}/>
+            <NavbarContainer/>
             <div className='app-wrapper-content'>
                 <Routes>
                     <Route path='/profile' element={<Profile  />}/>
