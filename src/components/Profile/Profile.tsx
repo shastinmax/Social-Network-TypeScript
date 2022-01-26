@@ -3,20 +3,19 @@ import {MyPosts} from "./MyPosts/MyPosts";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 import {
     allCreator,
-    PostsType, RouteType,
+    PostsType, RouteType, StoreType,
 } from "../../redux/store";
+import {MyPostsContainer} from "./MyPosts/MyPostContainers";
 
 type ProfileTypeProps = {
-    posts: Array<RouteType>
-    newPostText: string
-    dispatch: (action: allCreator) => void
+    store:StoreType
 }
 
 export const Profile: React.FC<ProfileTypeProps> = (props) => {
     return (
         <div>
             <ProfileInfo/>
-            <MyPosts posts={props.posts} newPostText={props.newPostText} dispatch={props.dispatch}/>
+            <MyPostsContainer store={props.store}/>
         </div>
     )
 }
