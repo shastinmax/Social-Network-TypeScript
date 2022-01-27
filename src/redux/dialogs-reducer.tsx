@@ -1,4 +1,5 @@
 import {AddPostActionType, DialogsType, UpdateNewPostTextActionType} from "./store";
+import {navBarACType} from "./navbar-reducer";
 
 
 export type UpdateNewMessageBodyActionType = {
@@ -9,21 +10,26 @@ export type SendMessageActionType = {
     type: "SEND-MESSAGE"
 
 }
-export type ActionDialogsReducerType=AddPostActionType | UpdateNewPostTextActionType|UpdateNewMessageBodyActionType|SendMessageActionType
+export type GlobalReducerType =
+    AddPostActionType
+    | UpdateNewPostTextActionType
+    | UpdateNewMessageBodyActionType
+    | SendMessageActionType
+    | navBarACType
 
 const UPDATE_NEW_MESSAGE_BODY = "UPDATE-NEW-MESSAGE-BODY";
 const SEND_MESSAGE = "SEND-MESSAGE";
 
-export const updateNewMessageBodyAC=(newText:string):UpdateNewMessageBodyActionType=>({
+export const updateNewMessageBodyAC = (newText: string): UpdateNewMessageBodyActionType => ({
     type: UPDATE_NEW_MESSAGE_BODY,
     body: newText
 })
-export const sendMessageAC=():SendMessageActionType=>({
+export const sendMessageAC = (): SendMessageActionType => ({
     type: SEND_MESSAGE
 
 })
 
-let initialState={
+let initialState = {
     dialogs: [
         {id: 1, name: 'Slava'},
         {id: 2, name: 'Borya'},
@@ -39,18 +45,18 @@ let initialState={
     newMessageBody: "",
 }
 
-export const dialogsReducer=(state:DialogsType=initialState,action:ActionDialogsReducerType)=> {
+export const dialogsReducer = (state: DialogsType = initialState, action: GlobalReducerType) => {
 
-switch (action.type){
+    switch (action.type) {
         case UPDATE_NEW_MESSAGE_BODY:
-            state.newMessageBody=action.body;
+            state.newMessageBody = action.body;
             return state;
         case SEND_MESSAGE:
-            let body=state.newMessageBody
-            state.newMessageBody=''
+            let body = state.newMessageBody
+            state.newMessageBody = ''
             state.messages.push({id: 5, message: body})
             return state;
-    default:
-        return state
-}
+        default:
+            return state
+    }
 }

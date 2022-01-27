@@ -1,4 +1,5 @@
 import {DialogsType, NewPostType, ProfileType, SendMessageActionType, UpdateNewMessageBodyActionType} from "./store";
+import {GlobalReducerType} from "./dialogs-reducer";
 
 export type AddPostActionType = {
     type: 'ADD-POST'
@@ -30,7 +31,7 @@ let initialState={
     newPostText: 'it-kamas',
 }
 
-export const profileReducer = (state: ProfileType=initialState, action:AddPostActionType | UpdateNewPostTextActionType|UpdateNewMessageBodyActionType|SendMessageActionType) => {
+export const profileReducer = (state: ProfileType=initialState, action:GlobalReducerType) => {
 
     switch (action.type) {
         case ADD_POST:
