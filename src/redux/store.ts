@@ -1,12 +1,11 @@
 import {profileReducer} from "./profile-reducer";
-import {dialogsReducer} from "./dialogs-reducer";
+import {dialogsReducer, GlobalReducerType} from "./dialogs-reducer";
 import {navbarReducer} from "./navbar-reducer";
 
 export type RouteType = {
     likesCount: number
     message: string
     id: number
-
 }
 export type DialogType = {
     message: string
@@ -32,7 +31,6 @@ export type DialogsType = {
 export type NavBarType = {
     routes:Array<NavbarRoutesType>
 }
-export type AddPostType = () => void
 export type NewPostType = {
     id: number
     message: string
@@ -44,12 +42,9 @@ export type StateType = {
     navBarPage: NavBarType
 
 }
-export type UpdateNewPostTextType = (title: string) => void
-
 export type AddPostActionType = {
     type: 'ADD-POST'
 }
-
 export type UpdateNewPostTextActionType = {
     type: "UPDATE-NEW-POST-TEXT"
     text: string
@@ -60,7 +55,6 @@ export type UpdateNewMessageBodyActionType = {
 }
 export type SendMessageActionType = {
     type: "SEND-MESSAGE"
-
 }
 export type allCreator =
     AddPostActionType
@@ -72,7 +66,7 @@ export type StoreType = {
     _callSubscriber: () => void
     subscribe: (observer: (state: StateType) => void) => void
     getState: () => StateType
-    dispatch: (action: AddPostActionType | UpdateNewPostTextActionType | UpdateNewMessageBodyActionType | SendMessageActionType) => void
+    dispatch: (action:GlobalReducerType) => void
 }
 
 export const store: StoreType = {
