@@ -1,17 +1,24 @@
 import React from "react";
-import s from './Navbar.module.css'
-import {StyledNavLink} from "./StyledNavLink/StyledNavLink";
-import {NavbarRoutesType} from "../../redux/store";
+
 
 import {Navbar} from "./Navbar";
 import {connect} from "react-redux";
+import {AppStateType} from "../../redux/redux-store";
+import {NavbarRoutesType, NavBarType} from "../../redux/navbar-reducer";
+import {Dispatch} from "redux";
 
-const mapStateToProps=(state)=>{
+type MapStateToPropsType={
+    state:NavBarType
+}
+
+
+export type NavBarPropsType=MapStateToPropsType
+const mapStateToProps=(state:AppStateType):MapStateToPropsType=>{
     return {
-        state
+        state:state.navbar
     }
 }
-const mapDispatchToProps=(dispatch)=>{
+const mapDispatchToProps=(dispatch:Dispatch)=>{
     return {
 
     }

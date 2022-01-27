@@ -2,66 +2,66 @@ import {profileReducer} from "./profile-reducer";
 import {dialogsReducer, GlobalReducerType} from "./dialogs-reducer";
 import {navbarReducer} from "./navbar-reducer";
 
-export type RouteType = {
+type RouteType = {
     likesCount: number
     message: string
     id: number
 }
-export type DialogType = {
+ type DialogType = {
     message: string
     id: number
 }
-export type PostsType = {
+ type PostsType = {
     name: string
     id: number
 }
-export type NavbarRoutesType={
+type NavbarRoutesType={
     path:string
     title:string
 }
-export type ProfileType = {
+type ProfileType = {
     posts: Array<RouteType>
     newPostText: string,
 }
-export type DialogsType = {
+ type DialogsType = {
     dialogs: Array<PostsType>
     messages: Array<DialogType>
     newMessageBody: string
 }
-export type NavBarType = {
+type NavBarType = {
     routes:Array<NavbarRoutesType>
 }
-export type NewPostType = {
+ type NewPostType = {
     id: number
     message: string
     likesCount: number
 }
-export type StateType = {
+ type StateType = {
     profilePage: ProfileType
     dialogsPage: DialogsType
     navBarPage: NavBarType
 
 }
-export type AddPostActionType = {
+ type AddPostActionType = {
     type: 'ADD-POST'
 }
-export type UpdateNewPostTextActionType = {
+ type UpdateNewPostTextActionType = {
     type: "UPDATE-NEW-POST-TEXT"
     text: string
 }
-export type UpdateNewMessageBodyActionType = {
+ type UpdateNewMessageBodyActionType = {
     type: "UPDATE-NEW-MESSAGE-BODY"
     body: string
 }
-export type SendMessageActionType = {
+ type SendMessageActionType = {
     type: "SEND-MESSAGE"
 }
-export type allCreator =
+ type allCreator =
     AddPostActionType
     | UpdateNewPostTextActionType
     | UpdateNewMessageBodyActionType
     | SendMessageActionType
-export type StoreType = {
+ type StoreType = {
     _state: StateType
     _callSubscriber: () => void
     subscribe: (observer: (state: StateType) => void) => void
@@ -69,7 +69,7 @@ export type StoreType = {
     dispatch: (action:GlobalReducerType) => void
 }
 
-export const store: StoreType = {
+ const store: StoreType = {
     _state: {
         profilePage: {
             posts: [

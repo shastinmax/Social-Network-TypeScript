@@ -1,6 +1,4 @@
-import {DialogsType, NewPostType, ProfileType, SendMessageActionType, UpdateNewMessageBodyActionType} from "./store";
 import {GlobalReducerType} from "./dialogs-reducer";
-
 export type AddPostActionType = {
     type: 'ADD-POST'
 }
@@ -9,8 +7,20 @@ export type UpdateNewPostTextActionType = {
     type: "UPDATE-NEW-POST-TEXT"
     text: string
 }
-
-
+export type RouteType = {
+    likesCount: number
+    message: string
+    id: number
+}
+export type ProfileType = {
+    posts: Array<RouteType>
+    newPostText: string,
+}
+type NewPostType = {
+    id: number
+    message: string
+    likesCount: number
+}
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
 
@@ -21,7 +31,7 @@ export const updateNewPostTextAC=(newText:string):UpdateNewPostTextActionType=>(
     text: newText
 })
 
-let initialState={
+let initialState:ProfileType={
     posts: [
         {id: 1, message: 'Hi,how are you', likesCount: 12},
         {id: 2, message: 'Hi, you', likesCount: 11},
@@ -31,7 +41,7 @@ let initialState={
     newPostText: 'it-kamas',
 }
 
-export const profileReducer = (state: ProfileType=initialState, action:GlobalReducerType) => {
+export const profileReducer = (state: ProfileType=initialState, action:GlobalReducerType):ProfileType => {
 
     switch (action.type) {
         case ADD_POST:
@@ -42,11 +52,12 @@ export const profileReducer = (state: ProfileType=initialState, action:GlobalRed
             }
             state.posts.push(newPost)
             state.newPostText = '';
-            return state
+            return {...state}
         case UPDATE_NEW_POST_TEXT:
-            state.newPostText = action.text
-            return state
+            return {
+                ...state, newPostText: action.text
+            }
         default:
-            return state
+            return {...state}
     }
 }
