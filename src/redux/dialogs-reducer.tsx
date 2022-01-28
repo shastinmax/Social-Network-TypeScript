@@ -64,14 +64,17 @@ export const dialogsReducer = (state:InitialStateType= initialState, action: Glo
 
     switch (action.type) {
         case UPDATE_NEW_MESSAGE_BODY:
-            state.newMessageBody = action.body;
-            return {...state};
+            let stateCopy={...state}
+            stateCopy.newMessageBody = action.body;
+            return stateCopy ;
         case SEND_MESSAGE:
-            let body = state.newMessageBody
-            state.newMessageBody = ''
-            state.messages.push({id: 5, message: body})
-            return {...state};
+            let copyState={...state}
+            let body = copyState.newMessageBody
+            copyState.newMessageBody = ''
+            copyState.messages=[...state.messages]
+            copyState.messages.push({id: 5, message: body})
+            return copyState;
         default:
-            return {...state}
+            return state
     }
 }

@@ -50,14 +50,18 @@ export const profileReducer = (state: ProfileType=initialState, action:GlobalRed
                 message: state.newPostText,
                 likesCount: 0,
             }
-            state.posts.push(newPost)
-            state.newPostText = '';
-            return {...state}
+            let stateCopy={...state}
+            stateCopy.posts=[...state.posts]
+            stateCopy.posts.push(newPost)
+            stateCopy.newPostText = '';
+            return stateCopy
         case UPDATE_NEW_POST_TEXT:
-            return {
-                ...state, newPostText: action.text
+            {
+                let copyState={...state}
+                copyState.newPostText=action.text
+                return copyState
             }
         default:
-            return {...state}
+            return state
     }
 }
