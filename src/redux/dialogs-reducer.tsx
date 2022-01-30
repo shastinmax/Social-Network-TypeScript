@@ -1,4 +1,3 @@
-
 import {navBarACType} from "./navbar-reducer";
 import {AddPostActionType, UpdateNewPostTextActionType} from "./profile-reducer";
 
@@ -38,13 +37,13 @@ export const sendMessageAC = (): SendMessageActionType => ({
 
 })
 
-export type InitialStateType={
+export type InitialStateType = {
     dialogs: Array<PostsType>
     messages: Array<DialogType>
     newMessageBody: string
 }
 
-let initialState:InitialStateType = {
+let initialState: InitialStateType = {
     dialogs: [
         {id: 1, name: 'Slava'},
         {id: 2, name: 'Borya'},
@@ -60,20 +59,20 @@ let initialState:InitialStateType = {
     newMessageBody: "",
 }
 
-export const dialogsReducer = (state:InitialStateType= initialState, action: GlobalReducerType):InitialStateType => {
-
+export const dialogsReducer = (state: InitialStateType = initialState, action: GlobalReducerType): InitialStateType => {
     switch (action.type) {
         case UPDATE_NEW_MESSAGE_BODY:
-            let stateCopy={...state}
-            stateCopy.newMessageBody = action.body;
-            return stateCopy ;
+           return {
+                ...state,
+                newMessageBody: action.body
+            }
         case SEND_MESSAGE:
-            let copyState={...state}
-            let body = copyState.newMessageBody
-            copyState.newMessageBody = ''
-            copyState.messages=[...state.messages]
-            copyState.messages.push({id: 5, message: body})
-            return copyState;
+            let body = state.newMessageBody
+           return {
+                ...state,
+                messages: [...state.messages,{id: 5, message: body}],
+                newMessageBody : ''
+            }
         default:
             return state
     }

@@ -7,7 +7,6 @@ import {UsersPropsType} from "./DialogsContainer";
 export const Dialogs= (props:UsersPropsType) => {
     let state = props.dialogsPage
     let dialogsElements = state.dialogs.map(({id, name}) => (<div key={id}>{name}</div>))
-
     let messageElements = state.messages.map(({id, message}) => (<React.Fragment key={id}>
         <Dialog dialog={message}/>
     </React.Fragment>))
