@@ -23,6 +23,7 @@ let initialState:NavBarType = {
         {path: '/news', title: 'News'},
         {path: '/music', title: 'Music'},
         {path: '/settings', title: 'Settings'},
+        {path: '/users', title: 'Users'},
     ]
 }
 

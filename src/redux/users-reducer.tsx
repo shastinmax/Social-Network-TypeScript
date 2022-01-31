@@ -1,5 +1,6 @@
 export type UserType = {
     id: number
+    photoUrl:string
     followed: boolean
     fullName: string
     status: string
@@ -13,27 +14,30 @@ export type UsersType = {
 }
 let initialState: UsersType = {
     users: [
-        {
-            id: 1,
-            followed: true,
-            fullName: 'Max',
-            status: 'I am a student',
-            location: {city: 'Kostroma', country: 'Russia'}
-        },
-        {
-            id: 2,
-            followed: true,
-            fullName: 'Bogdan',
-            status: 'I am a Boss for Maxim',
-            location: {city: 'Vinnitsa', country: 'Ukraine'}
-        },
-        {
-            id: 3,
-            followed: false,
-            fullName: 'Dimich',
-            status: 'I am a teacher for Bogdan and Max',
-            location: {city: 'Minsk', country: 'Belarus'}
-        },
+        // {
+        //     id: 1,
+        //     photoUrl:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9aUT1ZCEcuME13723bYJ9xnzn-XQ5zWGcUCnsLdjo2m4MEgOHl5BP1uXbklcmIZfpTx0&usqp=CAU',
+        //     followed: true,
+        //     fullName: 'Max',
+        //     status: 'I am a student',
+        //     location: {city: 'Kostroma', country: 'Russia'}
+        // },
+        // {
+        //     id: 2,
+        //     photoUrl:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeQW7jGROV6Xf1_fDam4b7IYTZliTN6X8Rzw&usqp=CAU',
+        //     followed: true,
+        //     fullName: 'Bogdan',
+        //     status: 'I am a Boss for Maxim',
+        //     location: {city: 'Vinnitsa', country: 'Ukraine'}
+        // },
+        // {
+        //     id: 3,
+        //     photoUrl:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeQW7jGROV6Xf1_fDam4b7IYTZliTN6X8Rzw&usqp=CAU',
+        //     followed: false,
+        //     fullName: 'Dimich',
+        //     status: 'I am a teacher for Bogdan and Max',
+        //     location: {city: 'Minsk', country: 'Belarus'}
+        // },
 
     ]
 }
