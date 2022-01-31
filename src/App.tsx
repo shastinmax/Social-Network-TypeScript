@@ -5,6 +5,7 @@ import {Profile} from "./components/Profile/Profile";
 import {Routes, Route, HashRouter} from "react-router-dom";
 import { DialogsContainer } from './components/Dialogs/DialogsContainer';
 import {NavbarContainer} from "./components/Navbar/NavbarContainer";
+import {Users} from "./components/Users/Users";
 
 export type AppTypeProps={}
 
@@ -22,6 +23,7 @@ const App:React.FC<AppTypeProps>=(props)=>{
                     <Route path='/news' element={<h2>News</h2>}/>
                     <Route path='/music' element={<h2>Music</h2>}/>
                     <Route path='/settings' element={<h2>Settings</h2>}/>
+                    <Route path='/users' element={<Users/>}/>
                 </Routes>
             </div>
         </div>
