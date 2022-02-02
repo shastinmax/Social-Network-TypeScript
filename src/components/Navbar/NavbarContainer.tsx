@@ -4,7 +4,7 @@ import React from "react";
 import {Navbar} from "./Navbar";
 import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
-import {NavbarRoutesType, NavBarType} from "../../redux/navbar-reducer";
+import {NavBarType} from "../../redux/navbar-reducer";
 import {Dispatch} from "redux";
 
 type MapStateToPropsType={

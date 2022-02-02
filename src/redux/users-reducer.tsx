@@ -1,13 +1,16 @@
 export type UserType = {
     id: number
-    photoUrl:string
-    followed: boolean
-    fullName: string
-    status: string
-    location: {
-        city: string
-        country: string
+    photos: {
+        small:string
+        large:string
     }
+    followed: boolean
+    name: string
+    status: string
+    // location: {
+    //     city: string
+    //     country: string
+    // }
 }
 export type UsersType = {
     users: Array<UserType>
