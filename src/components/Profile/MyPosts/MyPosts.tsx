@@ -4,7 +4,7 @@ import React from "react";
 import {MyPostPropsType} from "./MyPostContainers";
 
 
-export const MyPosts = (props:MyPostPropsType) => {
+export const MyPosts = (props: MyPostPropsType) => {
     let post = props.posts.map(({id, message, likesCount}) => (
         <React.Fragment key={id}><Post message={message} likesCount={likesCount}/></React.Fragment>))
     const newPostElement = React.createRef<HTMLTextAreaElement>()
@@ -16,7 +16,7 @@ export const MyPosts = (props:MyPostPropsType) => {
     const onPostChange = () => {
         debugger
         let text: string = newPostElement.current?.value || ""
-            props.updateNewPostText(text)
+        props.updateNewPostText(text)
     }
 
     return (
