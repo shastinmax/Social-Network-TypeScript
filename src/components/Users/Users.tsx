@@ -5,9 +5,11 @@ import userPhoto from '../../assets/images/risuem-chelovek-rebenku-14.jpg'
 import {UserType} from "../../redux/users-reducer";
 
 type UsersPropsType = {
-    users: UserType[],
-    setUsers: (Users: UserType[]) => void,
-    follow: (id: number) => void,
+    users: UserType[]
+    totalUsersCount:number
+    pageSize:number
+    setUsers: (Users: UserType[]) => void
+    follow: (id: number) => void
     unfollow: (id: number) => void
 }
 
@@ -20,6 +22,11 @@ export class Users extends React.Component<UsersPropsType> {
     }
 
     render() {
+
+        let pagesCount=this.props.totalUsersCount/this.props.pageSize
+
+
+
         return <div>
 
             {this.props.users.map(u => <div key={u.id}>

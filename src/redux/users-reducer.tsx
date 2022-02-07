@@ -14,35 +14,13 @@ export type UserType = {
 }
 export type UsersType = {
     users: Array<UserType>
+    pageSize:number
+    totalUsersCount:number
 }
 let initialState: UsersType = {
-    users: [
-        // {
-        //     id: 1,
-        //     photoUrl:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9aUT1ZCEcuME13723bYJ9xnzn-XQ5zWGcUCnsLdjo2m4MEgOHl5BP1uXbklcmIZfpTx0&usqp=CAU',
-        //     followed: true,
-        //     fullName: 'Max',
-        //     status: 'I am a student',
-        //     location: {city: 'Kostroma', country: 'Russia'}
-        // },
-        // {
-        //     id: 2,
-        //     photoUrl:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeQW7jGROV6Xf1_fDam4b7IYTZliTN6X8Rzw&usqp=CAU',
-        //     followed: true,
-        //     fullName: 'Bogdan',
-        //     status: 'I am a Boss for Maxim',
-        //     location: {city: 'Vinnitsa', country: 'Ukraine'}
-        // },
-        // {
-        //     id: 3,
-        //     photoUrl:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeQW7jGROV6Xf1_fDam4b7IYTZliTN6X8Rzw&usqp=CAU',
-        //     followed: false,
-        //     fullName: 'Dimich',
-        //     status: 'I am a teacher for Bogdan and Max',
-        //     location: {city: 'Minsk', country: 'Belarus'}
-        // },
-
-    ]
+    users: [],
+    pageSize:5,
+    totalUsersCount:0
 }
 export const usersReducer = (state: UsersType = initialState, action: GlobalReducerType): UsersType => {
     switch (action.type) {
