@@ -12,6 +12,7 @@ type UsersPropsType={
     currentPage: number
     follow: (id: number) => void
     unfollow: (id: number) => void
+
 }
 
 export const Users = (props:UsersPropsType) => {

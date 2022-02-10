@@ -11,3 +11,7 @@
 .selectedPage:hover{
     cursor: pointer;
 }
+.preloader{
+    width: 100px;
+    height: 100px;
+}
