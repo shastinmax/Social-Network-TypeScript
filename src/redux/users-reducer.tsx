@@ -52,8 +52,8 @@ type GlobalReducerType = FollowACType
     | SetUsersTotalCountACType
     | ToggleIsFetchingACType
 
-type FollowACType = ReturnType<typeof followAC>
-export const followAC = (userId: number) => {
+type FollowACType = ReturnType<typeof follow>
+export const follow = (userId: number) => {
     return {
         type: 'FOLLOW',
         payload: {
@@ -61,8 +61,8 @@ export const followAC = (userId: number) => {
         }
     } as const
 }
-type UnfollowACType = ReturnType<typeof unfollowAC>
-export const unfollowAC = (userId: number) => {
+type UnfollowACType = ReturnType<typeof unfollow>
+export const unfollow = (userId: number) => {
     return {
         type: 'UNFOLLOW',
         payload: {
@@ -71,8 +71,8 @@ export const unfollowAC = (userId: number) => {
     } as const
 }
 
-type SetUsersACType = ReturnType<typeof setUsersAC>
-export const setUsersAC = (users: Array<UserType>) => {
+type SetUsersACType = ReturnType<typeof setUsers>
+export const setUsers = (users: Array<UserType>) => {
     return {
         type: 'SET-USER',
         payload: {
@@ -80,8 +80,8 @@ export const setUsersAC = (users: Array<UserType>) => {
         }
     } as const
 }
-type SetCurrentPageAC = ReturnType<typeof setCurrentPageAC>
-export const setCurrentPageAC = (currentPage: number) => {
+type SetCurrentPageAC = ReturnType<typeof setCurrentPage>
+export const setCurrentPage = (currentPage: number) => {
     return {
         type: 'SET-CURRENT-PAGE',
         payload: {
@@ -89,8 +89,8 @@ export const setCurrentPageAC = (currentPage: number) => {
         }
     } as const
 }
-type SetUsersTotalCountACType = ReturnType<typeof setUsersTotalCountAC>
-export const setUsersTotalCountAC = (totalCount: number) => {
+type SetUsersTotalCountACType = ReturnType<typeof setUsersTotalCount>
+export const setUsersTotalCount = (totalCount: number) => {
     return {
         type: 'SET-USERS-TOTAL-COUNT',
         payload: {
@@ -98,8 +98,8 @@ export const setUsersTotalCountAC = (totalCount: number) => {
         }
     } as const
 }
-type ToggleIsFetchingACType = ReturnType<typeof toggleIsFetchingAC>
-export const toggleIsFetchingAC = (isFetching: boolean) => {
+type ToggleIsFetchingACType = ReturnType<typeof toggleIsFetching>
+export const toggleIsFetching = (isFetching: boolean) => {
     return {
         type: 'TOGGLE-IS-FETCHING',
         payload: {isFetching}
