@@ -3,15 +3,16 @@ import React from "react";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 
 import {MyPostsContainer} from "./MyPosts/MyPostContainers";
+import {ProfilePropsType} from "./ProfileContainer";
 
-type ProfileTypeProps = {
-
+type propsType = {
+profile:ProfilePropsType | null
 }
 
-export const Profile: React.FC<ProfileTypeProps> = (props) => {
+export const Profile = (props:propsType) => {
     return (
         <div>
-            <ProfileInfo/>
+            <ProfileInfo profile={props.profile}/>
             <MyPostsContainer/>
         </div>
     )

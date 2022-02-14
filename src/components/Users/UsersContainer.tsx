@@ -1,6 +1,5 @@
 import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
-import {Dispatch} from "redux";
 import {
     follow,
     setCurrentPage,
@@ -13,8 +12,6 @@ import {
 import React from "react";
 import axios from "axios";
 import {Users} from "./Users";
-import preloader from '../../assets/images/preloader.svg'
-import s from './users.module.css'
 import {Preloader} from "../common/preloader/Preloader";
 
 export type UsersPropsType = {
@@ -76,18 +73,18 @@ export class UsersAPIComponent extends React.Component<UsersPropsType> {
 }
 
 
-export type MapStateToPropsType = {
-    users: Array<UserType>
-    pageSize: number
-    totalUsersCount: number
-    currentPage: number
-}
-export type MapDispatchToProps = {
-    follow: (userId: number) => void
-    unfollow: (userId: number) => void
-    setUsers: (users: Array<UserType>) => void
-    setCurrentPage: (pageNumber: number) => void
-}
+//  type MapStateToPropsType = {
+//     users: Array<UserType>
+//     pageSize: number
+//     totalUsersCount: number
+//     currentPage: number
+// }
+//  type MapDispatchToProps = {
+//     follow: (userId: number) => void
+//     unfollow: (userId: number) => void
+//     setUsers: (users: Array<UserType>) => void
+//     setCurrentPage: (pageNumber: number) => void
+// }
 
 export const mapStateToProps = (state: AppStateType) => {
     return {
@@ -98,12 +95,6 @@ export const mapStateToProps = (state: AppStateType) => {
         isFetching: state.usersPage.isFetching
     }
 }
-
-// export const mapDispatchToProps = (dispatch: Dispatch) => {
-//     return {
-//
-//     }
-// }
 
 export const UsersContainer = connect(mapStateToProps, {
     follow,
