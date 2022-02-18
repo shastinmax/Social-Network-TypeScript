@@ -1,9 +1,12 @@
-import React from "react";
+import React, {ComponentType, FC} from "react";
 import {Profile} from "./Profile";
 import axios from "axios";
 import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
 import {setUserProfile} from "../../redux/profile-reducer";
+import {NavigateFunction, Params,  useLocation, useNavigate, useParams} from "react-router-dom";
+
+
 
 export type ProfilePropsType = {
     aboutMe: string
@@ -27,13 +30,39 @@ export type ProfilePropsType = {
     }
 }
 
+type PathParamsType = {
+    userId: string
+}
+type CommonPropsType =  ProfileContainerPropsType & {router: WithRouterType}
+// type ProfileContainerPropsType = MapStateToPropsType & MapDispatchToProps
+type MapStateToPropsType = {
+    profile: ProfilePropsType | null
+}
+type MapDispatchToProps = {
+    setUserProfile: (profile: ProfilePropsType) => void
 
-type ProfileContainerPropsType = MapStateToPropsType & MapDispatchToProps
+
+}
+
+type RoutersType = {
+    router: {
+        location: Location
+        params: Params<string>
+        navigate: NavigateFunction
+    }
+}
+export type ProfileContainerPropsType = MapStateToPropsType & MapDispatchToProps & RoutersType
 
 class ProfileContainer extends React.Component<ProfileContainerPropsType> {
 
     componentDidMount() {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/2`)
+        let userId: any = this.props.router.params.userId
+        console.log(userId)
+        if (!userId) {
+            userId = '2'
+        }
+
+        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + userId)
             .then(response => {
                 this.props.setUserProfile(response.data)
             })
@@ -50,16 +79,58 @@ class ProfileContainer extends React.Component<ProfileContainerPropsType> {
 }
 
 
-type MapStateToPropsType = {
-    profile: ProfilePropsType | null
-}
-type MapDispatchToProps = {
-    setUserProfile: (profile: ProfilePropsType) => void
-}
-let mapStateToProps = (state: AppStateType):MapStateToPropsType=> ({
+let mapStateToProps = (state: AppStateType): MapStateToPropsType => ({
     profile: state.profilePage.profile
 })
 
-export default connect(mapStateToProps, {
+let WithUrlDataContainerComponent: ComponentType<ProfileContainerPropsType & any> = withRouter(ProfileContainer)
+
+export default connect<MapStateToPropsType, MapDispatchToProps,{},AppStateType>(mapStateToProps, {
     setUserProfile
-})(ProfileContainer)
+})(WithUrlDataContainerComponent)
+
+
+
+
+// export function withRouter<T>(Component: ComponentType<T>):any {
+//     console.log("test")
+//     const  ComponentWithRouterProp:FC<T & WithRouterType>=(props)=> {
+//         console.log("test2")
+//
+//         let location = useLocation();
+//         let navigate = useNavigate();
+//         let params = useParams();
+//         // return (
+//         //     <Component
+//         //         {...props}
+//         //         router={{ location, navigate, params }}
+//         //     />
+//         // );
+//         return <div>test</div>
+//     }
+//     return ComponentWithRouterProp
+// }
+//
+// type WithRouterType = Location & NavigateFunction & Readonly<Params<string>>;
+
+
+
+
+export function withRouter<T>(Component: ComponentType<T>): ComponentType<T & WithRouterType> {
+
+    const ComponentWithRouterProp = (props: T & WithRouterType) => {
+        console.log("ComponentWithRouterProp")
+        let location = useLocation();
+        let navigate = useNavigate();
+        let params = useParams();
+        return (
+            <Component
+                {...props}
+                router={{location, navigate, params}}
+            />
+        );
+    }
+    return ComponentWithRouterProp;
+}
+
+type WithRouterType = Location & NavigateFunction & Readonly<Params<string>>;

@@ -1,6 +1,4 @@
 import React from "react";
-
-
 import {Navbar} from "./Navbar";
 import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";

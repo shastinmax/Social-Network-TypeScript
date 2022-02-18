@@ -32,7 +32,9 @@ export class UsersAPIComponent extends React.Component<UsersPropsType> {
 
     componentDidMount() {
         this.props.toggleIsFetching(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`,{
+            withCredentials:true
+        })
             .then(response => {
                 this.props.toggleIsFetching(false)
                 this.props.setUsers(response.data.items)
@@ -44,7 +46,9 @@ export class UsersAPIComponent extends React.Component<UsersPropsType> {
 
         this.props.setCurrentPage(pageNumber)
         this.props.toggleIsFetching(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`,{
+            withCredentials:true
+        })
             .then(response => {
                 this.props.toggleIsFetching(false)
                 this.props.setUsers(response.data.items)
@@ -53,7 +57,6 @@ export class UsersAPIComponent extends React.Component<UsersPropsType> {
 
 
     render() {
-
 
         return <div>
             <>
@@ -71,20 +74,6 @@ export class UsersAPIComponent extends React.Component<UsersPropsType> {
         </div>
     }
 }
-
-
-//  type MapStateToPropsType = {
-//     users: Array<UserType>
-//     pageSize: number
-//     totalUsersCount: number
-//     currentPage: number
-// }
-//  type MapDispatchToProps = {
-//     follow: (userId: number) => void
-//     unfollow: (userId: number) => void
-//     setUsers: (users: Array<UserType>) => void
-//     setCurrentPage: (pageNumber: number) => void
-// }
 
 export const mapStateToProps = (state: AppStateType) => {
     return {
