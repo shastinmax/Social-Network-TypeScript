@@ -18,7 +18,7 @@ export const navBarAC=():navBarACType=>({
 
 let initialState:NavBarType = {
     routes: [
-        {path: '/profile', title: 'Profile'},
+        {path: '/', title: 'Profile'},
         {path: '/dialogs', title: 'Message'},
         {path: '/news', title: 'News'},
         {path: '/music', title: 'Music'},

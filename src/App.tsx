@@ -18,7 +18,7 @@ const App:React.FC<AppTypeProps>=(props)=>{
             <NavbarContainer/>
             <div className='app-wrapper-content'>
                 <Routes>
-                    <Route path='/profile/' element={<ProfileContainer/>}/>
+                    <Route path='/*' element={<ProfileContainer/>}/>
                     <Route path='/profile/:userId' element={<ProfileContainer/>}/>
                     <Route path='/dialogs/*' element={<DialogsContainer />}/>
                     <Route path='/news' element={<h2>News</h2>}/>
