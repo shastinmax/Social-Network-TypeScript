@@ -50,8 +50,6 @@ export const Users = (props: UsersPropsType) => {
                             headers: {
                                 'API-KEY': "1be3afd1-cb12-4713-953a-273c84cfad9b"
                             }
-
-
                         })
                             .then(response => {
                                 if (response.data.resultCode) {

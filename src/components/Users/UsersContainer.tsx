@@ -10,10 +10,11 @@ import {
     UserType
 } from "../../redux/users-reducer";
 import React from "react";
-import axios from "axios";
+
 import {Users} from "./Users";
 import {Preloader} from "../common/preloader/Preloader";
-import {getUsers} from "../../api/api";
+import {usersApi} from "../../api/api";
+
 
 export type UsersPropsType = {
     users: UserType[]
@@ -33,7 +34,7 @@ export class UsersAPIComponent extends React.Component<UsersPropsType> {
 
     componentDidMount() {
         this.props.toggleIsFetching(true)
-        getUsers(this.props.currentPage,this.props.pageSize).then(data => {
+        usersApi.getUsers(this.props.currentPage,this.props.pageSize).then(data => {
                 this.props.toggleIsFetching(false)
                 this.props.setUsers(data.items)
                 this.props.setUsersTotalCount(data.totalCount)
@@ -44,7 +45,7 @@ export class UsersAPIComponent extends React.Component<UsersPropsType> {
 
         this.props.setCurrentPage(pageNumber)
         this.props.toggleIsFetching(true)
-        getUsers(pageNumber,this.props.pageSize).then(data => {
+        usersApi.getUsers(pageNumber,this.props.pageSize).then(data => {
                 this.props.toggleIsFetching(false)
                 this.props.setUsers(data.items)
             })
