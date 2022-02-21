@@ -1,12 +1,13 @@
 import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
 import {
-    follow,
-    setCurrentPage,
-    setUsers,
-    setUsersTotalCount,
-    toggleIsFetching,
-    unfollow,
+    followAC,
+    setCurrentPageAC,
+    setUsersAC,
+    setUsersTotalCountAC,
+    toggleFollowingInProgressAC,
+    toggleIsFetchingAC,
+    unfollowAC,
     UserType
 } from "../../redux/users-reducer";
 import React from "react";
@@ -17,38 +18,42 @@ import {usersApi} from "../../api/api";
 
 
 export type UsersPropsType = {
+    followAC: (id: number) => void
+    unfollowAC: (id: number) => void
+    setUsersAC: (Users: UserType[]) => void
+    setCurrentPageAC: (el: number) => void
+    setUsersTotalCountAC: (totalCount: number) => void
+    toggleIsFetchingAC: (isFetching: boolean) => void
+    toggleFollowingInProgressAC: (isFetching: boolean, userId: number) => void
+
     users: UserType[]
-    totalUsersCount: number
     pageSize: number
+    totalUsersCount: number
     currentPage: number
-    setUsers: (Users: UserType[]) => void
-    follow: (id: number) => void
-    unfollow: (id: number) => void
-    setCurrentPage: (el: number) => void
-    setUsersTotalCount: (totalCount: number) => void
     isFetching: boolean
-    toggleIsFetching: (isFetching: boolean) => void
+    followingInProgress: number[]
 }
+
 
 export class UsersAPIComponent extends React.Component<UsersPropsType> {
 
     componentDidMount() {
-        this.props.toggleIsFetching(true)
-        usersApi.getUsers(this.props.currentPage,this.props.pageSize).then(data => {
-                this.props.toggleIsFetching(false)
-                this.props.setUsers(data.items)
-                this.props.setUsersTotalCount(data.totalCount)
-            })
+        this.props.toggleIsFetchingAC(true)
+        usersApi.getUsers(this.props.currentPage, this.props.pageSize).then(data => {
+            this.props.toggleIsFetchingAC(false)
+            this.props.setUsersAC(data.items)
+            this.props.setUsersTotalCountAC(data.totalCount)
+        })
     }
 
     onPageChanged = (pageNumber: number) => {
 
-        this.props.setCurrentPage(pageNumber)
-        this.props.toggleIsFetching(true)
-        usersApi.getUsers(pageNumber,this.props.pageSize).then(data => {
-                this.props.toggleIsFetching(false)
-                this.props.setUsers(data.items)
-            })
+        this.props.setCurrentPageAC(pageNumber)
+        this.props.toggleIsFetchingAC(true)
+        usersApi.getUsers(pageNumber, this.props.pageSize).then(data => {
+            this.props.toggleIsFetchingAC(false)
+            this.props.setUsersAC(data.items)
+        })
     }
 
 
@@ -62,9 +67,10 @@ export class UsersAPIComponent extends React.Component<UsersPropsType> {
                        currentPage={this.props.currentPage}
                        onPageChanged={this.onPageChanged}
                        users={this.props.users}
-                       unfollow={this.props.unfollow}
-                       follow={this.props.follow}
-
+                       unfollow={this.props.unfollowAC}
+                       follow={this.props.followAC}
+                       toggleIsFollowingInProgress={this.props.toggleFollowingInProgressAC}
+                       followingInProgress={this.props.followingInProgress}
                 />
             </>
         </div>
@@ -77,15 +83,17 @@ export const mapStateToProps = (state: AppStateType) => {
         pageSize: state.usersPage.pageSize,
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching
+        isFetching: state.usersPage.isFetching,
+        followingInProgress: state.usersPage.followingInProgress
     }
 }
 
 export const UsersContainer = connect(mapStateToProps, {
-    follow,
-    unfollow,
-    setUsers,
-    setCurrentPage,
-    setUsersTotalCount,
-    toggleIsFetching,
+    followAC,
+    unfollowAC,
+    setUsersAC,
+    setCurrentPageAC,
+    setUsersTotalCountAC,
+    toggleIsFetchingAC,
+    toggleFollowingInProgressAC
 })(UsersAPIComponent)
