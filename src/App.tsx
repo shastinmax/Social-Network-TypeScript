@@ -3,9 +3,9 @@ import './App.css';
 import {Routes, Route,BrowserRouter} from "react-router-dom";
 import { DialogsContainer } from './components/Dialogs/DialogsContainer';
 import {NavbarContainer} from "./components/Navbar/NavbarContainer";
-import {UsersContainer} from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from './components/Header/HeaderContainer';
+import UsersAPIComponent from "./components/Users/UsersContainer";
 
 export type AppTypeProps={}
 
@@ -24,7 +24,7 @@ const App:React.FC<AppTypeProps>=(props)=>{
                     <Route path='/news' element={<h2>News</h2>}/>
                     <Route path='/music' element={<h2>Music</h2>}/>
                     <Route path='/settings' element={<h2>Settings</h2>}/>
-                    <Route path='/users' element={<UsersContainer/>}/>
+                    <Route path='/users' element={<UsersAPIComponent/>}/>
                 </Routes>
             </div>
         </div>
