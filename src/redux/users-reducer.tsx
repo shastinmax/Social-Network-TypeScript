@@ -1,4 +1,4 @@
-import {GlobalReducerType} from "./types/typesReducers";
+import {GlobalReducerType} from "./types/typesUserReducers";
 import {usersApi} from "../api/api";
 
 export type UserType = {
@@ -115,7 +115,7 @@ export const toggleIsFollowingInProgressAC = (isFetching: boolean, userId: numbe
     } as const
 }
 export type DispatchType = (action: GlobalReducerType) => void
-
+//Thunks
 export const getUsers = (currentPage: number, pageSize: number) => {
     return (dispatch: DispatchType) => {
         dispatch(toggleIsFetchingAC(true))

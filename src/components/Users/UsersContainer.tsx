@@ -11,16 +11,15 @@ import {
 import React from "react";
 import {Users} from "./Users";
 import {Preloader} from "../common/preloader/Preloader";
-import {GlobalReducerType} from "../../redux/types/typesReducers";
-
+import {GlobalReducerType} from "../../redux/types/typesUserReducers";
 
 
 export type MapDispatchToProps = {
     setCurrentPageAC: (el: number) => void
-    getUsers: any
-    follow:any
-    unfollow:any
-    toggleIsFollowingInProgressAC: any
+    getUsers: (currentPage: number, pageSize: number) => void
+    follow: (userId: number) => void
+    unfollow: (userId: number) => void
+    toggleIsFollowingInProgressAC: (isFetching: boolean, userId: number) => void
 }
 
 type MapStateToProps = {

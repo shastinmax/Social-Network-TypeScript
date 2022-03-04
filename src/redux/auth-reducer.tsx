@@ -1,3 +1,6 @@
+import {authApi} from "../api/api";
+import {GlobalTypeAction} from "./types/typesProfileReducer";
+
 export type InitialStateType = {
     id: number | null
     email: string | null
@@ -23,6 +26,7 @@ export const authReducer = (state: InitialStateType = initialState, action: Gene
     }
 }
 export type GeneralType = SetUserDataType
+export type DispatchType = (action:GeneralType ) => void
 type SetUserDataType = ReturnType<typeof setAuthUserData>
 export const setAuthUserData = (id: number, email: string, login: string, isAuth: boolean) => {
     return {
@@ -31,4 +35,13 @@ export const setAuthUserData = (id: number, email: string, login: string, isAuth
             id, email, login, isAuth
         }
     }
+}
+export const getAuthUserData =()=> (dispatch:DispatchType) => {
+    authApi.getMe()
+        .then(response => {
+            if (response.data.resultCode === 0) {
+                let {id, email, login} = response.data.data
+                dispatch(setAuthUserData(id, email, login, true))
+            }
+        })
 }

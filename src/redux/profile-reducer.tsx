@@ -1,9 +1,10 @@
 import {ProfilePropsType} from "../components/Profile/ProfileContainer";
+import {GlobalTypeAction} from "./types/typesProfileReducer";
+import {usersApi} from "../api/api";
 
 export type AddPostActionType = {
     type: 'ADD-POST'
 }
-
 export type UpdateNewPostTextActionType = {
     type: "UPDATE-NEW-POST-TEXT"
     text: string
@@ -23,33 +24,35 @@ type NewPostType = {
     message: string
     likesCount: number
 }
-type GlobalTypeAction = AddPostACType
-    | UpdateNewPostTextACType
-    | SetUserProfileACType
+export type DispatchType = (action:GlobalTypeAction ) => void
 
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
 
-type AddPostACType = ReturnType<typeof addPostAC>
+
 export const addPostAC = (): AddPostActionType => {
     return {
         type: ADD_POST
     }as const
 }
 
-type UpdateNewPostTextACType = ReturnType<typeof updateNewPostTextAC>
 export const updateNewPostTextAC = (newText: string): UpdateNewPostTextActionType =>{
     return{
         type: UPDATE_NEW_POST_TEXT,
         text: newText
     } as const
 }
-type SetUserProfileACType = ReturnType<typeof setUserProfile>
+
 export const setUserProfile = (profile:ProfilePropsType) => {
     return {
         type: 'SET-USER-PROFILE',
         profile,
     }as const
+}
+export const getUserProfile = (userId:number) =>(dispatch:DispatchType)=> {
+    usersApi.getProfile(userId).then(response => {
+        dispatch(setUserProfile(response.data))
+    })
 }
 
 let initialState: ProfileType = {
