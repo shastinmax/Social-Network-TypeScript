@@ -6,6 +6,7 @@ import {NavbarContainer} from "./components/Navbar/NavbarContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from './components/Header/HeaderContainer';
 import UsersAPIComponent from "./components/Users/UsersContainer";
+import {Login} from "./components/Login/Login";
 
 export type AppTypeProps={}
 
@@ -25,6 +26,7 @@ const App:React.FC<AppTypeProps>=(props)=>{
                     <Route path='/music' element={<h2>Music</h2>}/>
                     <Route path='/settings' element={<h2>Settings</h2>}/>
                     <Route path='/users' element={<UsersAPIComponent/>}/>
+                    <Route path='/login' element={<Login/>}/>
                 </Routes>
             </div>
         </div>
