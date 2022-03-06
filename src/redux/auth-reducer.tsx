@@ -1,5 +1,4 @@
 import {authApi} from "../api/api";
-import {GlobalTypeAction} from "./types/typesProfileReducer";
 
 export type InitialStateType = {
     id: number | null
@@ -37,10 +36,13 @@ export const setAuthUserData = (id: number, email: string, login: string, isAuth
     }
 }
 export const getAuthUserData =()=> (dispatch:DispatchType) => {
+    console.log('getAuthUserData')
     authApi.getMe()
         .then(response => {
+            console.log(response)
             if (response.data.resultCode === 0) {
                 let {id, email, login} = response.data.data
+                console.log(login)
                 dispatch(setAuthUserData(id, email, login, true))
             }
         })

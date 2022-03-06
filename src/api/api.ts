@@ -24,7 +24,8 @@ export const usersApi = {
 }
 export const authApi = {
     getMe() {
-       return axios.get('auth/me')
+        console.log('in getMe')
+       return instance.get('auth/me')
     }
 }
 
