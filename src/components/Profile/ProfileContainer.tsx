@@ -1,11 +1,11 @@
-import React, {ComponentType, FC} from "react";
+import React, {ComponentType} from "react";
 import {Profile} from "./Profile";
 import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
 import {getUserProfile} from "../../redux/profile-reducer";
-import {NavigateFunction, Params, Navigate, useLocation, useNavigate, useParams} from "react-router-dom";
-import {usersApi} from "../../api/api";
+import {NavigateFunction, Params, useLocation, useNavigate, useParams} from "react-router-dom";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import {compose} from "redux";
 
 
 export type ProfilePropsType = {
@@ -75,12 +75,6 @@ let mapStateToProps = (state: AppStateType): MapStateToPropsType => ({
     profile: state.profilePage.profile,
 })
 
-let WithUrlDataContainerComponent: ComponentType<ProfileContainerPropsType & any> = withRouter(ProfileContainer)
-
-export default withAuthRedirect(connect<MapStateToPropsType, MapDispatchToProps, {}, AppStateType>(mapStateToProps, {
-    getUserProfile
-})(WithUrlDataContainerComponent))
-
 export function withRouter<T>(Component: ComponentType<T>): ComponentType<T & WithRouterType> {
 
     const ComponentWithRouterProp = (props: T & WithRouterType) => {
@@ -89,9 +83,7 @@ export function withRouter<T>(Component: ComponentType<T>): ComponentType<T & Wi
         let navigate = useNavigate();
         let params = useParams();
         return (
-            <Component
-                {...props}
-                router={{location, navigate, params}}
+            <Component {...props} router={{location, navigate, params}}
             />
         );
     }
@@ -99,3 +91,7 @@ export function withRouter<T>(Component: ComponentType<T>): ComponentType<T & Wi
 }
 
 type WithRouterType = Location & NavigateFunction & Readonly<Params<string>>;
+
+export default compose<React.ComponentType>(connect<MapStateToPropsType, MapDispatchToProps, {}, AppStateType>(mapStateToProps, {
+    getUserProfile
+}),withRouter,withAuthRedirect)(ProfileContainer)
