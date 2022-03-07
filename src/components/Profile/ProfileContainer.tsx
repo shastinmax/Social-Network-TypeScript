@@ -94,4 +94,6 @@ type WithRouterType = Location & NavigateFunction & Readonly<Params<string>>;
 
 export default compose<React.ComponentType>(connect<MapStateToPropsType, MapDispatchToProps, {}, AppStateType>(mapStateToProps, {
     getUserProfile
-}),withRouter,withAuthRedirect)(ProfileContainer)
+}),withRouter,
+    // withAuthRedirect
+)(ProfileContainer)
