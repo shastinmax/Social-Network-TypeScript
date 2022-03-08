@@ -11,17 +11,18 @@ export class ProfileStatus extends React.Component<any, any> {
         editMode: true
     }
 
-    activateEditMode =()=> {
+    activateEditMode = () => {
         this.setState({
             editMode: false
         })
     }
 
-    deactivateEditMode =()=> {
+    deactivateEditMode = () => {
         this.setState({
             editMode: true
         })
     }
+
 
     render() {
 

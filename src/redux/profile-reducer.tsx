@@ -1,6 +1,6 @@
 import {ProfilePropsType} from "../components/Profile/ProfileContainer";
 import {GlobalTypeAction} from "./types/typesProfileReducer";
-import {usersApi} from "../api/api";
+import {profileApi, usersApi} from "../api/api";
 
 export type AddPostActionType = {
     type: 'ADD-POST'
@@ -17,14 +17,15 @@ export type RouteType = {
 export type ProfileType = {
     posts: Array<RouteType>
     newPostText: string,
-    profile:null | ProfilePropsType
+    profile: null | ProfilePropsType
+    status: string
 }
 type NewPostType = {
     id: number
     message: string
     likesCount: number
 }
-export type DispatchType = (action:GlobalTypeAction ) => void
+export type DispatchType = (action: GlobalTypeAction) => void
 
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
@@ -33,26 +34,50 @@ const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
 export const addPostAC = (): AddPostActionType => {
     return {
         type: ADD_POST
-    }as const
+    } as const
 }
 
-export const updateNewPostTextAC = (newText: string): UpdateNewPostTextActionType =>{
-    return{
+export const updateNewPostTextAC = (newText: string): UpdateNewPostTextActionType => {
+    return {
         type: UPDATE_NEW_POST_TEXT,
         text: newText
     } as const
 }
 
-export const setUserProfile = (profile:ProfilePropsType) => {
+export const setUserProfile = (profile: ProfilePropsType) => {
     return {
         type: 'SET-USER-PROFILE',
         profile,
-    }as const
+    } as const
 }
-export const getUserProfile = (userId:number) =>(dispatch:DispatchType)=> {
+
+export const setStatus = (status: string) => {
+    return {
+        type: 'SET-STATUS',
+        payload: {
+            status
+        }
+    } as const
+}
+export const getUserProfile = (userId: number) => (dispatch: DispatchType) => {
     usersApi.getProfile(userId).then(response => {
         dispatch(setUserProfile(response.data))
     })
+}
+export const getStatus = (userId: number) => (dispatch: DispatchType) => {
+    profileApi.getStatus(userId)
+        .then(response => {
+            dispatch(setStatus(response.data))
+        })
+}
+export const updateStatus = (status: string) => (dispatch: DispatchType) => {
+    profileApi.updateStatus(status)
+        .then(response => {
+            if (response.data.resultCode === 0) {
+                dispatch(setStatus(status))
+            }
+
+        })
 }
 
 let initialState: ProfileType = {
@@ -63,7 +88,8 @@ let initialState: ProfileType = {
         {id: 4, message: 'how are you', likesCount: 12}
     ],
     newPostText: 'it-kamas',
-    profile: null
+    profile: null,
+    status: ''
 }
 
 export const profileReducer = (state: ProfileType = initialState, action: GlobalTypeAction): ProfileType => {
@@ -82,8 +108,12 @@ export const profileReducer = (state: ProfileType = initialState, action: Global
             return {...state, newPostText: action.text}
         case "SET-USER-PROFILE":
             return {
-                ...state,profile:action.profile
-        }
+                ...state, profile: action.profile
+            }
+        case "SET-STATUS":
+            return {
+                ...state, status: action.payload.status
+            }
         default:
             return state
     }

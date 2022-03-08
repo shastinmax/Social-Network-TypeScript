@@ -3,7 +3,9 @@ import {ProfilePropsType} from "../ProfileContainer";
 import {Preloader} from "../../common/preloader/Preloader";
 import {ProfileStatus} from './ProfileStatus'
 type propsType = {
-    profile: ProfilePropsType | null
+    profile: ProfilePropsType | null,
+    status: string,
+    updateStatus: (status:string)=>void
 }
 export const ProfileInfo = ({...props}: propsType) => {
     if (!props.profile) {
@@ -18,7 +20,7 @@ export const ProfileInfo = ({...props}: propsType) => {
             <div className={s.avatar}>
                 <img src={props.profile.photos.small}
                      alt='avatar'/>
-                <ProfileStatus status='MAX'/>
+                <ProfileStatus status={props.status}/>
             </div>
 
         </div>
