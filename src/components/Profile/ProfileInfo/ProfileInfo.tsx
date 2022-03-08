@@ -20,7 +20,7 @@ export const ProfileInfo = ({...props}: propsType) => {
             <div className={s.avatar}>
                 <img src={props.profile.photos.small}
                      alt='avatar'/>
-                <ProfileStatus status={props.status}/>
+                <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
             </div>
 
         </div>
