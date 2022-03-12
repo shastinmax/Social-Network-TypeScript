@@ -1,5 +1,5 @@
 import {navBarACType} from "./navbar-reducer";
-import {AddPostActionType, UpdateNewPostTextActionType} from "./profile-reducer";
+import {AddPostActionType,} from "./profile-reducer";
 
 
 export type UpdateNewMessageBodyActionType = {
@@ -21,7 +21,6 @@ type PostsType = {
 }
 export type GlobalReducerType =
     AddPostActionType
-    | UpdateNewPostTextActionType
     | SendMessageActionType
     | navBarACType
 

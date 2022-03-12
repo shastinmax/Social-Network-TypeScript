@@ -3,11 +3,8 @@ import {GlobalTypeAction} from "./types/typesProfileReducer";
 import {profileApi, usersApi} from "../api/api";
 
 export type AddPostActionType = {
-    type: 'ADD-POST'
-}
-export type UpdateNewPostTextActionType = {
-    type: "UPDATE-NEW-POST-TEXT"
-    text: string
+    type: 'ADD-POST',
+    newPostBody: string
 }
 export type RouteType = {
     likesCount: number
@@ -20,27 +17,14 @@ export type ProfileType = {
     profile: null | ProfilePropsType
     status: string
 }
-type NewPostType = {
-    id: number
-    message: string
-    likesCount: number
-}
 export type DispatchType = (action: GlobalTypeAction) => void
 
 const ADD_POST = 'ADD-POST';
-const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
 
-
-export const addPostAC = (): AddPostActionType => {
+export const addPostAC = (newPostBody: string): AddPostActionType => {
     return {
-        type: ADD_POST
-    } as const
-}
-
-export const updateNewPostTextAC = (newText: string): UpdateNewPostTextActionType => {
-    return {
-        type: UPDATE_NEW_POST_TEXT,
-        text: newText
+        type: ADD_POST,
+        newPostBody
     } as const
 }
 
@@ -99,13 +83,11 @@ export const profileReducer = (state: ProfileType = initialState, action: Global
                 ...state,
                 posts: [...state.posts, {
                     id: 5,
-                    message: state.newPostText,
+                    message: action.newPostBody,
                     likesCount: 0,
                 }],
                 newPostText: ''
             }
-        case UPDATE_NEW_POST_TEXT:
-            return {...state, newPostText: action.text}
         case "SET-USER-PROFILE":
             return {
                 ...state, profile: action.profile

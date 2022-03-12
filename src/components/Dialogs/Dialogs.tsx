@@ -35,7 +35,6 @@ export const Dialogs = (props: UsersPropsType) => {
 }
 
 
-
 export const AddMessageForm: React.FC<InjectedFormProps<AddMessageFormType>> = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
