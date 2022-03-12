@@ -8,15 +8,15 @@ import thunkMiddleware from "redux-thunk"
 import {reducer as formReducer} from 'redux-form'
 
 
-let reducers=combineReducers({
+let reducers = combineReducers({
     profilePage: profileReducer,
     dialogsPage: dialogsReducer,
-    navbar:navbarReducer,
-    usersPage:usersReducer,
-    auth:authReducer,
-    form:formReducer
+    navbar: navbarReducer,
+    usersPage: usersReducer,
+    auth: authReducer,
+    form: formReducer
 
 })
 export type AppStateType = ReturnType<typeof reducers>
 
-export let store=createStore(reducers,applyMiddleware(thunkMiddleware))
+export let store = createStore(reducers, applyMiddleware(thunkMiddleware))

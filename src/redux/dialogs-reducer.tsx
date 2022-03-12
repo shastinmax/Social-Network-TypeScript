@@ -7,7 +7,8 @@ export type UpdateNewMessageBodyActionType = {
     body: string
 }
 export type SendMessageActionType = {
-    type: "SEND-MESSAGE"
+    type: "SEND-MESSAGE",
+    newMessageBody: string
 
 }
 type DialogType = {
@@ -21,19 +22,15 @@ type PostsType = {
 export type GlobalReducerType =
     AddPostActionType
     | UpdateNewPostTextActionType
-    | UpdateNewMessageBodyActionType
     | SendMessageActionType
     | navBarACType
 
-const UPDATE_NEW_MESSAGE_BODY = "UPDATE-NEW-MESSAGE-BODY";
 const SEND_MESSAGE = "SEND-MESSAGE";
 
-export const updateNewMessageBodyAC = (newText: string): UpdateNewMessageBodyActionType => ({
-    type: UPDATE_NEW_MESSAGE_BODY,
-    body: newText
-})
-export const sendMessageAC = (): SendMessageActionType => ({
-    type: SEND_MESSAGE
+
+export const sendMessageAC = (newMessageBody: string): SendMessageActionType => ({
+    type: SEND_MESSAGE,
+    newMessageBody
 
 })
 
@@ -41,6 +38,7 @@ export type InitialStateType = {
     dialogs: Array<PostsType>
     messages: Array<DialogType>
     newMessageBody: string
+
 }
 
 let initialState: InitialStateType = {
@@ -56,22 +54,17 @@ let initialState: InitialStateType = {
         {id: 4, message: 'Hi hello'},
         {id: 5, message: 'Hi you'}
     ],
-    newMessageBody: "",
+    newMessageBody: ''
 }
 
 export const dialogsReducer = (state: InitialStateType = initialState, action: GlobalReducerType): InitialStateType => {
     switch (action.type) {
-        case UPDATE_NEW_MESSAGE_BODY:
-           return {
-                ...state,
-                newMessageBody: action.body
-            }
         case SEND_MESSAGE:
-            let body = state.newMessageBody
-           return {
+            let body = action.newMessageBody
+            return {
                 ...state,
-                messages: [...state.messages,{id: 5, message: body}],
-                newMessageBody : ''
+                messages: [...state.messages, {id: 5, message: body}],
+
             }
         default:
             return state
