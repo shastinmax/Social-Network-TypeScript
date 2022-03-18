@@ -3,8 +3,11 @@ import s from './Dialogs.module.css'
 import {Dialog} from "./Dialog/Dialog";
 import {UsersPropsType} from "./DialogsContainer";
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
+import {Textarea} from "../common/FormsControl/FormsControl";
+import {maxLengthCreator, required} from "../../utils/validators/validators";
+import {AddMessageForm} from "./AddMessageForm/AddMessageForm";
 
-type AddMessageFormType = {
+export type AddMessageFormType = {
     newMessageBody: string
 }
 
@@ -31,19 +34,6 @@ export const Dialogs = (props: UsersPropsType) => {
                 <AddMessageFormRedux onSubmit={addNewMessage}/>
             </div>
         </div>
-    )
-}
-
-
-export const AddMessageForm: React.FC<InjectedFormProps<AddMessageFormType>> = (props) => {
-    return (
-        <form onSubmit={props.handleSubmit}>
-            <Field component={'textarea'} name='newMessageBody' placeholder='Enter your message'/>
-
-            <div>
-                <button>Add message</button>
-            </div>
-        </form>
     )
 }
 
