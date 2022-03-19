@@ -2,6 +2,8 @@ import React from 'react';
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import {Input} from "../common/FormsControl/FormsControl";
 import {required} from "../../utils/validators/validators";
+import {connect} from "react-redux";
+import {loginTC} from "../../redux/auth-reducer";
 
 type FormDataType = {
     login: string,
@@ -16,7 +18,7 @@ export const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
                 <Field placeholder={'Login'} name={'login'} component={Input} validate = {[required]}/>
             </div>
             <div>
-                <Field placeholder={'Password'} name={'password'} component={Input} validate = {[required]}/>
+                <Field placeholder={'Password'} name={'password'} component={Input} type = {'password'} validate = {[required]}/>
             </div>
             <div>
                 <Field type={'checkbox'} name={'rememberMe'} component={Input}/> remember me
@@ -32,10 +34,10 @@ export const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
 
 const LoginReduxForm = reduxForm<FormDataType>({form: 'login'})(LoginForm)
 
-export const Login = () => {
+ const Login = (props:any) => {
 
     const onSubmit = (formData: FormDataType) => {
-        console.log(formData)
+        props.loginTC(formData.login, formData.password, formData.rememberMe)
     }
 
     return (
@@ -46,3 +48,4 @@ export const Login = () => {
     );
 };
 
+export default connect(null,{loginTC})(Login)

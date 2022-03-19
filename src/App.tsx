@@ -6,7 +6,8 @@ import {NavbarContainer} from "./components/Navbar/NavbarContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from './components/Header/HeaderContainer';
 import UsersAPIComponent from "./components/Users/UsersContainer";
-import {Login} from "./components/Login/Login";
+import Login from "./components/Login/Login";
+
 
 export type AppTypeProps={}
 

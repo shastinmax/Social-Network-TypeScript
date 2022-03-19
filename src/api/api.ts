@@ -30,14 +30,20 @@ export const profileApi = {
     getStatus(userId: number) {
         return instance.get(`/profile/status/${userId}`)
     },
-    updateStatus(status:string) {
-        return instance.put('/profile/status',{status})
+    updateStatus(status: string) {
+        return instance.put('/profile/status', {status})
     },
 }
 export const authApi = {
     getMe() {
         console.log('in getMe')
-       return instance.get('auth/me')
+        return instance.get('auth/me')
+    },
+    login(email: string, password: string, rememberMe: boolean = false) {
+        return instance.post('auth/login', {email, password, rememberMe})
+    },
+    logout() {
+        return instance.post('auth/login')
     }
 }
 
