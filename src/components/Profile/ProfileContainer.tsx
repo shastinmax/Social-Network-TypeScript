@@ -36,6 +36,10 @@ type CommonPropsType = ProfileContainerPropsType & { router: WithRouterType }
 type MapStateToPropsType = {
     profile: ProfilePropsType | null
     status: string
+    authorizedUserId: number | null
+    isAuth: boolean
+
+
 }
 type MapDispatchToProps = {
     getUserProfile: (userId: number) => void
@@ -57,7 +61,7 @@ class ProfileContainer extends React.Component<ProfileContainerPropsType> {
         let userId: any = this.props.router.params.userId
         console.log(userId)
         if (!userId) {
-            userId = '2'
+            userId = this.props.authorizedUserId
         }
         this.props.getUserProfile(userId)
         this.props.getStatus(userId)
@@ -78,7 +82,10 @@ class ProfileContainer extends React.Component<ProfileContainerPropsType> {
 
 let mapStateToProps = (state: AppStateType): MapStateToPropsType => ({
     profile: state.profilePage.profile,
-    status: state.profilePage.status
+    status: state.profilePage.status,
+    authorizedUserId: state.auth.id,
+    isAuth: state.auth.isAuth
+
 })
 
 export function withRouter<T>(Component: ComponentType<T>): ComponentType<T & WithRouterType> {
