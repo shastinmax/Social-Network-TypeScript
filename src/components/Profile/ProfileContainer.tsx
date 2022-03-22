@@ -4,7 +4,6 @@ import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
 import {getStatus, getUserProfile, updateStatus} from "../../redux/profile-reducer";
 import {NavigateFunction, Params, useLocation, useNavigate, useParams} from "react-router-dom";
-import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
 
 
@@ -59,9 +58,11 @@ class ProfileContainer extends React.Component<ProfileContainerPropsType> {
 
     componentDidMount() {
         let userId: any = this.props.router.params.userId
-        console.log(userId)
         if (!userId) {
             userId = this.props.authorizedUserId
+            // if(!userId){
+            //     this.props.history.push('/login')
+            // }
         }
         this.props.getUserProfile(userId)
         this.props.getStatus(userId)
