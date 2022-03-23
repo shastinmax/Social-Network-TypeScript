@@ -44,6 +44,7 @@ type MapDispatchToProps = {
     getUserProfile: (userId: number) => void
     getStatus: (userId: number) => void
     updateStatus: (status: string) => void
+
 }
 type RoutersType = {
     router: {
@@ -107,7 +108,7 @@ export function withRouter<T>(Component: ComponentType<T>): ComponentType<T & Wi
 type WithRouterType = Location & NavigateFunction & Readonly<Params<string>>;
 
 export default compose<React.ComponentType>(connect<MapStateToPropsType, MapDispatchToProps, {}, AppStateType>(mapStateToProps, {
-        getUserProfile, getStatus, updateStatus
+        getUserProfile, getStatus, updateStatus,
     }), withRouter,
     // withAuthRedirect
 )(ProfileContainer)

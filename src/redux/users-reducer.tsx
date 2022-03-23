@@ -116,9 +116,10 @@ export const toggleIsFollowingInProgressAC = (isFetching: boolean, userId: numbe
 }
 export type DispatchType = (action: GlobalReducerType) => void
 //Thunks
-export const getUsers = (currentPage: number, pageSize: number) => {
+export const getUsersTC = (currentPage: number, pageSize: number) => {
     return (dispatch: DispatchType) => {
         dispatch(toggleIsFetchingAC(true))
+        dispatch(setCurrentPageAC(currentPage))
         usersApi.getUsers(currentPage, pageSize).then(data => {
             dispatch(toggleIsFetchingAC(false))
             dispatch(setUsersAC(data.items))
@@ -127,12 +128,13 @@ export const getUsers = (currentPage: number, pageSize: number) => {
     }
 }
 export const follow = (userId: number) => {
-    debugger
+
     return (dispatch: DispatchType) => {
         dispatch(toggleIsFollowingInProgressAC(true, userId))
         usersApi.follow(userId)
             .then(response => {
-                if (response.data.resultCode) {
+                if (response.data.resultCode === 0) {
+                    console.log('if')
                     dispatch(followSuccess(userId))
                 }
                 dispatch(toggleIsFollowingInProgressAC(false, userId))
@@ -142,10 +144,9 @@ export const follow = (userId: number) => {
 export const unfollow = (userId: number) => {
     return (dispatch: DispatchType) => {
         dispatch(toggleIsFollowingInProgressAC(true, userId))
-debugger
         usersApi.unfollow(userId)
             .then(response => {
-                if (response.data.resultCode) {
+                if (response.data.resultCode === 0) {
                     dispatch(unfollowSuccess(userId))
                 }
                 dispatch(toggleIsFollowingInProgressAC(false, userId))
