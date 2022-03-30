@@ -43,6 +43,14 @@ export const setStatus = (status: string) => {
         }
     } as const
 }
+export const deletePostAC = (postId: number) => {
+    return {
+        type: 'DELETE-POST',
+        payload: {
+            postId
+        }
+    } as const
+}
 export const getUserProfile = (userId: number) => (dispatch: DispatchType) => {
     usersApi.getProfile(userId).then(response => {
         dispatch(setUserProfile(response.data))
@@ -96,6 +104,9 @@ export const profileReducer = (state: ProfileType = initialState, action: Global
             return {
                 ...state, status: action.payload.status
             }
+        case "DELETE-POST":
+            return {
+                ...state,posts:state.posts.filter(p => p.id !== action.payload.postId)}
         default:
             return state
     }

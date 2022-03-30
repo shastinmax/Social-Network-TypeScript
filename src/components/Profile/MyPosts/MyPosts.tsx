@@ -11,33 +11,27 @@ type AddNewPostFormType = {
     newPostBody: string
 }
 
-export const MyPosts = (props: MyPostPropsType) => {
-    let post = props.posts.map(({id, message, likesCount}) => (
-        <React.Fragment key={id}><Post message={message} likesCount={likesCount}/></React.Fragment>))
-    const newPostElement = React.createRef<HTMLTextAreaElement>()
+export const MyPosts = React.memo((props: MyPostPropsType) => {
+        let post = props.posts.map(({id, message, likesCount}) => (
+            <React.Fragment key={id}><Post message={message} likesCount={likesCount}/></React.Fragment>))
+        const newPostElement = React.createRef<HTMLTextAreaElement>()
 
 
-    let onAddPost = (values: AddNewPostFormType) => {
-        props.addPost(values.newPostBody)
-    }
-    // const onPostChange = () => {
-    //     debugger
-    //     let text: string = newPostElement.current?.value || ""
-    //     props.updateNewPostText(text)
-    // }
+        let onAddPost = (values: AddNewPostFormType) => {
+            props.addPost(values.newPostBody)
+        }
 
-
-    return (
-        <div className={s.myposts}>
-            <h3>My Posts</h3>
-            <AddNewPostFormRedux onSubmit={onAddPost}/>
-            <div className={s.posts}>
-                {post}
+        return (
+            <div className={s.myposts}>
+                <h3>My Posts</h3>
+                <AddNewPostFormRedux onSubmit={onAddPost}/>
+                <div className={s.posts}>
+                    {post}
+                </div>
             </div>
-        </div>
-    )
-}
-
+        )
+    }
+)
 const maxLength10 = maxLengthCreator(10)
 
 const AddNewPostForm: React.FC<InjectedFormProps<AddNewPostFormType>> = (props) => {
