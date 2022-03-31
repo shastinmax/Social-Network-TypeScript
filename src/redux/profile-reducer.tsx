@@ -34,7 +34,6 @@ export const setUserProfile = (profile: ProfilePropsType) => {
         profile,
     } as const
 }
-
 export const setStatus = (status: string) => {
     return {
         type: 'SET-STATUS',
@@ -51,25 +50,19 @@ export const deletePostAC = (postId: number) => {
         }
     } as const
 }
-export const getUserProfile = (userId: number) => (dispatch: DispatchType) => {
-    usersApi.getProfile(userId).then(response => {
+export const getUserProfile = (userId: number) => async (dispatch: DispatchType) => {
+    let response = await usersApi.getProfile(userId)
         dispatch(setUserProfile(response.data))
-    })
 }
-export const getStatus = (userId: number) => (dispatch: DispatchType) => {
-    profileApi.getStatus(userId)
-        .then(response => {
+export const getStatus = (userId: number) => async (dispatch: DispatchType) => {
+let response = await profileApi.getStatus(userId)
             dispatch(setStatus(response.data))
-        })
 }
-export const updateStatus = (status: string) => (dispatch: DispatchType) => {
-    profileApi.updateStatus(status)
-        .then(response => {
+export const updateStatus = (status: string) => async (dispatch: DispatchType) => {
+    let response =await profileApi.updateStatus(status)
             if (response.data.resultCode === 0) {
                 dispatch(setStatus(status))
             }
-
-        })
 }
 
 let initialState: ProfileType = {
