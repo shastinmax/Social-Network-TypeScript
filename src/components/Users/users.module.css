@@ -5,12 +5,7 @@
     margin-left: 15px;
     margin-bottom: 10px;
 }
-.selectedPage{
-    font-weight: 700;
-}
-.selectedPage:hover{
-    cursor: pointer;
-}
+
 .preloader{
     width: 100px;
     height: 100px;

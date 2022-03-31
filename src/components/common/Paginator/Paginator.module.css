@@ -1,0 +1,11 @@
+
+.selectedPage{
+    font-weight: 700;
+}
+.selectedPage:hover{
+    cursor: pointer;
+}
+
+
+
+

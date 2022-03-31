@@ -2,21 +2,22 @@ import s from './ProfileInfo.module.css'
 import {ProfilePropsType} from "../ProfileContainer";
 import {Preloader} from "../../common/preloader/Preloader";
 import {ProfileStatus} from './ProfileStatus'
+
 type propsType = {
     profile: ProfilePropsType | null,
     status: string,
-    updateStatus: (status:string)=>void
+    updateStatus: (status: string) => void
 }
-export const ProfileInfo = ({...props}: propsType) => {
-    if (!props.profile) {
+export const ProfileInfo = ({profile, updateStatus, status}: propsType) => {
+    if (!profile) {
         return <Preloader/>
     }
-    return(
+    return (
         <div>
             <div className={s.avatar}>
-                <img src={props.profile.photos.small}
+                <img src={profile.photos.small}
                      alt='avatar'/>
-                <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
+                <ProfileStatus status={status} updateStatus={updateStatus}/>
             </div>
 
         </div>

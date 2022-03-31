@@ -1,7 +1,7 @@
 import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
 import {
-    follow,getUsersTC,
+    follow, getUsersTC,
     setCurrentPageAC,
     toggleIsFollowingInProgressAC,
     unfollow,
@@ -42,14 +42,14 @@ type UsersPropsType = MapStateToProps & MapDispatchToProps
 class UsersAPIComponent extends React.Component<UsersPropsType, {}> {
 
     componentDidMount() {
-        this.props.getUsersTC(this.props.currentPage, this.props.pageSize)
+        const {currentPage, pageSize} = this.props
+        this.props.getUsersTC(currentPage, pageSize)
     }
 
     onPageChanged = (pageNumber: number) => {
-
-        this.props.getUsersTC(pageNumber, this.props.pageSize)
+        const {pageSize} = this.props
+        this.props.getUsersTC(pageNumber, pageSize)
     }
-
 
     render() {
 
