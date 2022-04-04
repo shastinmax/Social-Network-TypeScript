@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/Social-Network-TypeScript/static/css/main.0fb9e2c1.chunk.css",
-    "main.js": "/Social-Network-TypeScript/static/js/main.b280bc9e.chunk.js",
-    "main.js.map": "/Social-Network-TypeScript/static/js/main.b280bc9e.chunk.js.map",
-    "runtime-main.js": "/Social-Network-TypeScript/static/js/runtime-main.f8cc6d30.js",
-    "runtime-main.js.map": "/Social-Network-TypeScript/static/js/runtime-main.f8cc6d30.js.map",
-    "static/js/2.7f47b529.chunk.js": "/Social-Network-TypeScript/static/js/2.7f47b529.chunk.js",
-    "static/js/2.7f47b529.chunk.js.map": "/Social-Network-TypeScript/static/js/2.7f47b529.chunk.js.map",
-    "static/js/3.505a06f9.chunk.js": "/Social-Network-TypeScript/static/js/3.505a06f9.chunk.js",
-    "static/js/3.505a06f9.chunk.js.map": "/Social-Network-TypeScript/static/js/3.505a06f9.chunk.js.map",
+    "main.css": "/Social-Network-TypeScript/static/css/main.dcada9c4.chunk.css",
+    "main.js": "/Social-Network-TypeScript/static/js/main.608dc097.chunk.js",
+    "main.js.map": "/Social-Network-TypeScript/static/js/main.608dc097.chunk.js.map",
+    "runtime-main.js": "/Social-Network-TypeScript/static/js/runtime-main.df0b287f.js",
+    "runtime-main.js.map": "/Social-Network-TypeScript/static/js/runtime-main.df0b287f.js.map",
+    "static/js/2.688e5fb2.chunk.js": "/Social-Network-TypeScript/static/js/2.688e5fb2.chunk.js",
+    "static/js/2.688e5fb2.chunk.js.map": "/Social-Network-TypeScript/static/js/2.688e5fb2.chunk.js.map",
+    "static/js/3.830d316c.chunk.js": "/Social-Network-TypeScript/static/js/3.830d316c.chunk.js",
+    "static/js/3.830d316c.chunk.js.map": "/Social-Network-TypeScript/static/js/3.830d316c.chunk.js.map",
     "index.html": "/Social-Network-TypeScript/index.html",
-    "static/css/main.0fb9e2c1.chunk.css.map": "/Social-Network-TypeScript/static/css/main.0fb9e2c1.chunk.css.map",
-    "static/js/2.7f47b529.chunk.js.LICENSE.txt": "/Social-Network-TypeScript/static/js/2.7f47b529.chunk.js.LICENSE.txt",
+    "static/css/main.dcada9c4.chunk.css.map": "/Social-Network-TypeScript/static/css/main.dcada9c4.chunk.css.map",
+    "static/js/2.688e5fb2.chunk.js.LICENSE.txt": "/Social-Network-TypeScript/static/js/2.688e5fb2.chunk.js.LICENSE.txt",
     "static/media/preloader.81b72309.svg": "/Social-Network-TypeScript/static/media/preloader.81b72309.svg",
     "static/media/risuem-chelovek-rebenku-14.e9b2c5f4.jpg": "/Social-Network-TypeScript/static/media/risuem-chelovek-rebenku-14.e9b2c5f4.jpg"
   },
   "entrypoints": [
-    "static/js/runtime-main.f8cc6d30.js",
-    "static/js/2.7f47b529.chunk.js",
-    "static/css/main.0fb9e2c1.chunk.css",
-    "static/js/main.b280bc9e.chunk.js"
+    "static/js/runtime-main.df0b287f.js",
+    "static/js/2.688e5fb2.chunk.js",
+    "static/css/main.dcada9c4.chunk.css",
+    "static/js/main.608dc097.chunk.js"
   ]
 }
