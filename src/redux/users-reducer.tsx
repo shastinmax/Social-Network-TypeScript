@@ -25,9 +25,9 @@ export type DispatchType = (action: GlobalReducerType) => void
 
 let initialState: UsersType = {
     users: [],
-    pageSize: 5,
+    pageSize: 10,
     totalUsersCount: 20,
-    currentPage: 3,
+    currentPage: 1,
     isFetching: true,
     followingInProgress: []
 }
