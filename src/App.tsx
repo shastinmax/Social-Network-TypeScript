@@ -1,9 +1,7 @@
 import React from 'react';
 import './App.css';
 import {BrowserRouter, Route, Routes,} from "react-router-dom";
-import DialogsContainer from './components/Dialogs/DialogsContainer';
 import {NavbarContainer} from "./components/Navbar/NavbarContainer";
-import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from './components/Header/HeaderContainer';
 import UsersAPIComponent from "./components/Users/UsersContainer";
 import Login from "./components/Login/Login";
@@ -12,6 +10,9 @@ import {AppStateType} from "./redux/redux-store";
 import {compose} from "redux";
 import {initializeApp} from "./redux/app-reducer";
 import {Preloader} from "./components/common/preloader/Preloader";
+import ProfileContainer from './components/Profile/ProfileContainer';
+import DialogsContainer from "./components/Dialogs/DialogsContainer";
+
 
 export type AppTypeProps = MapStateToPropsType & MapDispatchToPropsType
 

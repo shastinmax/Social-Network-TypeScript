@@ -8,14 +8,22 @@ import {ProfilePropsType} from "./ProfileContainer";
 type propsType = {
     profile: ProfilePropsType | null
     status: string,
-    updateStatus: (status:string)=>void
+    updateStatus: (status: string) => void
+    isOwner: boolean
+    savePhoto: (file: any) => void
 }
 
 export const Profile = (props: propsType) => {
+
+    const {isOwner, profile, status, updateStatus, savePhoto} = props
+
     return (
         <div>
-            <ProfileInfo profile={props.profile} status={props.status}
-                         updateStatus={props.updateStatus}/>
+            <ProfileInfo isOwner={isOwner}
+                         profile={profile}
+                         status={status}
+                         updateStatus={updateStatus}
+                         savePhoto={savePhoto}/>
             <MyPostsContainer/>
         </div>
     )

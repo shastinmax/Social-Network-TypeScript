@@ -14,20 +14,60 @@ export type RouteType = {
 export type ProfileType = {
     posts: Array<RouteType>
     newPostText: string,
-    profile: null | ProfilePropsType
+    profile: null | any
     status: string
 }
 export type DispatchType = (action: GlobalTypeAction) => void
 
-const ADD_POST = 'ADD-POST';
+let initialState: ProfileType = {
+    posts: [
+        {id: 1, message: 'Hi,how are you', likesCount: 12},
+        {id: 2, message: 'Hi, you', likesCount: 11},
+        {id: 3, message: 'Hi,how are you', likesCount: 11},
+        {id: 4, message: 'how are you', likesCount: 12}
+    ],
+    newPostText: 'it-kamas',
+    profile: null,
+    status: ''
+}
+
+export const profileReducer = (state: ProfileType = initialState, action: GlobalTypeAction): ProfileType => {
+    switch (action.type) {
+        case 'ADD-POST':
+            return {
+                ...state,
+                posts: [...state.posts, {
+                    id: 5,
+                    message: action.newPostBody,
+                    likesCount: 0,
+                }],
+                newPostText: ''
+            }
+        case "SET-USER-PROFILE":
+            return {
+                ...state, profile: action.profile
+            }
+        case "SET-STATUS":
+            return {
+                ...state, status: action.payload.status
+            }
+        case "DELETE-POST":
+            return {
+                ...state,posts:state.posts.filter(p => p.id !== action.payload.postId)}
+        case "SAVE-PHOTO-SUCCESS":
+            return {
+                ...state,profile:{...state.profile, photos: action.photos}}
+        default:
+            return state
+    }
+}
 
 export const addPostAC = (newPostBody: string): AddPostActionType => {
     return {
-        type: ADD_POST,
+        type: 'ADD-POST',
         newPostBody
     } as const
 }
-
 export const setUserProfile = (profile: ProfilePropsType) => {
     return {
         type: 'SET-USER-PROFILE',
@@ -50,6 +90,13 @@ export const deletePostAC = (postId: number) => {
         }
     } as const
 }
+export const savePhotoSuccess = (photos: any) => {
+    return {
+        type: 'SAVE-PHOTO-SUCCESS',
+        photos
+    } as const
+}
+
 export const getUserProfile = (userId: number) => async (dispatch: DispatchType) => {
     let response = await usersApi.getProfile(userId)
         dispatch(setUserProfile(response.data))
@@ -64,43 +111,10 @@ export const updateStatus = (status: string) => async (dispatch: DispatchType) =
                 dispatch(setStatus(status))
             }
 }
-
-let initialState: ProfileType = {
-    posts: [
-        {id: 1, message: 'Hi,how are you', likesCount: 12},
-        {id: 2, message: 'Hi, you', likesCount: 11},
-        {id: 3, message: 'Hi,how are you', likesCount: 11},
-        {id: 4, message: 'how are you', likesCount: 12}
-    ],
-    newPostText: 'it-kamas',
-    profile: null,
-    status: ''
-}
-
-export const profileReducer = (state: ProfileType = initialState, action: GlobalTypeAction): ProfileType => {
-    switch (action.type) {
-        case ADD_POST:
-            return {
-                ...state,
-                posts: [...state.posts, {
-                    id: 5,
-                    message: action.newPostBody,
-                    likesCount: 0,
-                }],
-                newPostText: ''
-            }
-        case "SET-USER-PROFILE":
-            return {
-                ...state, profile: action.profile
-            }
-        case "SET-STATUS":
-            return {
-                ...state, status: action.payload.status
-            }
-        case "DELETE-POST":
-            return {
-                ...state,posts:state.posts.filter(p => p.id !== action.payload.postId)}
-        default:
-            return state
+export const savePhoto = (file: any) => async (dispatch: DispatchType) => {
+    let response =await profileApi.savePhoto(file)
+    if (response.data.resultCode === 0) {
+        dispatch(savePhotoSuccess(response.data.data.photos))
     }
 }
+
