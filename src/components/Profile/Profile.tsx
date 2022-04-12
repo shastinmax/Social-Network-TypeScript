@@ -11,11 +11,12 @@ type propsType = {
     updateStatus: (status: string) => void
     isOwner: boolean
     savePhoto: (file: any) => void
+    saveProfile : (profile: ProfilePropsType) => Promise<any>
 }
 
 export const Profile = (props: propsType) => {
 
-    const {isOwner, profile, status, updateStatus, savePhoto} = props
+    const {isOwner, profile, status, updateStatus, savePhoto,saveProfile} = props
 
     return (
         <div>
@@ -23,7 +24,8 @@ export const Profile = (props: propsType) => {
                          profile={profile}
                          status={status}
                          updateStatus={updateStatus}
-                         savePhoto={savePhoto}/>
+                         savePhoto={savePhoto}
+            saveProfile={saveProfile}/>
             <MyPostsContainer/>
         </div>
     )
