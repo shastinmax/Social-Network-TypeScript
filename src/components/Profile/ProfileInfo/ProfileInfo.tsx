@@ -42,7 +42,7 @@ export const ProfileInfo = (props: propsType) => {
     return (
         <div>
             <div className={s.avatar}>
-                <img src={profile.photos.large || userPhoto} className={s.mainPhoto}
+                <img src={profile.photos.large} className={s.mainPhoto}
                      alt='avatar'/>
                 {isOwner && <input type="file" onChange={onMainPhotoSelected}/>}
 

@@ -67,6 +67,7 @@ class ProfileContainer extends React.Component<ProfileContainerPropsType> {
     }
 
     componentDidMount() {
+        console.log('this.props.router.params.userId', this.props.router.params.userId)
         this.refreshProfile()
     }
 
@@ -78,6 +79,7 @@ class ProfileContainer extends React.Component<ProfileContainerPropsType> {
     }
 
     render() {
+
         return (
             <div>
                 <Profile {...this.props}

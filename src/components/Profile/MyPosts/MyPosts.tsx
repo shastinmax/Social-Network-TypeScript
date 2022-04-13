@@ -13,7 +13,7 @@ type AddNewPostFormType = {
 
 export const MyPosts = React.memo((props: MyPostPropsType) => {
         let post = props.posts.map(({id, message, likesCount}) => (
-            <React.Fragment key={id}><Post message={message} likesCount={likesCount}/></React.Fragment>))
+            <React.Fragment ><Post key={id} message={message} likesCount={likesCount}/></React.Fragment>))
         // const newPostElement = React.createRef<HTMLTextAreaElement>()
 
 

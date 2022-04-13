@@ -11,10 +11,10 @@ let initialState = {
 
 export const appReducer = (state: InitialStateType = initialState, action: GeneralType): InitialStateType => {
     switch (action.type) {
-        case "SET-INITIALIZED": {
+        case "INITIALIZED-SUCCESS": {
             return {
                 ...state,
-                initialized: true
+                initialized: false
             }
         }
         default: {
