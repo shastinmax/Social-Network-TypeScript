@@ -14,7 +14,7 @@ export const appReducer = (state: InitialStateType = initialState, action: Gener
         case "INITIALIZED-SUCCESS": {
             return {
                 ...state,
-                initialized: false
+                initialized: true
             }
         }
         default: {
