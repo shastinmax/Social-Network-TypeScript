@@ -3,7 +3,7 @@ import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import {createField, GetStringKeys, Input} from "../common/FormsControl/FormsControl";
 import {required} from "../../utils/validators/validators";
 import {connect} from "react-redux";
-import {loginTC} from "../../redux/auth-reducer";
+import {login} from "../../redux/auth-reducer";
 import {Navigate} from "react-router-dom";
 import {AppStateType} from "../../redux/redux-store";
 import style from "./../common/FormsControl/FormsControls.module.css"
@@ -29,16 +29,6 @@ export const LoginForm: React.FC<InjectedFormProps<LoginFormValuesType, LoginFor
             {createField<LoginFormValuesTypeKeys>('Email', 'email', [required], Input)}
             {createField<LoginFormValuesTypeKeys>('Password', 'password', [required], Input, {type: 'password'})}
             {createField<LoginFormValuesTypeKeys>(undefined, 'rememberMe', [], Input, {type: 'checkbox'}, 'remember me')}
-            {/*<div>*/}
-            {/*    <Field placeholder={'Login'} name={'login'} component={Input} validate={[required]}/>*/}
-            {/*</div>*/}
-            {/*<div>*/}
-            {/*    <Field placeholder={'Password'} name={'password'} component={Input} type={'password'}*/}
-            {/*           validate={[required]}/>*/}
-            {/*</div>*/}
-            {/*<div>*/}
-            {/*    <Field type={'checkbox'} name={'rememberMe'} component={Input}/> remember me*/}
-            {/*</div>*/}
 
             {captchaUrl && <img src={captchaUrl}/>}
             {captchaUrl && createField<LoginFormValuesTypeKeys>('Symbols from image', 'captcha', [required], Input, {})}
@@ -66,7 +56,7 @@ type LoginFormValuesTypeKeys = GetStringKeys<LoginFormValuesType>
 const Login = (props: any) => {
 
     const onSubmit = (formData: LoginFormValuesType) => {
-        props.loginTC(formData.email, formData.password, formData.rememberMe,formData.captcha)
+        props.login(formData.email, formData.password, formData.rememberMe,formData.captcha)
     }
     if (props.isAuth) {
         return <Navigate to={'/profile'}/>
@@ -83,4 +73,4 @@ const mapStateToProps = (state: AppStateType) => ({
     captchaUrl: state.auth.captchaUrl,
     isAuth: state.auth.isAuth
 })
-export default connect<MapStateToPropsType, MapDispatchToPropsType, {}, AppStateType>(mapStateToProps, {loginTC})(Login)
+export default connect<MapStateToPropsType, MapDispatchToPropsType, {}, AppStateType>(mapStateToProps, {login})(Login)
