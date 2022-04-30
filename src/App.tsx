@@ -2,7 +2,6 @@ import React from 'react';
 import './App.css';
 import {BrowserRouter, Route, Routes,} from "react-router-dom";
 import {NavbarContainer} from "./components/Navbar/NavbarContainer";
-import HeaderContainer from './components/Header/HeaderContainer';
 import UsersAPIComponent from "./components/Users/UsersContainer";
 import Login from "./components/Login/Login";
 import {connect} from "react-redux";
@@ -12,6 +11,7 @@ import {initializeApp} from "./redux/app-reducer";
 import {Preloader} from "./components/common/preloader/Preloader";
 import ProfileContainer from './components/Profile/ProfileContainer';
 import {Dialogs} from "./components/Dialogs/Dialogs";
+import {Header} from "./components/Header/Header";
 
 
 export type AppTypeProps = MapStateToPropsType & MapDispatchToPropsType
@@ -30,7 +30,7 @@ class App extends React.Component<AppTypeProps> {
         return (
             <BrowserRouter>
                 <div className='app-wrapper'>
-                    <HeaderContainer/>
+                    <Header/>
                     <NavbarContainer/>
                     <div className='app-wrapper-content'>
                         <Routes>

@@ -15,7 +15,7 @@ export type AddMessageFormType = {
 
 export const Dialogs = () => {
     const {dialogs, messages} = useAppSelector(selectIsDialogs)
-    const isAuth = useAppSelector(selectIsAuth)
+    const {isAuth} = useAppSelector(selectIsAuth)
     const dispatch = useDispatch()
 
 

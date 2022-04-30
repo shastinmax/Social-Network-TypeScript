@@ -20,5 +20,5 @@ export const getFollowingInProgress = (state: AppStateType) => {
 }
 
 
-export const selectIsAuth = (state: AppStateType) => state.auth.isAuth
+export const selectIsAuth = (state: AppStateType) => state.auth
 export const selectIsDialogs = (state: AppStateType) => state.dialogsPage
