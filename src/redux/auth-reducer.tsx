@@ -1,7 +1,7 @@
 import {authApi, securityAPI} from "../api/api";
 import {Dispatch} from "redux";
 import {FormAction, stopSubmit} from "redux-form";
-import {ThunkAction, ThunkDispatch} from "redux-thunk";
+import {ThunkDispatch} from "redux-thunk";
 import {AppStateType} from "./redux-store";
 
 export type InitialStateType = {
@@ -24,7 +24,6 @@ let initialState = {
 
 
 export type GeneralType = SetUserDataType | GetCaptchaUrlType
-// export type ThunkType = ThunkAction<void, AppStateType, Dispatch<GeneralType>, GeneralType>
 type SetUserDataType = ReturnType<typeof setAuthUserData>
 type GetCaptchaUrlType = ReturnType<typeof getCaptchaUrlSuccess>
 export const authReducer = (state: InitialStateType = initialState, action: GeneralType): InitialStateType => {
@@ -33,7 +32,6 @@ export const authReducer = (state: InitialStateType = initialState, action: Gene
         case "GET-CAPTCHA-URL": {
             return {...state, ...action.payload}
         }
-
         default: {
             return state
         }

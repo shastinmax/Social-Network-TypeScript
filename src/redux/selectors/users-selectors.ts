@@ -1,20 +1,24 @@
 import {AppStateType} from "../redux-store";
 
-export const getUsers = (state:AppStateType) =>{
+export const getUsers = (state: AppStateType) => {
     return state.usersPage.users
 }
-export const getPageSize = (state:AppStateType) =>{
+export const getPageSize = (state: AppStateType) => {
     return state.usersPage.pageSize
 }
-export const getTotalUsersCount = (state:AppStateType) =>{
+export const getTotalUsersCount = (state: AppStateType) => {
     return state.usersPage.totalUsersCount
 }
-export const getCurrentPage = (state:AppStateType) =>{
+export const getCurrentPage = (state: AppStateType) => {
     return state.usersPage.currentPage
 }
-export const getIsFetching = (state:AppStateType) =>{
+export const getIsFetching = (state: AppStateType) => {
     return state.usersPage.isFetching
 }
-export const getFollowingInProgress = (state:AppStateType) =>{
+export const getFollowingInProgress = (state: AppStateType) => {
     return state.usersPage.followingInProgress
 }
+
+
+export const selectIsAuth = (state: AppStateType) => state.auth.isAuth
+export const selectIsDialogs = (state: AppStateType) => state.dialogsPage

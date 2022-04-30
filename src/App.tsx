@@ -11,7 +11,7 @@ import {compose} from "redux";
 import {initializeApp} from "./redux/app-reducer";
 import {Preloader} from "./components/common/preloader/Preloader";
 import ProfileContainer from './components/Profile/ProfileContainer';
-import DialogsContainer from "./components/Dialogs/DialogsContainer";
+import {Dialogs} from "./components/Dialogs/Dialogs";
 
 
 export type AppTypeProps = MapStateToPropsType & MapDispatchToPropsType
@@ -36,7 +36,7 @@ class App extends React.Component<AppTypeProps> {
                         <Routes>
                             <Route path='/*' element={<ProfileContainer/>}/>
                             <Route path='/profile/:userId' element={<ProfileContainer/>}/>
-                            <Route path='/dialogs/*' element={<DialogsContainer/>}/>
+                            <Route path='/dialogs/*' element={<Dialogs/>}/>
                             <Route path='/news' element={<h2>News</h2>}/>
                             <Route path='/music' element={<h2>Music</h2>}/>
                             <Route path='/settings' element={<h2>Settings</h2>}/>
