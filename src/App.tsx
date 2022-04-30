@@ -18,7 +18,7 @@ export const App = () => {
 
     const dispatch = useDispatch()
     useEffect(() => {
-        dispatch(initializeApp)
+        dispatch(initializeApp())
     }, [])
 
     if (!initialized) {

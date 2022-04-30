@@ -1,26 +1,26 @@
 import s from './MyPosts.module.css'
 import {Post} from "./Post/Post";
 import React from "react";
-import {MyPostPropsType} from "./MyPostContainers";
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import {maxLengthCreator, required} from "../../../utils/validators/validators";
 import {Textarea} from "../../common/FormsControl/FormsControl";
-
+import {useAppSelector} from "../../common/hook/selectorHook";
+import {selectIsProfile} from "../../../redux/selectors/users-selectors";
+import {addPostAC} from "../../../redux/profile-reducer";
+import {useDispatch} from "react-redux";
 
 type AddNewPostFormType = {
     newPostBody: string
 }
+export const MyPosts = React.memo(() => {
+        const dispatch = useDispatch()
+        const {posts} = useAppSelector(selectIsProfile)
 
-export const MyPosts = React.memo((props: MyPostPropsType) => {
-        let post = props.posts.map(({id, message, likesCount}) => (
-            <React.Fragment ><Post key={id} message={message} likesCount={likesCount}/></React.Fragment>))
-        // const newPostElement = React.createRef<HTMLTextAreaElement>()
-
-
+        let post = posts.map(({id, message, likesCount}) => (
+            <React.Fragment><Post key={id} message={message} likesCount={likesCount}/></React.Fragment>))
         let onAddPost = (values: AddNewPostFormType) => {
-            props.addPost(values.newPostBody)
+            dispatch(addPostAC(values.newPostBody))
         }
-
         return (
             <div className={s.myposts}>
                 <h3>My Posts</h3>
