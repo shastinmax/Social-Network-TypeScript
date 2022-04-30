@@ -1,33 +1,32 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './App.css';
 import {BrowserRouter, Route, Routes,} from "react-router-dom";
 import {NavbarContainer} from "./components/Navbar/NavbarContainer";
 import UsersAPIComponent from "./components/Users/UsersContainer";
 import Login from "./components/Login/Login";
-import {connect} from "react-redux";
-import {AppStateType} from "./redux/redux-store";
-import {compose} from "redux";
+import {useDispatch} from "react-redux";
 import {initializeApp} from "./redux/app-reducer";
 import {Preloader} from "./components/common/preloader/Preloader";
 import ProfileContainer from './components/Profile/ProfileContainer';
 import {Dialogs} from "./components/Dialogs/Dialogs";
 import {Header} from "./components/Header/Header";
+import {useAppSelector} from "./components/common/hook/selectorHook";
+import {selectIsApp} from "./redux/selectors/users-selectors";
 
+export const App = () => {
+    const {initialized} = useAppSelector(selectIsApp)
 
-export type AppTypeProps = MapStateToPropsType & MapDispatchToPropsType
+    const dispatch = useDispatch()
+    useEffect(() => {
+        dispatch(initializeApp)
+    }, [])
 
-class App extends React.Component<AppTypeProps> {
-
-    componentDidMount() {
-        this.props.initializeApp()
+    if (!initialized) {
+        return <Preloader/>
     }
 
-    render() {
-        if (!this.props.initialized) {
-            return <Preloader/>
-        }
-
         return (
+            <>
             <BrowserRouter>
                 <div className='app-wrapper'>
                     <Header/>
@@ -46,21 +45,8 @@ class App extends React.Component<AppTypeProps> {
                     </div>
                 </div>
             </BrowserRouter>
+            </>
         );
     }
-}
 
-type MapStateToPropsType = {
-    initialized: boolean
-}
-type MapDispatchToPropsType = {
-    initializeApp: () => void
-}
-const mapStateToProps = (state: AppStateType): MapStateToPropsType => ({
-    initialized: state.app.initialized
-})
 
-export default compose(
-    connect<MapStateToPropsType, MapDispatchToPropsType, {}, AppStateType>(mapStateToProps, {
-        initializeApp
-    }))(App)
