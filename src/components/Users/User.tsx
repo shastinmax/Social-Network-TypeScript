@@ -1,17 +1,25 @@
 import React from 'react';
 import s from "./users.module.css";
 import userPhoto from "../../assets/images/risuem-chelovek-rebenku-14.jpg";
-import {UserType} from "../../redux/users-reducer";
+import {follow, unfollow, UserType} from "../../redux/users-reducer";
 import {NavLink} from "react-router-dom";
+import {useDispatch} from "react-redux";
 
 type UsersPropsType = {
     user: UserType
-    follow: (id: number) => void
-    unfollow: (id: number) => void
     followingInProgress: number[]
 }
 
-export const User = ({user, follow, unfollow, followingInProgress,}: UsersPropsType) => {
+export const User = ({user, followingInProgress,}: UsersPropsType) => {
+    const dispatch = useDispatch()
+    const onHandlerFollow = (id: number) => {
+        dispatch(follow(id))
+    }
+    const onHandlerUnFollow = (id: number) => {
+        dispatch(unfollow(id))
+    }
+
+
     return (
         <div>
             <div>
@@ -27,11 +35,11 @@ export const User = ({user, follow, unfollow, followingInProgress,}: UsersPropsT
                 user.followed
                     ? <button disabled={followingInProgress.some(id => id === user.id)}
                               onClick={() => {
-                                  unfollow(user.id)
+                                  onHandlerUnFollow(user.id)
                               }}>Unfollow</button>
                     : <button disabled={followingInProgress.some(id => id === user.id)}
                               onClick={() => {
-                                  follow(user.id)
+                                  onHandlerFollow(user.id)
                               }}>Follow</button>
             }
                 </div>

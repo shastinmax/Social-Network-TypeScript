@@ -3,8 +3,6 @@ import React from "react";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 import {ProfilePropsType} from "./ProfileContainer";
 import {Navigate} from "react-router-dom";
-import {useSelector} from "react-redux";
-import {AppStateType} from "../../redux/redux-store";
 import {MyPosts} from "./MyPosts/MyPosts";
 
 type propsType = {
@@ -13,13 +11,13 @@ type propsType = {
     updateStatus: (status: string) => void
     isOwner: boolean
     savePhoto: (file: any) => void
-    saveProfile: (profile: ProfilePropsType) => Promise<any>
+    saveProfile:any
+        // (profile: ProfilePropsType) => Promise<any>
+    isAuth: boolean
 }
 
 export const Profile = (props: propsType) => {
-    const isAuth = useSelector<AppStateType, boolean>(state => state.auth.isAuth)
-
-    const {isOwner, profile, status, updateStatus, savePhoto, saveProfile} = props
+    const {isOwner, profile, status, updateStatus, savePhoto, saveProfile,isAuth} = props
 
     if (!isAuth) {
         return <Navigate to={'/login'}/>

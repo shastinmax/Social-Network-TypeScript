@@ -2,7 +2,6 @@ import s from './ProfileInfo.module.css'
 import {ProfilePropsType} from "../ProfileContainer";
 import {Preloader} from "../../common/preloader/Preloader";
 import {ProfileStatus} from './ProfileStatus'
-import userPhoto from "../../../assets/images/risuem-chelovek-rebenku-14.jpg";
 import {ChangeEvent, useState} from "react";
 import {ProfileDataFormReduxForm} from "./ProfileDataForm";
 import {useDispatch} from "react-redux";
@@ -26,13 +25,15 @@ export const ProfileInfo = (props: propsType) => {
 
     const onMainPhotoSelected = (e: ChangeEvent<HTMLInputElement>) => {
         if (e.currentTarget.files && e.currentTarget.files.length) {
-            savePhoto(e.currentTarget.files[0])
+          dispatch(savePhoto(e.currentTarget.files[0]))
         }
     }
 
     const onSubmit = (formData: ProfilePropsType) => {
-        saveProfile(formData)
-            .then(() => setEditMode(false))
+       dispatch(saveProfile(formData))
+        setEditMode(false)
+
+            // .then(() => setEditMode(false))
 
     }
 
@@ -44,7 +45,8 @@ export const ProfileInfo = (props: propsType) => {
             <div className={s.avatar}>
                 <img src={profile.photos.large} className={s.mainPhoto}
                      alt='avatar'/>
-                {isOwner && <input type="file" onChange={onMainPhotoSelected}/>}
+                <button onClick={()=>setEditMode(!editMode)}>Edit</button>
+                {editMode && <input type="file" onChange={onMainPhotoSelected}/>}
 
                 {editMode ? <ProfileDataFormReduxForm initialValues={profile} profile={profile} onSubmit={onSubmit}/> :
                     <ProfileData profile={profile} isOwner={isOwner} goToEditMode={goToEditMode}/>}
