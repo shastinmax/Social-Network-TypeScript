@@ -3,7 +3,7 @@ import './App.css';
 import {BrowserRouter, Route, Routes, Navigate, HashRouter} from "react-router-dom";
 import {NavbarContainer} from "./components/Navbar/NavbarContainer";
 import {UsersAPIComponent} from "./components/Users/UsersContainer";
-import Login from "./components/Login/Login";
+import {Login} from "./components/Login/Login";
 import {useDispatch} from "react-redux";
 import {initializeApp} from "./redux/app-reducer";
 import {Preloader} from "./components/common/preloader/Preloader";
