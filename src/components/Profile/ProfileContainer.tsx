@@ -36,39 +36,27 @@ export const ProfileContainer = () => {
     let {userId} = useParams()
     const {isAuth, id} = useAppSelector(selectIsAuth)
     const {profile, status} = useAppSelector(selectIsProfile)
-    const [userIDD, setUserIDD] = useState<any>(id)
     console.log(userId)
 
-    // userId='20395'
-
     useEffect(() => {
-        if (userIDD) {
-            dispatch(getUserProfile(+userIDD))
-            dispatch(getStatus(+userIDD))
+        if (userId) {
+            dispatch(getUserProfile(+userId))
+            dispatch(getStatus(+userId))
         }
 
     }, [])
-    useEffect(() => {
-        setUserIDD(userId)
-        if (userIDD) {
-            console.log(userId,'zd')
-
-            dispatch(getUserProfile(+userIDD))
-            dispatch(getStatus(+userIDD))
-        }
-
-    }, [userId,dispatch])
 
     return (
         <div>
             <Profile
+                userId={userId}
                 isAuth={isAuth}
                 profile={profile}
                 status={status}
                 updateStatus={updateStatus}
                 savePhoto={savePhoto}
                 saveProfile={saveProfile}
-                isOwner={!userId}/>
+                />
         </div>
     )
 }

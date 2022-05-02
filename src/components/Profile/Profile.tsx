@@ -9,15 +9,14 @@ type propsType = {
     profile: ProfilePropsType | null
     status: string,
     updateStatus: (status: string) => void
-    isOwner: boolean
     savePhoto: (file: any) => void
-    saveProfile:any
-        // (profile: ProfilePropsType) => Promise<any>
+    saveProfile: any
     isAuth: boolean
+    userId: string | undefined
 }
 
 export const Profile = (props: propsType) => {
-    const {isOwner, profile, status, updateStatus, savePhoto, saveProfile,isAuth} = props
+    const {profile, status, updateStatus, savePhoto, saveProfile, isAuth, userId} = props
 
     if (!isAuth) {
         return <Navigate to={'/login'}/>
@@ -25,13 +24,14 @@ export const Profile = (props: propsType) => {
 
     return (
         <div>
-            <ProfileInfo isOwner={isOwner}
-                         profile={profile}
-                         status={status}
-                         updateStatus={updateStatus}
-                         savePhoto={savePhoto}
-                         saveProfile={saveProfile}/>
-            <MyPosts/>
+            <ProfileInfo
+                userId={userId}
+                profile={profile}
+                status={status}
+                updateStatus={updateStatus}
+                savePhoto={savePhoto}
+                saveProfile={saveProfile}/>
+            {!userId && <MyPosts/>}
         </div>
     )
 }
