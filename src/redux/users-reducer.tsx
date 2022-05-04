@@ -114,7 +114,14 @@ export const toggleIsFollowingInProgressAC = (isFetching: boolean, userId: numbe
         }
     } as const
 }
-
+export const getUsersTC = (currentPage: number, pageSize: number) => async (dispatch: DispatchType) => {
+    dispatch(toggleIsFetchingAC(true))
+    dispatch(setCurrentPageAC(currentPage))
+    let data = await usersApi.getUsers(currentPage, pageSize)
+    dispatch(toggleIsFetchingAC(false))
+    dispatch(setUsersAC(data.items))
+    dispatch(setUsersTotalCountAC(data.totalCount))
+}
 const followUnfollowFlow = async (dispatch:DispatchType,userId:number,apiMethod:any,actionCreator:any) => {
     dispatch(toggleIsFollowingInProgressAC(true, userId))
     let response = await apiMethod(userId)
@@ -126,14 +133,7 @@ const followUnfollowFlow = async (dispatch:DispatchType,userId:number,apiMethod:
 }
 
 //Thunks
-export const getUsersTC = (currentPage: number, pageSize: number) => async (dispatch: DispatchType) => {
-    dispatch(toggleIsFetchingAC(true))
-    dispatch(setCurrentPageAC(currentPage))
-    let data = await usersApi.getUsers(currentPage, pageSize)
-    dispatch(toggleIsFetchingAC(false))
-    dispatch(setUsersAC(data.items))
-    dispatch(setUsersTotalCountAC(data.totalCount))
-}
+
 export const follow = (userId: number) => async (dispatch: DispatchType) => {
     followUnfollowFlow(dispatch,userId,usersApi.follow.bind(usersApi),followSuccess)
 

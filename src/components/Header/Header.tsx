@@ -3,8 +3,9 @@ import s from './Header.module.css'
 import {NavLink} from "react-router-dom";
 import {InitialStateType, logoutTC} from "../../redux/auth-reducer";
 import {useAppSelector} from "../common/hook/selectorHook";
-import {selectIsAuth} from "../../redux/selectors/users-selectors";
+import {selectIsAuth, selectIsProfile} from "../../redux/selectors/users-selectors";
 import {useDispatch} from "react-redux";
+import userPhoto from "../../assets/images/risuem-chelovek-rebenku-14.jpg";
 
 type HeaderPropsType = {
     auth: InitialStateType
@@ -12,6 +13,7 @@ type HeaderPropsType = {
 }
 
 export const Header = () => {
+    const {profile} = useAppSelector(selectIsProfile)
     const dispatch = useDispatch()
     const {login, isAuth} = useAppSelector(selectIsAuth)
     const onClickLogout = () => {
@@ -21,11 +23,12 @@ export const Header = () => {
 
     return (
         <header className={s.header}>
-            <img
-                src='http://pngimg.com/uploads/magic_hat/small/magic_hat_PNG102.png' alt='img'/>
+            <h1 className={s.header_title}>Social</h1>
             <div className={s.loginBlock}>
+                <img src={profile?.photos.large || userPhoto} className={s.headerPhoto}
+                     alt='avatar'/>
                 {isAuth
-                    ? <div>{login} - <button onClick={onClickLogout}>Log out</button></div> :
+                    ? <div className={s.header_name_profile}>{login} - <button className={s.button_header} onClick={onClickLogout}>Log out</button></div> :
                     <NavLink to={'/login'}>Login</NavLink>}
             </div>
         </header>

@@ -1,14 +1,15 @@
 import React from "react";
 import s from './Navbar.module.css'
 import {StyledNavLink} from "./StyledNavLink/StyledNavLink";
-import {NavBarPropsType} from "./NavbarContainer";
+import {useAppSelector} from "../common/hook/selectorHook";
+import {selectNavbar} from "../../redux/selectors/users-selectors";
 
-export const Navbar = (props:NavBarPropsType) => {
-
+export const Navbar = () => {
+    const {routes}=useAppSelector(selectNavbar)
     return (
         <div className={s.nav}>
             <nav >
-                {props.state.routes.map(({title,path}) => (<React.Fragment key={path+title}><StyledNavLink title={title} path={path}/></React.Fragment>))}
+                {routes.map(({title,path,image}) => (<React.Fragment key={path+title}><StyledNavLink title={title} path={path} image={image}/></React.Fragment>))}
             </nav>
         </div>
     )

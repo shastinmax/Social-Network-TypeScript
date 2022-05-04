@@ -25,3 +25,4 @@ export const selectIsDialogs = (state: AppStateType) => state.dialogsPage
 export const selectIsApp = (state: AppStateType) => state.app
 export const selectIsProfile = (state: AppStateType) => state.profilePage
 export const selectUser= (state: AppStateType) => state.usersPage
+export const selectNavbar= (state: AppStateType) => state.navbar

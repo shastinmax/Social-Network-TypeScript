@@ -1,12 +1,17 @@
-
+import message from '../assets/images/message.svg'
+import user from '../assets/images/user.svg'
+import news from '../assets/images/news.svg'
+import settings from '../assets/images/settings.svg'
+import music from '../assets/images/music.svg'
+import users from '../assets/images/USERS.svg'
 import {GlobalReducerType} from "./dialogs-reducer";
-
 export type navBarACType={
     type:'NAV-BAR'
 }
 export type NavbarRoutesType={
     path:string
     title:string
+    image:string
 }
 export type NavBarType = {
     routes:Array<NavbarRoutesType>
@@ -18,12 +23,12 @@ export const navBarAC=():navBarACType=>({
 
 let initialState:NavBarType = {
     routes: [
-        {path: '/', title: 'Profile'},
-        {path: '/dialogs', title: 'Message'},
-        {path: '/news', title: 'News'},
-        {path: '/music', title: 'Music'},
-        {path: '/settings', title: 'Settings'},
-        {path: '/users', title: 'Users'},
+        {path: '/', title: 'Profile',image:user},
+        {path: '/dialogs', title: 'Message',image:message},
+        {path: '/news', title: 'News',image:news},
+        {path: '/music', title: 'Music',image:music},
+        {path: '/settings', title: 'Settings',image:settings},
+        {path: '/users', title: 'Users',image:users},
     ]
 }
 
