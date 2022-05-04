@@ -3,6 +3,7 @@ import {GlobalTypeAction} from "./types/typesProfileReducer";
 import {profileApi, usersApi} from "../api/api";
 import {AppStateType} from "./redux-store";
 import {stopSubmit} from "redux-form";
+import {v1} from "uuid";
 
 export type AddPostActionType = {
     type: 'ADD-POST',
@@ -11,7 +12,7 @@ export type AddPostActionType = {
 export type RouteType = {
     likesCount: number
     message: string
-    id: number
+    id: string
 }
 export type ProfileType = {
     posts: Array<RouteType>
@@ -23,10 +24,10 @@ export type DispatchType = (action: GlobalTypeAction) => void
 
 let initialState: ProfileType = {
     posts: [
-        {id: 1, message: 'Hi,how are you', likesCount: 12},
-        {id: 2, message: 'Hi, you', likesCount: 11},
-        {id: 3, message: 'Hi,how are you', likesCount: 11},
-        {id: 4, message: 'how are you', likesCount: 12}
+        {id: v1(), message: 'Hi,how are you', likesCount: 0},
+        {id: v1(), message: 'Hi, you', likesCount: 0},
+        {id: v1(), message: 'Hi,how are you', likesCount: 1},
+        {id: v1(), message: 'how are you', likesCount: 0}
     ],
     newPostText: 'it-kamas',
     profile: null,
@@ -39,7 +40,7 @@ export const profileReducer = (state: ProfileType = initialState, action: Global
             return {
                 ...state,
                 posts: [...state.posts, {
-                    id: 5,
+                    id: v1(),
                     message: action.newPostBody,
                     likesCount: 0,
                 }],
@@ -61,6 +62,15 @@ export const profileReducer = (state: ProfileType = initialState, action: Global
             return {
                 ...state, profile: {...state.profile, photos: action.photos}
             }
+        case "UPDATE-LIKES-COUNTER":
+            return {
+                ...state,
+                posts: state.posts.map(el => el.id === action.payload.id ? {
+                    ...el,
+                    likesCount: action.payload.likesCounter
+                } : el)
+            }
+
         default:
             return state
     }
@@ -86,7 +96,7 @@ export const setStatus = (status: string) => {
         }
     } as const
 }
-export const deletePostAC = (postId: number) => {
+export const deletePostAC = (postId: string) => {
     return {
         type: 'DELETE-POST',
         payload: {
@@ -98,6 +108,14 @@ export const savePhotoSuccess = (photos: any) => {
     return {
         type: 'SAVE-PHOTO-SUCCESS',
         photos
+    } as const
+}
+export const updateLikesCounter = (id: string, likesCounter: number) => {
+    return {
+        type: 'UPDATE-LIKES-COUNTER',
+        payload: {
+            id, likesCounter
+        }
     } as const
 }
 

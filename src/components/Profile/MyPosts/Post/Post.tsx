@@ -1,18 +1,37 @@
 import s from "./Post.module.css";
-import React, {FC} from "react";
+import React, {FC, useState} from "react";
+import userPost from '../../../../assets/images/user-profile-svgrepo-com (1).svg'
+import like from '../../../../assets/images/like.svg'
+import likeRed from '../../../../assets/images/like-red.svg'
+import {useDispatch} from "react-redux";
+import {updateLikesCounter} from "../../../../redux/profile-reducer";
 
 type PostPropsType = {
-    message: string| undefined
-    likesCount?: number
+    message: string | undefined
+    likesCount: number
+    id:string
 }
 
 export const Post: FC<PostPropsType> = (props) => {
+    const {message, likesCount,id} = props
+    const dispatch=useDispatch()
+    const onHandlerLike = () => {
+        dispatch(updateLikesCounter(id, likesCount+1))
+    }
     return (
         <div>
             <div className={s.item}>
-                <img src='https://cdn.pixabay.com/photo/2017/01/26/13/00/mom-2010524__340.png' alt={'logo'}/>
-                <span>{props.message}</span>
-                <div><span> like {props.likesCount}</span></div>
+                <div className={s.postImgMess}>
+                    <img src={userPost} alt={'logo'}/>
+                    <span>{message}</span>
+                </div>
+                <div className={s.postLike}>
+                    <span>
+                        {likesCount > 0
+                            ? <img onClick={onHandlerLike} className={s.like} src={likeRed} alt="like"/>
+                            : <img onClick={onHandlerLike} className={s.like} src={like} alt="like"/>}
+                        {likesCount}</span>
+                </div>
             </div>
         </div>
     )

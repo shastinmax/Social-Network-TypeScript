@@ -4,3 +4,34 @@
 .posts{
     padding: 10px;
 }
+.postTitle{
+    text-align: center;
+    font-size: 28px;
+    font-weight: 400;
+    margin-bottom: 20px;
+}
+.postTextarea{
+    width: 100%;
+    min-height: 50px;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 10px;
+    font-size: 16px;
+    resize: none;
+    border-color: #efefed;
+}
+.postTextarea:hover{
+    border-color: #63a4dc;
+}
+.btnPost{
+    width: 100px;
+    padding: 4px;
+    margin: 20px 0 10px;
+    color: #fff;
+    border-radius: 5px;
+    text-align: center;
+    border: 1px solid #63a4dc;
+    background-color: #63a4dc;
+    box-shadow: 0 2px 1px 1px #b2b2b2;
+    cursor: pointer;
+}
