@@ -1,10 +1,66 @@
 .avatar{
     padding: 10px;
+    display: flex;
 }
-.avatar img{
-    width: 100px;
-    height: 100px;
+.profileImgBtn{
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
 }
 .contacts{
     padding-left: 15px;
+}
+.userPhoto{
+    width: 150px;
+    height: 150px;
+    border-radius: 100%;
+    margin-bottom: 20px;
+
+}
+.profileInform{
+    font-size: 28px;
+    font-weight: 400;
+    margin-bottom: 20px;
+
+}
+.btnEdit{
+    display:block;
+}
+.profileLoad,.btnEdit{
+    width: 100px;
+    padding: 4px;
+    margin: 20px 0 10px;
+    color: #fff;
+    border-radius: 5px;
+    text-align: center;
+    border: 1px solid #63a4dc;
+    background-color: #63a4dc;
+    box-shadow: 0 2px 1px 1px #b2b2b2;
+    cursor: pointer;
+}
+.profileLoad input{
+    display: none;
+}
+.contacts{
+    margin-left: 50px;
+}
+.descr, .status{
+    margin-left: 0px;
+    display: inline-block;
+    max-width: 130px;
+    width: 100%;
+    color: rgba(0,0,0,.5);
+}
+.des{
+    color: rgba(0,0,0,.5);
+    margin-right: 10px;
+}
+.status{
+    max-width: 50px;
+    margin-bottom: 10px;
+}
+.statusEdit{
+    cursor: pointer;
 }

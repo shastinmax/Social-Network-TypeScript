@@ -21,5 +21,13 @@
   display: flex;
   min-height: 100vh;
 }
+.app_profile{
+  width: 100%;
+  background-color: #fff;
+  box-shadow: 0 2px 5px #32353a;
+  padding: 35px 35px;
+  border-radius: 5px;
+  margin-left: 20px;
+}
 
 

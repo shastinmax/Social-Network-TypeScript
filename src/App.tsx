@@ -42,7 +42,7 @@ export const App = () => {
                     <div className="container">
                         <div className="app-content">
                             <Navbar/>
-                            <div >
+                            <div className={'app_profile'}>
                                 <Routes>
                                     <Route path='/' element={<Me/>}/>
                                     <Route path='/profile/:userId' element={<ProfileContainer/>}/>

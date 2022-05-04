@@ -34,7 +34,9 @@ export const ProfileInfo = (props: propsType) => {
         dispatch(saveProfile(formData))
         setEditMode(false)
     }
-
+    const onHandlerEdit = () => {
+        setEditMode(!editMode)
+    }
     const goToEditMode = () => {
         setEditMode(true)
     }
@@ -42,16 +44,25 @@ export const ProfileInfo = (props: propsType) => {
     return (
         <div>
             <div className={s.avatar}>
-                <img src={profile.photos.large || userPhoto} className={s.mainPhoto}
-                     alt='avatar'/>
-                {!userId && <button onClick={() => setEditMode(!editMode)}>Edit</button>}
+                <div className={s.profileImgBtn}>
+                    <img src={profile.photos.large || userPhoto} className={s.userPhoto}
+                         alt='avatar'/>
+                    {!userId && <button className={s.btnEdit} onClick={onHandlerEdit}>Edit</button>}
 
-                {editMode && <input type="file" onChange={onMainPhotoSelected}/>}
+                    <label className={s.profileLoad}> Load avatar
+                        <input type="file" onChange={onMainPhotoSelected}/>
+                    </label>
 
-                {editMode ? <ProfileDataFormReduxForm initialValues={profile} profile={profile} onSubmit={onSubmit}/> :
-                    <ProfileData profile={profile} goToEditMode={goToEditMode}/>}
+                </div>
+                <div className={s.contacts}>
+                    <h4 className={s.profileInform}>User Information</h4>
+                    <ProfileStatus status={status} updateStatus={updateStatus}/>
+                    <div >{editMode ?
+                        <ProfileDataFormReduxForm initialValues={profile} profile={profile} onSubmit={onSubmit}/> :
+                        <ProfileData profile={profile} goToEditMode={goToEditMode}/>}</div>
 
-                <ProfileStatus status={status} updateStatus={updateStatus}/>
+
+                </div>
             </div>
 
         </div>
@@ -63,7 +74,7 @@ type ContactsType = {
     contactValue: string
 }
 export const Contact = ({contactTitle, contactValue}: ContactsType) => {
-    return <div className={s.contacts}><b>{contactTitle}</b>:{contactValue}</div>
+    return <div ><span className={s.des}>{contactTitle}</span>  {contactValue}</div>
 }
 
 const ProfileData = ({profile, isOwner, goToEditMode}: any) => {
@@ -71,12 +82,12 @@ const ProfileData = ({profile, isOwner, goToEditMode}: any) => {
         {isOwner && <div>
             <button onClick={goToEditMode}>edit</button>
         </div>}
-        <div><b>Full name</b>: {profile.fullName}</div>
-        <div><b>Looking for a job</b>: {profile.lookingForAJob ? 'yes' : 'no'}</div>
+        <div><span className={s.descr}>Full name</span> {profile.fullName}</div>
+        <div><span className={s.descr}>Looking for a job</span> {profile.lookingForAJob ? 'yes' : 'no'}</div>
         {profile.lookingForAJob &&
             <div><b>My professional skills</b>: {profile.lookingForAJobDescription}</div>}
-        <div><b>About me</b>: {profile.aboutMe}</div>
-        <div><b>Contacts</b>: {Object.keys(profile.contacts).map(key => {
+        <div><span className={s.descr}>About me</span> {profile.aboutMe}</div>
+        <div><span className={s.descr}>Contacts: </span> {Object.keys(profile.contacts).map(key => {
             return <div key={key}>
                 {
                     profile.contacts[key] !== null
