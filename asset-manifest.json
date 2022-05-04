@@ -1,24 +1,33 @@
 {
   "files": {
-    "main.css": "/Social-Network-TypeScript/static/css/main.05181a33.chunk.css",
-    "main.js": "/Social-Network-TypeScript/static/js/main.f3cf5458.chunk.js",
-    "main.js.map": "/Social-Network-TypeScript/static/js/main.f3cf5458.chunk.js.map",
-    "runtime-main.js": "/Social-Network-TypeScript/static/js/runtime-main.df0b287f.js",
-    "runtime-main.js.map": "/Social-Network-TypeScript/static/js/runtime-main.df0b287f.js.map",
-    "static/js/2.bc1d8e6c.chunk.js": "/Social-Network-TypeScript/static/js/2.bc1d8e6c.chunk.js",
-    "static/js/2.bc1d8e6c.chunk.js.map": "/Social-Network-TypeScript/static/js/2.bc1d8e6c.chunk.js.map",
-    "static/js/3.830d316c.chunk.js": "/Social-Network-TypeScript/static/js/3.830d316c.chunk.js",
-    "static/js/3.830d316c.chunk.js.map": "/Social-Network-TypeScript/static/js/3.830d316c.chunk.js.map",
+    "main.css": "/Social-Network-TypeScript/static/css/main.0df11f18.chunk.css",
+    "main.js": "/Social-Network-TypeScript/static/js/main.d12c4a1d.chunk.js",
+    "main.js.map": "/Social-Network-TypeScript/static/js/main.d12c4a1d.chunk.js.map",
+    "runtime-main.js": "/Social-Network-TypeScript/static/js/runtime-main.1b9971b6.js",
+    "runtime-main.js.map": "/Social-Network-TypeScript/static/js/runtime-main.1b9971b6.js.map",
+    "static/js/2.0dedbe87.chunk.js": "/Social-Network-TypeScript/static/js/2.0dedbe87.chunk.js",
+    "static/js/2.0dedbe87.chunk.js.map": "/Social-Network-TypeScript/static/js/2.0dedbe87.chunk.js.map",
+    "static/js/3.a0963345.chunk.js": "/Social-Network-TypeScript/static/js/3.a0963345.chunk.js",
+    "static/js/3.a0963345.chunk.js.map": "/Social-Network-TypeScript/static/js/3.a0963345.chunk.js.map",
     "index.html": "/Social-Network-TypeScript/index.html",
-    "static/css/main.05181a33.chunk.css.map": "/Social-Network-TypeScript/static/css/main.05181a33.chunk.css.map",
-    "static/js/2.bc1d8e6c.chunk.js.LICENSE.txt": "/Social-Network-TypeScript/static/js/2.bc1d8e6c.chunk.js.LICENSE.txt",
-    "static/media/preloader.81b72309.svg": "/Social-Network-TypeScript/static/media/preloader.81b72309.svg",
-    "static/media/risuem-chelovek-rebenku-14.e9b2c5f4.jpg": "/Social-Network-TypeScript/static/media/risuem-chelovek-rebenku-14.e9b2c5f4.jpg"
+    "static/css/main.0df11f18.chunk.css.map": "/Social-Network-TypeScript/static/css/main.0df11f18.chunk.css.map",
+    "static/js/2.0dedbe87.chunk.js.LICENSE.txt": "/Social-Network-TypeScript/static/js/2.0dedbe87.chunk.js.LICENSE.txt",
+    "static/media/USERS.45762d61.svg": "/Social-Network-TypeScript/static/media/USERS.45762d61.svg",
+    "static/media/like-red.d7f1e57c.svg": "/Social-Network-TypeScript/static/media/like-red.d7f1e57c.svg",
+    "static/media/like.9895b6a3.svg": "/Social-Network-TypeScript/static/media/like.9895b6a3.svg",
+    "static/media/message.12d18ecd.svg": "/Social-Network-TypeScript/static/media/message.12d18ecd.svg",
+    "static/media/music.c6291929.svg": "/Social-Network-TypeScript/static/media/music.c6291929.svg",
+    "static/media/news.b487f0cb.svg": "/Social-Network-TypeScript/static/media/news.b487f0cb.svg",
+    "static/media/preloader.8c009b4e.svg": "/Social-Network-TypeScript/static/media/preloader.8c009b4e.svg",
+    "static/media/risuem-chelovek-rebenku-14.e9b2c5f4.jpg": "/Social-Network-TypeScript/static/media/risuem-chelovek-rebenku-14.e9b2c5f4.jpg",
+    "static/media/settings.647468af.svg": "/Social-Network-TypeScript/static/media/settings.647468af.svg",
+    "static/media/user-profile-svgrepo-com (1).97ad7b1e.svg": "/Social-Network-TypeScript/static/media/user-profile-svgrepo-com (1).97ad7b1e.svg",
+    "static/media/user.31fa5e24.svg": "/Social-Network-TypeScript/static/media/user.31fa5e24.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.df0b287f.js",
-    "static/js/2.bc1d8e6c.chunk.js",
-    "static/css/main.05181a33.chunk.css",
-    "static/js/main.f3cf5458.chunk.js"
+    "static/js/runtime-main.1b9971b6.js",
+    "static/js/2.0dedbe87.chunk.js",
+    "static/css/main.0df11f18.chunk.css",
+    "static/js/main.d12c4a1d.chunk.js"
   ]
 }
