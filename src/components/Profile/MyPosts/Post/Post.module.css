@@ -24,6 +24,7 @@
 .postLike .like{
      width: 30px;
      height: 30px;
+    cursor: pointer;
  }
 span{
     margin-left: 15px;
@@ -37,7 +38,7 @@ span{
 }
 .btnRemove {
     position: absolute;
-    width: 50px;
+    width: 55px;
     padding: 4px;
     margin: 20px 0 10px;
     color: #fff;

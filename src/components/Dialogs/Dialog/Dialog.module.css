@@ -1,0 +1,22 @@
+.postTextarea{
+    width: 90%;
+    min-height: 50px;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 10px;
+    font-size: 16px;
+    resize: none;
+    border-color: #efefed;
+}
+.btn{
+    width: 100px;
+    padding: 4px;
+    margin: 10px 0 10px 40px;
+    color: #fff;
+    border-radius: 5px;
+    text-align: center;
+    border: 1px solid #63a4dc;
+    background-color: #63a4dc;
+    box-shadow: 0 2px 1px 1px #b2b2b2;
+    cursor: pointer;
+}

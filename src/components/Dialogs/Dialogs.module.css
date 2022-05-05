@@ -2,8 +2,39 @@
     display: grid;
     grid-template-columns: 2fr 10fr;
 }
-.dialogsItems,
+.dialog{
+
+}
 .messages{
-padding: 10px;
+margin-left: 35px;
+}
+.messageName,.dialog{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    border-radius: 5px;
+    border: 2px solid #e6e7ee;
+    color: #1c4f7b;
+    font-style: normal;
+    margin: 0 0 0.3rem;
+    padding: 15px 0 15px 10px ;
+    transition: .1s ease-in-out;
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 16px;
+    font-family: "Poppins", sans-serif;
+    text-align: center;
+}
+.dialog{
+    min-height: 40px;
+}
+.messageName:hover{
+    border: 2px solid #63a4dc;
+    box-shadow: 2px 2px 9px rgb(0 0 0 / 25%);
+    color: #63a4dc;
+}
+.messageName img{
+    width: 40px;
+    margin-right: 15px;
 }
 

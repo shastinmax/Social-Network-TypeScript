@@ -4,8 +4,8 @@ import React, {FC} from "react";
 type StyledDialogProps={
     dialog:string
 }
-export const Dialog:FC<StyledDialogProps>=(props)=>{
+export const Dialog:FC<StyledDialogProps>=({dialog}:StyledDialogProps)=>{
     return (
-        <div className={s.dialog}>{props.dialog}</div>
+        <div className={s.dialog}>{dialog}</div>
     )
 }
