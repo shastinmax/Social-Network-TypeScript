@@ -22,7 +22,7 @@ export const MyPosts = React.memo(() => {
             </React.Fragment>))
         let onAddPost = (values: AddNewPostFormType) => {
             dispatch(addPostAC(values.newPostBody))
-           dispatch(reset('myPostAddPostForm'))
+            dispatch(reset('myPostAddPostForm'))
         }
         return (
             <div className={s.myposts}>

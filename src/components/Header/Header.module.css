@@ -4,22 +4,35 @@
     justify-content: space-between;
     align-items: center;
 }
-.headerPhoto{
+
+.headerPhoto {
     display: inline-block;
     border-radius: 100%;
     margin-right: 10px;
 }
-.button_header{
+
+.login {
+    width: 40px;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: #e6e7ee;
+    text-decoration: none;
+}
+
+.button_header {
     border-radius: 5px;
     transition: .5s linear;
     cursor: pointer;
 }
-.button_header:hover{
+
+.button_header, .login:hover {
     background-color: gold;
 }
-.header_name_profile{
-    color:white;
+
+.header_name_profile {
+    color: white;
 }
+
 .header img {
     width: 50px;
     height: 50px;

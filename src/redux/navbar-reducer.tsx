@@ -25,7 +25,6 @@ let initialState:NavBarType = {
     routes: [
         {path: '/', title: 'Profile',image:user},
         {path: '/dialogs', title: 'Message',image:message},
-        {path: '/news', title: 'News',image:news},
         {path: '/music', title: 'Music',image:music},
         {path: '/settings', title: 'Settings',image:settings},
         {path: '/users', title: 'Users',image:users},

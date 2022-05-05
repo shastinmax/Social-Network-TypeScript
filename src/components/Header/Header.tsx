@@ -29,7 +29,7 @@ export const Header = () => {
                      alt='avatar'/>
                 {isAuth
                     ? <div className={s.header_name_profile}>{login} - <button className={s.button_header} onClick={onClickLogout}>Log out</button></div> :
-                    <NavLink to={'/login'}>Login</NavLink>}
+                    <NavLink className={s.login} to={'/login'}>Login</NavLink>}
             </div>
         </header>
     )

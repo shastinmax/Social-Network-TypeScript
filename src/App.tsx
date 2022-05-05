@@ -13,6 +13,7 @@ import {useAppSelector} from "./components/common/hook/selectorHook";
 import {selectIsApp} from "./redux/selectors/users-selectors";
 import {Me} from "./components/Me/Me";
 import {Navbar} from "./components/Navbar/Navbar";
+import Music from "./components/Music/Music";
 
 export const App = () => {
     const {initialized} = useAppSelector(selectIsApp)
@@ -47,8 +48,7 @@ export const App = () => {
                                     <Route path='/' element={<Me/>}/>
                                     <Route path='/profile/:userId' element={<ProfileContainer/>}/>
                                     <Route path='/dialogs/*' element={<Dialogs/>}/>
-                                    <Route path='/news' element={<h2>News</h2>}/>
-                                    <Route path='/music' element={<h2>Music</h2>}/>
+                                    <Route path='/music' element={<Music/>}/>
                                     <Route path='/settings' element={<h2>Settings</h2>}/>
                                     <Route path='/users' element={<UsersAPIComponent/>}/>
                                     <Route path='/login' element={<Login/>}/>

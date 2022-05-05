@@ -3,6 +3,7 @@ import {Dispatch} from "redux";
 import {FormAction, stopSubmit} from "redux-form";
 import {ThunkDispatch} from "redux-thunk";
 import {AppStateType} from "./redux-store";
+import {initializeApp, initializeSuccess} from "./app-reducer";
 
 export type InitialStateType = {
     id: number | null
@@ -102,6 +103,7 @@ export const logoutTC = () => async (dispatch: Dispatch) => {
     let response = await authApi.logout()
     if (response.data.resultCode === 0) {
         dispatch(setAuthUserData(null, null, null, false))
+
     }
 }
 
