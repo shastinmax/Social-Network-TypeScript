@@ -70,7 +70,6 @@ export const profileReducer = (state: ProfileType = initialState, action: Global
                     likesCount: action.payload.likesCounter
                 } : el)
             }
-
         default:
             return state
     }
@@ -115,6 +114,14 @@ export const updateLikesCounter = (id: string, likesCounter: number) => {
         type: 'UPDATE-LIKES-COUNTER',
         payload: {
             id, likesCounter
+        }
+    } as const
+}
+export const removePost = (id: string,) => {
+    return {
+        type: 'REMOVE-POST',
+        payload: {
+            id,
         }
     } as const
 }

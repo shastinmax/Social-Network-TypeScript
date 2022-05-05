@@ -4,7 +4,7 @@ import userPost from '../../../../assets/images/user-profile-svgrepo-com (1).svg
 import like from '../../../../assets/images/like.svg'
 import likeRed from '../../../../assets/images/like-red.svg'
 import {useDispatch} from "react-redux";
-import {updateLikesCounter} from "../../../../redux/profile-reducer";
+import {deletePostAC, removePost, updateLikesCounter} from "../../../../redux/profile-reducer";
 
 type PostPropsType = {
     message: string | undefined
@@ -18,8 +18,12 @@ export const Post: FC<PostPropsType> = (props) => {
     const onHandlerLike = () => {
         dispatch(updateLikesCounter(id, likesCount+1))
     }
+    const onHandlerRemovePost = () => {
+        dispatch(deletePostAC(id))
+    }
+
     return (
-        <div>
+        <div className={s.wrapperPost}>
             <div className={s.item}>
                 <div className={s.postImgMess}>
                     <img src={userPost} alt={'logo'}/>
@@ -33,6 +37,7 @@ export const Post: FC<PostPropsType> = (props) => {
                         {likesCount}</span>
                 </div>
             </div>
+                <button onClick = {onHandlerRemovePost}className={s.btnRemove} >remove</button>
         </div>
     )
 }

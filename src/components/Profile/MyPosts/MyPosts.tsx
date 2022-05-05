@@ -1,7 +1,7 @@
 import s from './MyPosts.module.css'
 import {Post} from "./Post/Post";
 import React from "react";
-import {Field, InjectedFormProps, reduxForm} from "redux-form";
+import {Field, InjectedFormProps, reduxForm, reset} from "redux-form";
 import {maxLengthCreator, required} from "../../../utils/validators/validators";
 import {Textarea} from "../../common/FormsControl/FormsControl";
 import {useAppSelector} from "../../common/hook/selectorHook";
@@ -22,6 +22,7 @@ export const MyPosts = React.memo(() => {
             </React.Fragment>))
         let onAddPost = (values: AddNewPostFormType) => {
             dispatch(addPostAC(values.newPostBody))
+           dispatch(reset('myPostAddPostForm'))
         }
         return (
             <div className={s.myposts}>

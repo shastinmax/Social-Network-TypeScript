@@ -32,3 +32,21 @@ span{
     display: flex;
     align-items: center;
 }
+.wrapperPost{
+    position: relative;
+}
+.btnRemove {
+    position: absolute;
+    width: 50px;
+    padding: 4px;
+    margin: 20px 0 10px;
+    color: #fff;
+    border-radius: 5px;
+    text-align: center;
+    border: 1px solid #63a4dc;
+    background-color: #63a4dc;
+    box-shadow: 0 2px 1px 1px #b2b2b2;
+    cursor: pointer;
+    bottom: 25px;
+    right: 80px;
+}

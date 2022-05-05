@@ -1,6 +1,6 @@
 import {
     addPostAC,
-    deletePostAC,
+    deletePostAC, removePost,
     savePhotoSuccess,
     setStatus,
     setUserProfile,
@@ -16,3 +16,4 @@ export type GlobalTypeAction = AddPostACType
     | ReturnType<typeof deletePostAC>
     | ReturnType<typeof savePhotoSuccess>
     | ReturnType<typeof updateLikesCounter>
+    | ReturnType<typeof removePost>
