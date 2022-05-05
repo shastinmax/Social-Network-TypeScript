@@ -4,9 +4,53 @@
     border-radius: 50%;
     margin-left: 15px;
     margin-bottom: 10px;
+    cursor: pointer;
 }
 
 .preloader{
     width: 100px;
     height: 100px;
+}
+.users{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+    margin: 0 auto;
+}
+.follow{
+    width: 70px;
+    padding: 4px;
+    margin: 10px 0 10px 40px;
+    color: #fff;
+    border-radius: 5px;
+    text-align: center;
+    border: 1px solid #63a4dc;
+    background-color: #63a4dc;
+    box-shadow: 0 2px 1px 1px #b2b2b2;
+    cursor: pointer;
+
+
+}
+.user{
+    display: flex;
+    width: 45%;
+    align-items: center;
+    border-radius: 5px;
+    border: 2px solid #e6e7ee;
+    color: #1c4f7b;
+    font-style: normal;
+    margin: 0 0 0.3rem;
+    padding: 1rem 0 1rem 1.5rem;
+    transition: .1s ease-in-out;
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 16px;
+    font-family: "Poppins", sans-serif;
+}
+.user:hover{
+    border: 2px solid #63a4dc;
+    box-shadow: 2px 2px 9px rgb(0 0 0 / 25%);
+    color: #63a4dc;
 }

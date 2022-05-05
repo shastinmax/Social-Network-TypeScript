@@ -21,40 +21,29 @@ export const User = ({user, followingInProgress,}: UsersPropsType) => {
 
 
     return (
-        <div>
+        <div className={s.user}>
             <div>
-                <span>
                 <div>
-                <NavLink to={'/profile/' + user.id}>
-                    <img className={s.userPhoto} src={user.photos.small !== null ? user.photos.small : userPhoto}
-                         alt='avatar'/>
-                </NavLink>
+                    <NavLink to={'/profile/' + user.id}>
+                        <img className={s.userPhoto} src={user.photos.small !== null ? user.photos.small : userPhoto}
+                             alt='avatar'/>
+                    </NavLink>
                 </div>
                 <div>
-            {
-                user.followed
-                    ? <button disabled={followingInProgress.some(id => id === user.id)}
-                              onClick={() => {
-                                  onHandlerUnFollow(user.id)
-                              }}>Unfollow</button>
-                    : <button disabled={followingInProgress.some(id => id === user.id)}
-                              onClick={() => {
-                                  onHandlerFollow(user.id)
-                              }}>Follow</button>
-            }
+                    {
+                        user.followed
+                            ? <button className={s.follow} disabled={followingInProgress.some(id => id === user.id)}
+                                      onClick={() => {
+                                          onHandlerUnFollow(user.id)
+                                      }}>Unfollow</button>
+                            : <button className={s.follow} disabled={followingInProgress.some(id => id === user.id)}
+                                      onClick={() => {
+                                          onHandlerFollow(user.id)
+                                      }}>Follow</button>
+                    }
                 </div>
-                </span>
-                <span>
-                    <span>
-                        <div>{user.name}</div>
-                        <div>{user.status}</div>
-                    </span>
-                    <span>
-                        <div>{'u.location.country'}</div>
-                        <div>{'u.location.city'}</div>
-                    </span>
-                </span>
             </div>
+            <div >{user.name}</div>
         </div>
     );
 };

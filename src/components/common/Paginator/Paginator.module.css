@@ -1,11 +1,38 @@
 
-.selectedPage{
+.selectedPage {
     font-weight: 700;
 }
-.selectedPage:hover{
+
+.selectedPage:hover {
     cursor: pointer;
 }
 
+.paginator {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.pageNumber {
+    cursor: pointer;
+    padding: 5px;
+}
+.pageNumber:hover{
+    color: gold;
+}
+
+.btnNextPrev {
+    width: 50px;
+    padding: 4px;
+    /*margin: 20px 0 10px;*/
+    color: #fff;
+    border-radius: 5px;
+    text-align: center;
+    border: 1px solid #63a4dc;
+    background-color: #63a4dc;
+    box-shadow: 0 2px 1px 1px #b2b2b2;
+    cursor: pointer;
+    margin-left: 15px;
+}
 
 
 
