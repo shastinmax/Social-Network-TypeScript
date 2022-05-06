@@ -13,7 +13,7 @@ type ProfileTypeKeys = GetStringKeys<ProfilePropsType>
 const ProfileDataForm: FC<InjectedFormProps<ProfileType, PropsType> & PropsType> = (
     {handleSubmit, profile, error}) => {
     return (
-        <div >
+        <div>
             <form onSubmit={handleSubmit}>
                 <div>
                     <button>save</button>

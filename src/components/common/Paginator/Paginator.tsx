@@ -9,13 +9,16 @@ type UsersPropsType = {
     portionSize?: number
 }
 
-export const Paginator = ({
-                              totalUsersCount,
-                              pageSize,
-                              currentPage,
-                              onPageChanged,
-                              portionSize = 10,
-                          }: UsersPropsType) => {
+export const Paginator = (props: UsersPropsType) => {
+
+    const {
+        totalUsersCount,
+        pageSize,
+        currentPage,
+        onPageChanged,
+        portionSize = 10,
+    } = props
+
     let pagesCount = Math.ceil(totalUsersCount / pageSize)
     let pages = []
     for (let i = 1; i <= pagesCount; i++) {

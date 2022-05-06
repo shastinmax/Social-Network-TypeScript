@@ -7,11 +7,6 @@ import {selectIsAuth, selectIsProfile} from "../../redux/selectors/users-selecto
 import {useDispatch} from "react-redux";
 import userPhoto from "../../assets/images/risuem-chelovek-rebenku-14.jpg";
 
-type HeaderPropsType = {
-    auth: InitialStateType
-    logoutTC: () => void
-}
-
 export const Header = () => {
     const {profile} = useAppSelector(selectIsProfile)
     const dispatch = useDispatch()
@@ -20,7 +15,6 @@ export const Header = () => {
         dispatch(logoutTC())
     }
 
-
     return (
         <header className={s.header}>
             <h1 className={s.header_title}>Social</h1>
@@ -28,7 +22,11 @@ export const Header = () => {
                 <img src={profile?.photos.large || userPhoto} className={s.headerPhoto}
                      alt='avatar'/>
                 {isAuth
-                    ? <div className={s.header_name_profile}>{login} - <button className={s.button_header} onClick={onClickLogout}>Log out</button></div> :
+                    ? <div className={s.header_name_profile}>
+                        {login} -
+                        <button className={s.button_header} onClick={onClickLogout}>Log out</button>
+                    </div>
+                    :
                     <NavLink className={s.login} to={'/login'}>Login</NavLink>}
             </div>
         </header>

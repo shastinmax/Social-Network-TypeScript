@@ -3,10 +3,9 @@ import {Dispatch} from "redux";
 import {FormAction, stopSubmit} from "redux-form";
 import {ThunkDispatch} from "redux-thunk";
 import {AppStateType} from "./redux-store";
-import {initializeApp, initializeSuccess} from "./app-reducer";
 
 export type InitialStateType = {
-    id: number | null
+    id: string | undefined
     email: string | null
     login: string | null
     isAuth: boolean
@@ -14,9 +13,8 @@ export type InitialStateType = {
 }
 
 
-
 let initialState = {
-    id: null,
+    id: undefined,
     email: null,
     login: null,
     isAuth: false,
@@ -42,7 +40,7 @@ export const authReducer = (state: InitialStateType = initialState, action: Gene
 
 ///////////////////Actions//////////////////////////
 
-export const setAuthUserData = (id: number | null, email: string | null, login: string | null, isAuth: boolean,) => {
+export const setAuthUserData = (id: string | undefined, email: string | null, login: string | null, isAuth: boolean,) => {
     return {
         type: 'auth/SET-USER-DATA',
         payload: {
@@ -102,7 +100,7 @@ export const getCaptchaUrl = () => {
 export const logoutTC = () => async (dispatch: Dispatch) => {
     let response = await authApi.logout()
     if (response.data.resultCode === 0) {
-        dispatch(setAuthUserData(null, null, null, false))
+        dispatch(setAuthUserData(undefined, null, null, false))
 
     }
 }

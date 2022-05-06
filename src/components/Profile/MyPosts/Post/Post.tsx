@@ -9,14 +9,14 @@ import {deletePostAC, removePost, updateLikesCounter} from "../../../../redux/pr
 type PostPropsType = {
     message: string | undefined
     likesCount: number
-    id:string
+    id: string
 }
 
 export const Post: FC<PostPropsType> = (props) => {
-    const {message, likesCount,id} = props
-    const dispatch=useDispatch()
+    const {message, likesCount, id} = props
+    const dispatch = useDispatch()
     const onHandlerLike = () => {
-        dispatch(updateLikesCounter(id, likesCount+1))
+        dispatch(updateLikesCounter(id, likesCount + 1))
     }
     const onHandlerRemovePost = () => {
         dispatch(deletePostAC(id))
@@ -37,7 +37,7 @@ export const Post: FC<PostPropsType> = (props) => {
                         {likesCount}</span>
                 </div>
             </div>
-                <button onClick = {onHandlerRemovePost}className={s.btnRemove} >remove</button>
+            <button onClick={onHandlerRemovePost} className={s.btnRemove}>remove</button>
         </div>
     )
 }

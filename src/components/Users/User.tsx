@@ -43,7 +43,7 @@ export const User = ({user, followingInProgress,}: UsersPropsType) => {
                     }
                 </div>
             </div>
-            <div >{user.name}</div>
+            <div>{user.name}</div>
         </div>
     );
 };

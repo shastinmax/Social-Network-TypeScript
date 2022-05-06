@@ -5,14 +5,14 @@ import React from "react";
 type StyledNavLinkProps = {
     title: string
     path: string
-    image:any
+    image: any
 }
 
 export const StyledNavLink: React.FC<StyledNavLinkProps> = (props) => {
-    const {path,image,title} = props
+    const {path, image, title} = props
 
     return (
-        <div  className={s.item}>
+        <div className={s.item}>
             <NavLink className={({isActive}) => `${s.item} ${isActive ? s.active : ''}`}
                      to={path}><img className={s.routesImg} src={image} alt="img"/> {title} </NavLink>
 

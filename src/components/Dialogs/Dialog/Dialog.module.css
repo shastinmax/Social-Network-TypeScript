@@ -1,4 +1,4 @@
-.postTextarea{
+.postTextarea {
     width: 90%;
     min-height: 50px;
     padding: 20px;
@@ -8,7 +8,8 @@
     resize: none;
     border-color: #efefed;
 }
-.btn{
+
+.btn {
     width: 100px;
     padding: 4px;
     margin: 10px 0 10px 40px;

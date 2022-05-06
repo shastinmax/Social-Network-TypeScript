@@ -1,4 +1,4 @@
-.userPhoto{
+.userPhoto {
     width: 100px;
     height: 100px;
     border-radius: 50%;
@@ -7,11 +7,12 @@
     cursor: pointer;
 }
 
-.preloader{
+.preloader {
     width: 100px;
     height: 100px;
 }
-.users{
+
+.users {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -19,7 +20,8 @@
     width: 100%;
     margin: 0 auto;
 }
-.follow{
+
+.follow {
     width: 70px;
     padding: 4px;
     margin: 10px 0 10px 40px;
@@ -33,7 +35,8 @@
 
 
 }
-.user{
+
+.user {
     display: flex;
     width: 45%;
     align-items: center;
@@ -49,7 +52,8 @@
     font-size: 16px;
     font-family: "Poppins", sans-serif;
 }
-.user:hover{
+
+.user:hover {
     border: 2px solid #63a4dc;
     box-shadow: 2px 2px 9px rgb(0 0 0 / 25%);
     color: #63a4dc;

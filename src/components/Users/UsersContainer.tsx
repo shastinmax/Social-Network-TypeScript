@@ -7,31 +7,31 @@ import {selectUser} from "../../redux/selectors/users-selectors";
 import {useAppSelector} from "../common/hook/selectorHook";
 
 
-export const UsersAPIComponent =()=> {
+export const UsersAPIComponent = () => {
     const dispatch = useDispatch()
-    const {currentPage, pageSize,isFetching,totalUsersCount,users,followingInProgress} = useAppSelector(selectUser)
-    useEffect(()=>{
+    const {currentPage, pageSize, isFetching, totalUsersCount, users, followingInProgress} = useAppSelector(selectUser)
+    useEffect(() => {
         dispatch(getUsersTC(currentPage, pageSize))
-    },[])
+    }, [])
 
-   const onPageChanged = (pageNumber: number) => {
-       dispatch(getUsersTC(pageNumber, pageSize))
+    const onPageChanged = (pageNumber: number) => {
+        dispatch(getUsersTC(pageNumber, pageSize))
     }
 
-        return <div>
-            <>
-                {isFetching && <Preloader/>}
-                <Users totalUsersCount={totalUsersCount}
-                       pageSize={pageSize}
-                       currentPage={currentPage}
-                       onPageChanged={onPageChanged}
-                       users={users}
-                       unfollow={unfollow}
-                       follow={follow}
-                       followingInProgress={followingInProgress}
-                />
-            </>
-        </div>
+    return <div>
+        <>
+            {isFetching && <Preloader/>}
+            <Users totalUsersCount={totalUsersCount}
+                   pageSize={pageSize}
+                   currentPage={currentPage}
+                   onPageChanged={onPageChanged}
+                   users={users}
+                   unfollow={unfollow}
+                   follow={follow}
+                   followingInProgress={followingInProgress}
+            />
+        </>
+    </div>
     // }
 }
 //

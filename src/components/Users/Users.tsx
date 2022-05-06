@@ -20,9 +20,9 @@ export const Users = ({onPageChanged, users, totalUsersCount, pageSize, currentP
     return (
         <div>
 
-            <div >
-                 <Paginator onPageChanged={onPageChanged} totalUsersCount={totalUsersCount} pageSize={pageSize}
-                          currentPage={currentPage}/>
+            <div>
+                <Paginator onPageChanged={onPageChanged} totalUsersCount={totalUsersCount} pageSize={pageSize}
+                           currentPage={currentPage}/>
             </div>
             <div className={s.users}>
                 {users.map(u =>

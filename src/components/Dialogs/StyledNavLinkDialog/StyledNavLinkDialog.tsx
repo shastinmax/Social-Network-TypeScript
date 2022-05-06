@@ -8,9 +8,13 @@ type StyledNavLinkDialogProps = {
 }
 
 export const StyledNavLinkDialog: React.FC<StyledNavLinkDialogProps> = (props) => {
+
+    const {pathDialog, name} = props
+
     return (
         <div className={s.dialog}>
-            <NavLink className={({isActive}) => `${s.dialog} ${isActive ? s.active : ''}`} to={props.pathDialog}>{props.name}</NavLink>
+            <NavLink className={({isActive}) => `${s.dialog} ${isActive ? s.active : ''}`}
+                     to={pathDialog}>{name}</NavLink>
         </div>
     )
 }

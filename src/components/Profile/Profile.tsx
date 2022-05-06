@@ -16,7 +16,7 @@ type propsType = {
 }
 
 export const Profile = (props: propsType) => {
-    const {profile, status, updateStatus, savePhoto, saveProfile, isAuth, userId} = props
+    const {profile, status, updateStatus, savePhoto, saveProfile, isAuth, userId,} = props
 
     if (!isAuth) {
         return <Navigate to={'/login'}/>
@@ -30,7 +30,8 @@ export const Profile = (props: propsType) => {
                 status={status}
                 updateStatus={updateStatus}
                 savePhoto={savePhoto}
-                saveProfile={saveProfile}/>
+                saveProfile={saveProfile}
+            />
             {!userId && <MyPosts/>}
         </div>
     )

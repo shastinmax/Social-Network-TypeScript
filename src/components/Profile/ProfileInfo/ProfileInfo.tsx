@@ -6,6 +6,8 @@ import {ChangeEvent, useState} from "react";
 import {ProfileDataFormReduxForm} from "./ProfileDataForm";
 import {useDispatch} from "react-redux";
 import userPhoto from "../../../assets/images/risuem-chelovek-rebenku-14.jpg";
+import {useAppSelector} from "../../common/hook/selectorHook";
+import {selectIsAuth} from "../../../redux/selectors/users-selectors";
 
 type propsType = {
     profile: ProfilePropsType | null,
@@ -14,12 +16,15 @@ type propsType = {
     savePhoto: (file: any) => void
     saveProfile: (profile: ProfilePropsType) => Promise<any>
     userId: string | undefined
+
+
 }
 export const ProfileInfo = (props: propsType) => {
     const dispatch = useDispatch()
+    const {id} = useAppSelector(selectIsAuth)
     const [editMode, setEditMode] = useState(false)
 
-    const {profile, updateStatus, status, savePhoto, saveProfile, userId} = props
+    const {profile, updateStatus, status, savePhoto, saveProfile, userId,} = props
     if (!profile) {
         return <Preloader/>
     }
@@ -49,15 +54,15 @@ export const ProfileInfo = (props: propsType) => {
                          alt='avatar'/>
                     {!userId && <button className={s.btnEdit} onClick={onHandlerEdit}>Edit</button>}
 
-                    <label className={s.profileLoad}> Load avatar
+                    {id === userId && <label className={s.profileLoad}> Load avatar
                         <input type="file" onChange={onMainPhotoSelected}/>
-                    </label>
+                    </label>}
 
                 </div>
                 <div className={s.contacts}>
                     <h4 className={s.profileInform}>User Information</h4>
                     <ProfileStatus status={status} updateStatus={updateStatus}/>
-                    <div >{editMode ?
+                    <div>{editMode ?
                         <ProfileDataFormReduxForm initialValues={profile} profile={profile} onSubmit={onSubmit}/> :
                         <ProfileData profile={profile} goToEditMode={goToEditMode}/>}</div>
 
@@ -74,7 +79,7 @@ type ContactsType = {
     contactValue: string
 }
 export const Contact = ({contactTitle, contactValue}: ContactsType) => {
-    return <div ><span className={s.des}>{contactTitle}</span>  {contactValue}</div>
+    return <div><span className={s.des}>{contactTitle}</span> {contactValue}</div>
 }
 
 const ProfileData = ({profile, isOwner, goToEditMode}: any) => {

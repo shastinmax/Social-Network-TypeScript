@@ -4,7 +4,7 @@ import {FC} from "react";
 
 export type FieldValidatorType = (value: string) => string | undefined
 
-const FormControl = ({input,meta:{touched,error},children}:any) => {
+const FormControl = ({input, meta: {touched, error}, children}: any) => {
     const hasError = touched && error
     return (
         <div className={styles.formControl + ' ' + (hasError ? styles.error : '')}>
@@ -16,12 +16,12 @@ const FormControl = ({input,meta:{touched,error},children}:any) => {
     )
 }
 
-export const Textarea = (props:any) => {
-    const {input,meta,child,element,...restProps} = props
+export const Textarea = (props: any) => {
+    const {input, meta, child, element, ...restProps} = props
     return <FormControl {...props}> <textarea {...input} {...restProps}/> </FormControl>
 }
-export const Input = (props:any) => {
-    const {input,meta,child,element,...restProps} = props
+export const Input = (props: any) => {
+    const {input, meta, child, element, ...restProps} = props
     return <FormControl {...props}> <input {...input} {...restProps}/> </FormControl>
 }
 

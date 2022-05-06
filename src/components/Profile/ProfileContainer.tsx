@@ -34,7 +34,7 @@ export type ProfilePropsType = {
 export const ProfileContainer = () => {
     const dispatch = useDispatch()
     let {userId} = useParams()
-    const {isAuth, id} = useAppSelector(selectIsAuth)
+    const {isAuth} = useAppSelector(selectIsAuth)
     const {profile, status} = useAppSelector(selectIsProfile)
     console.log(userId)
 
@@ -56,7 +56,7 @@ export const ProfileContainer = () => {
                 updateStatus={updateStatus}
                 savePhoto={savePhoto}
                 saveProfile={saveProfile}
-                />
+            />
         </div>
     )
 }

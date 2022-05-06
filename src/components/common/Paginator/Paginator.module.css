@@ -16,7 +16,8 @@
     cursor: pointer;
     padding: 5px;
 }
-.pageNumber:hover{
+
+.pageNumber:hover {
     color: gold;
 }
 

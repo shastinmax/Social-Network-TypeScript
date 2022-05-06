@@ -19,9 +19,10 @@ export const Dialogs = () => {
     const {isAuth} = useAppSelector(selectIsAuth)
     const dispatch = useDispatch()
 
-
-    let dialogsElements = dialogs.map(({id, name}) => (<div className={s.messageName} key={id}> <img src={monkey} alt="img"/> {name}</div>))
-    let messageElements = messages.map(({id, message}) => (<React.Fragment key={id}><Dialog dialog={message}/></React.Fragment>))
+    let dialogsElements = dialogs.map(({id, name}) => (
+        <div className={s.messageName} key={id}><img src={monkey} alt="img"/> {name}</div>))
+    let messageElements = messages.map(({id, message}) => (
+        <React.Fragment key={id}><Dialog dialog={message}/></React.Fragment>))
 
     const addNewMessage = (values: AddMessageFormType) => {
         dispatch(sendMessageAC(values.newMessageBody))
@@ -32,7 +33,6 @@ export const Dialogs = () => {
     }
     return (
         <div className={s.dialogs}>
-
             <div className={s.dialogsItems}>
                 {dialogsElements}
             </div>
