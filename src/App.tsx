@@ -14,13 +14,24 @@ import {selectIsApp} from "./redux/selectors/users-selectors";
 import {Me} from "./components/Me/Me";
 import {Navbar} from "./components/Navbar/Navbar";
 import Music from "./components/Music/Music";
-import {PATH} from "./enums/patch";
+import {PathNavigation} from "./enums/Navigation";
 import Error from "./components/Error/Error";
 
 export const App = () => {
     const {initialized} = useAppSelector(selectIsApp)
 
     const dispatch = useDispatch()
+
+    const ROUTES = [
+        { path: PathNavigation.ME, element: <Me /> },
+        { path: PathNavigation.PROFILE, element: <ProfileContainer /> },
+        { path: PathNavigation.DIALOGS, element: <Dialogs /> },
+        { path: PathNavigation.MUSIC, element: <Music /> },
+        { path: PathNavigation.SETTINGS, element: <h2>Settings</h2> },
+        { path: PathNavigation.USERS, element: <UsersAPIComponent /> },
+        { path: PathNavigation.LOGIN, element: <Login /> },
+    ];
+
     useEffect(() => {
         dispatch(initializeApp())
     }, [])
@@ -44,13 +55,9 @@ export const App = () => {
                             <Navbar/>
                             <div className={'app_profile'}>
                                 <Routes>
-                                    <Route path={PATH.ME} element={<Me/>}/>
-                                    <Route path={`${PATH.PROFILE}/:userId`} element={<ProfileContainer/>}/>
-                                    <Route path={PATH.DIALOGS} element={<Dialogs/>}/>
-                                    <Route path={PATH.MUSIC} element={<Music/>}/>
-                                    <Route path={PATH.SETTINGS} element={<h2>Settings</h2>}/>
-                                    <Route path={PATH.USERS} element={<UsersAPIComponent/>}/>
-                                    <Route path={PATH.LOGIN} element={<Login/>}/>
+                                    {ROUTES.map(({path,element})=>(
+                                        <Route key={path} path={path} element={element} />
+                                    ))}
                                     <Route path='*' element={<Error/>}/>
                                 </Routes>
                             </div>

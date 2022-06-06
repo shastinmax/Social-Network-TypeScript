@@ -1,4 +1,4 @@
-export enum PATH {
+export enum PathNavigation {
     ME = '/',
     PROFILE = '/profile',
     DIALOGS = '/dialogs',

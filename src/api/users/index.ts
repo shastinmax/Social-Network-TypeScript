@@ -1,15 +1,16 @@
 import {instance} from "../config";
 import {profileApi} from "../profile";
+import {PathUsersEndpoint} from "../../enums/Users_Endpoints";
 
 export const usersApi = {
     getUsers(currentPage: number = 1, pageSize: number = 10) {
         return instance.get(`users?page=${currentPage}&count=${pageSize}`,).then(response => response.data)
     },
     unfollow(userId: number) {
-        return instance.delete(`follow/${userId}`)
+        return instance.delete(`${PathUsersEndpoint.FOLLOW}${userId}`)
     },
     follow(userId: number) {
-        return instance.post(`follow/${userId}`)
+        return instance.post(`${PathUsersEndpoint.FOLLOW}${userId}`)
     },
     getProfile(userId: number) {
         console.warn('Obsolete method. Please profileAPI object')
