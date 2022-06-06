@@ -1,8 +1,9 @@
-import {authApi, securityAPI} from "../api/api";
 import {Dispatch} from "redux";
 import {FormAction, stopSubmit} from "redux-form";
 import {ThunkDispatch} from "redux-thunk";
 import {AppStateType} from "./redux-store";
+import {authApi} from "../api/auth";
+import {securityAPI} from "../api/security";
 
 export type InitialStateType = {
     id: string | undefined

@@ -1,6 +1,6 @@
 import {GlobalReducerType} from "./types/typesUserReducers";
-import {usersApi} from "../api/api";
 import {updateObjectInArray} from "../utils/object-helpers";
+import {usersApi} from "../api/users";
 
 export type UserType = {
     id: number
@@ -52,7 +52,7 @@ export const usersReducer = (state: UsersType = initialState, action: GlobalRedu
                 ...state,
                 followingInProgress: action.payload.isFetching
                     ? [...state.followingInProgress, action.payload.userId]
-                    : state.followingInProgress.filter(id => id != action.payload.userId)
+                    : state.followingInProgress.filter(id => id !== action.payload.userId)
             }
         default:
             return state

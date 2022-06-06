@@ -1,9 +1,10 @@
 import {ProfilePropsType} from "../components/Profile/ProfileContainer";
 import {GlobalTypeAction} from "./types/typesProfileReducer";
-import {profileApi, usersApi} from "../api/api";
 import {AppStateType} from "./redux-store";
 import {stopSubmit} from "redux-form";
 import {v1} from "uuid";
+import {profileApi} from "../api/profile";
+import {usersApi} from "../api/users";
 
 export type AddPostActionType = {
     type: 'ADD-POST',
