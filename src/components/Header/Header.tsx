@@ -1,16 +1,18 @@
 import React from "react";
 import s from './Header.module.css'
 import {NavLink} from "react-router-dom";
-import {InitialStateType, logoutTC} from "../../redux/auth-reducer";
+import {logoutTC} from "../../redux/auth-reducer";
 import {useAppSelector} from "../common/hook/selectorHook";
-import {selectIsAuth, selectIsProfile} from "../../redux/selectors/users-selectors";
 import {useDispatch} from "react-redux";
 import userPhoto from "../../assets/images/risuem-chelovek-rebenku-14.jpg";
+import {selectProfile} from "../../redux/selectors/profileSelector/profileSelector";
+import {selectIsAuth, selectLogin} from "../../redux/selectors/authSelector/authSelector";
 
 export const Header = () => {
-    const {profile} = useAppSelector(selectIsProfile)
+    const profile = useAppSelector(selectProfile)
     const dispatch = useDispatch()
-    const {login, isAuth} = useAppSelector(selectIsAuth)
+    const isAuth = useAppSelector(selectIsAuth)
+    const login = useAppSelector(selectLogin)
     const onClickLogout = () => {
         dispatch(logoutTC())
     }
@@ -18,6 +20,7 @@ export const Header = () => {
     return (
         <header className={s.header}>
             <h1 className={s.header_title}>Social</h1>
+
             <div className={s.loginBlock}>
                 <img src={profile?.photos.large || userPhoto} className={s.headerPhoto}
                      alt='avatar'/>

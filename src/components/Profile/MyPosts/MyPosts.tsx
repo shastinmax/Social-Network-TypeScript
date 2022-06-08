@@ -5,27 +5,29 @@ import {Field, InjectedFormProps, reduxForm, reset} from "redux-form";
 import {maxLengthCreator, required} from "../../../utils/validators/validators";
 import {Textarea} from "../../common/FormsControl/FormsControl";
 import {useAppSelector} from "../../common/hook/selectorHook";
-import {selectIsProfile} from "../../../redux/selectors/users-selectors";
-import {addPostAC, updateLikesCounter} from "../../../redux/profile-reducer";
+
+import {addPostAC} from "../../../redux/profile-reducer";
 import {useDispatch} from "react-redux";
+import {selectPosts} from "../../../redux/selectors/profileSelector/profileSelector";
 
 type AddNewPostFormType = {
     newPostBody: string
 }
 export const MyPosts = React.memo(() => {
         const dispatch = useDispatch()
-        const {posts} = useAppSelector(selectIsProfile)
+        const posts = useAppSelector(selectPosts)
 
         let post = posts.map(({id, message, likesCount}) => (
             <React.Fragment>
                 <Post key={id} message={message} likesCount={likesCount} id={id}/>
             </React.Fragment>))
+
         let onAddPost = (values: AddNewPostFormType) => {
             dispatch(addPostAC(values.newPostBody))
             dispatch(reset('myPostAddPostForm'))
         }
         return (
-            <div className={s.myposts}>
+            <div className={s.myPosts}>
                 <h3 className={s.postTitle}>My Posts</h3>
                 <AddNewPostFormRedux onSubmit={onAddPost}/>
                 <div className={s.posts}>

@@ -7,25 +7,32 @@ import {useDispatch} from "react-redux";
 import {sendMessageAC} from "../../redux/dialogs-reducer";
 import {Navigate} from "react-router-dom";
 import {useAppSelector} from "../common/hook/selectorHook";
-import {selectIsAuth, selectIsDialogs} from "../../redux/selectors/users-selectors";
+
 import monkey from '../../assets/images/man-user-svgrepo-com.svg'
+import {
+    selectDialogs,
+    selectMessages
+} from "../../redux/selectors/dialogsSelector/dialogsSelector";
+import {selectIsAuth} from "../../redux/selectors/authSelector/authSelector";
 
 export type AddMessageFormType = {
     newMessageBody: string
 }
 
 export const Dialogs = () => {
-    const {dialogs, messages} = useAppSelector(selectIsDialogs)
-    const {isAuth} = useAppSelector(selectIsAuth)
     const dispatch = useDispatch()
+
+    const dialogs = useAppSelector(selectDialogs)
+    const messages = useAppSelector(selectMessages)
+    const isAuth = useAppSelector(selectIsAuth)
 
     let dialogsElements = dialogs.map(({id, name}) => (
         <div className={s.messageName} key={id}><img src={monkey} alt="img"/> {name}</div>))
     let messageElements = messages.map(({id, message}) => (
         <React.Fragment key={id}><Dialog dialog={message}/></React.Fragment>))
 
-    const addNewMessage = (values: AddMessageFormType) => {
-        dispatch(sendMessageAC(values.newMessageBody))
+    const addNewMessage = ({newMessageBody}: AddMessageFormType) => {
+        dispatch(sendMessageAC(newMessageBody))
         dispatch(reset('dialogAddMessageForm'))
     }
     if (!isAuth) {

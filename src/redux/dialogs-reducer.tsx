@@ -11,11 +11,11 @@ export type SendMessageActionType = {
     newMessageBody: string
 
 }
-type DialogType = {
+export type DialogType = {
     message: string
     id: number
 }
-type PostsType = {
+export type PostsType = {
     name: string
     id: number
 }

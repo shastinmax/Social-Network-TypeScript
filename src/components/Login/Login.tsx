@@ -5,11 +5,14 @@ import {required} from "../../utils/validators/validators";
 import {useDispatch} from "react-redux";
 import {login} from "../../redux/auth-reducer";
 import {Navigate} from "react-router-dom";
-import style from "./../common/FormsControl/FormsControls.module.css"
 import {useAppSelector} from "../common/hook/selectorHook";
-import {selectIsAuth} from "../../redux/selectors/users-selectors";
+
 import loginImg from '../../assets/images/login-svgrepo-com.svg'
 import s from './Login.module.css'
+import {
+    selectCaptchaUrl,
+    selectIsAuth
+} from "../../redux/selectors/authSelector/authSelector";
 
 type LoginFormOwnProps = {
     captchaUrl: string | null
@@ -24,7 +27,7 @@ export const LoginForm: FC<InjectedFormProps<LoginFormValuesType, LoginFormOwnPr
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
-                {/*{createField<LoginFormValuesTypeKeys>('Login', 'login', [required], Input)}*/}
+
                 <Field
                     validate={[required]}
                     component={Input}
@@ -77,9 +80,13 @@ export type LoginFormValuesType = {
     email: string
 }
 type LoginFormValuesTypeKeys = GetStringKeys<LoginFormValuesType>
+
 export const Login = () => {
     const dispatch = useDispatch()
-    const {captchaUrl, isAuth} = useAppSelector(selectIsAuth)
+
+    const isAuth = useAppSelector(selectIsAuth)
+    const captchaUrl = useAppSelector(selectCaptchaUrl)
+
     const onSubmit = (formData: LoginFormValuesType) => {
         dispatch(login(formData.email, formData.password, formData.rememberMe, formData.captcha))
     }
@@ -90,9 +97,9 @@ export const Login = () => {
     return (
         <div>
             <div className={s.loginHeader}><img className={s.loginImg} src={loginImg} alt="img"/> <h2>Login</h2></div>
-            <h3 className={s.subTitle}>To log in get registered <a className={s.link}
-                                                                   href={'https://social-network.samuraijs.com/login'}>here</a> or
+            <h3 className={s.subTitle}>To log in get registered <a className={s.link} href={'https://social-network.samuraijs.com/login'}>here</a> or
                 use common test account credentials:</h3>
+
             <p className={s.text}>
                 Email:
                 <span className={s.decor}>  free@samuraijs.com</span>
@@ -101,6 +108,7 @@ export const Login = () => {
                 Password:
                 <span className={s.decor}> free</span>
             </p>
+
             <LoginReduxForm onSubmit={onSubmit} captchaUrl={captchaUrl}/>
         </div>
     );

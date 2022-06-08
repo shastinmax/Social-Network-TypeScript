@@ -2,10 +2,10 @@ import React from "react";
 import s from './Navbar.module.css'
 import {StyledNavLink} from "./StyledNavLink/StyledNavLink";
 import {useAppSelector} from "../common/hook/selectorHook";
-import {selectNavbar} from "../../redux/selectors/users-selectors";
+import {selectNavbar} from "../../redux/selectors/navbarSelector/navbarSelector";
 
 export const Navbar = () => {
-    const {routes} = useAppSelector(selectNavbar)
+    const routes = useAppSelector(selectNavbar)
     return (
         <div className={s.nav}>
             <nav>

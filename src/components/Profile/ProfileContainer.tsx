@@ -1,12 +1,20 @@
-import React, {ComponentType, useEffect, useState} from "react";
+import React, {useEffect} from "react";
 import {Profile} from "./Profile";
-import {connect, useDispatch} from "react-redux";
-import {AppStateType} from "../../redux/redux-store";
-import {getStatus, getUserProfile, savePhoto, saveProfile, updateStatus} from "../../redux/profile-reducer";
-import {NavigateFunction, Params, useLocation, useNavigate, useParams} from "react-router-dom";
-import {compose} from "redux";
+import {useDispatch} from "react-redux";
+import {
+    getStatus,
+    getUserProfile,
+    savePhoto,
+    saveProfile,
+    updateStatus
+} from "../../redux/profile-reducer";
+import {useParams} from "react-router-dom";
 import {useAppSelector} from "../common/hook/selectorHook";
-import {selectIsAuth, selectIsProfile} from "../../redux/selectors/users-selectors";
+import {
+    selectProfile,
+    selectStatus
+} from "../../redux/selectors/profileSelector/profileSelector";
+import {selectIsAuth} from "../../redux/selectors/authSelector/authSelector";
 
 
 export type ProfilePropsType = {
@@ -33,15 +41,19 @@ export type ProfilePropsType = {
 
 export const ProfileContainer = () => {
     const dispatch = useDispatch()
-    let {userId} = useParams()
-    const {isAuth} = useAppSelector(selectIsAuth)
-    const {profile, status} = useAppSelector(selectIsProfile)
+
+    const {userId} = useParams()
+    const isAuth = useAppSelector(selectIsAuth)
+    const profile = useAppSelector(selectProfile)
+    const status = useAppSelector(selectStatus)
     console.log(userId)
+
+    const convertFromStringToNumber = (value: string) => Number(value)
 
     useEffect(() => {
         if (userId) {
-            dispatch(getUserProfile(+userId))
-            dispatch(getStatus(+userId))
+            dispatch(getUserProfile(convertFromStringToNumber(userId)))
+            dispatch(getStatus(convertFromStringToNumber(userId)))
         }
 
     }, [])
@@ -60,36 +72,3 @@ export const ProfileContainer = () => {
         </div>
     )
 }
-//
-//
-// let mapStateToProps = (state: AppStateType): MapStateToPropsType => ({
-//     profile: state.profilePage.profile,
-//     status: state.profilePage.status,
-//     authorizedUserId: state.auth.id,
-//     isAuth: state.auth.isAuth
-//
-// })
-//
-// export function withRouter<T>(Component: ComponentType<T>): ComponentType<T & WithRouterType> {
-//
-//     const ComponentWithRouterProp = (props: T & WithRouterType) => {
-//         console.log("ComponentWithRouterProp")
-//         let location = useLocation();
-//         let navigate = useNavigate();
-//         let params = useParams();
-//         return (
-//             <Component {...props} router={{location, navigate, params}}
-//             />
-//         );
-//     }
-//     return ComponentWithRouterProp;
-// }
-//
-// type WithRouterType = Location & NavigateFunction & Readonly<Params<string>>;
-//
-// // @ts-ignore
-// export default compose<React.ComponentType>(connect<MapStateToPropsType, MapDispatchToProps, {}, AppStateType>(mapStateToProps, {
-//         getUserProfile, getStatus, updateStatus, savePhoto, saveProfile
-//     }), withRouter,
-//     // withAuthRedirect
-// )(ProfileContainer)

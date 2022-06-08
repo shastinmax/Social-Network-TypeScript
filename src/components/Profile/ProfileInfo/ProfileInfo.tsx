@@ -7,7 +7,7 @@ import {ProfileDataFormReduxForm} from "./ProfileDataForm";
 import {useDispatch} from "react-redux";
 import userPhoto from "../../../assets/images/risuem-chelovek-rebenku-14.jpg";
 import {useAppSelector} from "../../common/hook/selectorHook";
-import {selectIsAuth} from "../../../redux/selectors/users-selectors";
+import {selectIdAuth} from "../../../redux/selectors/authSelector/authSelector";
 
 type propsType = {
     profile: ProfilePropsType | null,
@@ -20,11 +20,16 @@ type propsType = {
 
 }
 export const ProfileInfo = (props: propsType) => {
+    const {profile, updateStatus, status, savePhoto, saveProfile, userId,} = props
+
     const dispatch = useDispatch()
-    const {id} = useAppSelector(selectIsAuth)
+
     const [editMode, setEditMode] = useState(false)
 
-    const {profile, updateStatus, status, savePhoto, saveProfile, userId,} = props
+    const id = useAppSelector(selectIdAuth)
+
+
+
     if (!profile) {
         return <Preloader/>
     }

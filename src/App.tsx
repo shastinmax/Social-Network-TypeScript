@@ -10,15 +10,15 @@ import {ProfileContainer} from './components/Profile/ProfileContainer';
 import {Dialogs} from "./components/Dialogs/Dialogs";
 import {Header} from "./components/Header/Header";
 import {useAppSelector} from "./components/common/hook/selectorHook";
-import {selectIsApp} from "./redux/selectors/users-selectors";
 import {Me} from "./components/Me/Me";
 import {Navbar} from "./components/Navbar/Navbar";
 import Music from "./components/Music/Music";
 import {PathNavigation} from "./enums/Navigation";
 import Error from "./components/Error/Error";
+import {selectIsApp} from "./redux/selectors/appSelector/appSelector";
 
 export const App = () => {
-    const {initialized} = useAppSelector(selectIsApp)
+    const initialized = useAppSelector(selectIsApp)
 
     const dispatch = useDispatch()
 
@@ -53,6 +53,7 @@ export const App = () => {
                     <div className="container">
                         <div className="app-content">
                             <Navbar/>
+
                             <div className={'app_profile'}>
                                 <Routes>
                                     {ROUTES.map(({path,element})=>(

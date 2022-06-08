@@ -3,13 +3,24 @@ import {follow, getUsersTC, unfollow} from "../../redux/users-reducer";
 import React, {useEffect} from "react";
 import {Users} from "./Users";
 import {Preloader} from "../common/preloader/Preloader";
-import {selectUser} from "../../redux/selectors/users-selectors";
 import {useAppSelector} from "../common/hook/selectorHook";
+import {
+    selectCurrentPage,
+    selectFollowingInProgress, selectIsFetching, selectPageSize, selectTotalUsersCount,
+    selectUser
+} from "../../redux/selectors/userSelector/usersSelectors";
 
 
 export const UsersAPIComponent = () => {
     const dispatch = useDispatch()
-    const {currentPage, pageSize, isFetching, totalUsersCount, users, followingInProgress} = useAppSelector(selectUser)
+
+    const users =useAppSelector(selectUser)
+    const pageSize=useAppSelector(selectPageSize)
+    const isFetching=useAppSelector(selectIsFetching)
+    const totalUsersCount=useAppSelector(selectTotalUsersCount)
+    const currentPage =useAppSelector(selectCurrentPage)
+    const followingInProgress =useAppSelector(selectFollowingInProgress)
+
     useEffect(() => {
         dispatch(getUsersTC(currentPage, pageSize))
     }, [])
@@ -19,7 +30,6 @@ export const UsersAPIComponent = () => {
     }
 
     return <div>
-        <>
             {isFetching && <Preloader/>}
             <Users totalUsersCount={totalUsersCount}
                    pageSize={pageSize}
@@ -30,26 +40,5 @@ export const UsersAPIComponent = () => {
                    follow={follow}
                    followingInProgress={followingInProgress}
             />
-        </>
     </div>
-    // }
 }
-//
-// export const mapStateToProps = (state: AppStateType): MapStateToProps => {
-//     return {
-//         users: getUsers(state),
-//         pageSize: getPageSize(state),
-//         totalUsersCount: getTotalUsersCount(state),
-//         currentPage: getCurrentPage(state),
-//         isFetching: getIsFetching(state),
-//         followingInProgress: getFollowingInProgress(state),
-//     }
-// }
-//
-// export default connect(mapStateToProps, {
-//     follow,
-//     unfollow,
-//     setCurrentPageAC,
-//     toggleIsFollowingInProgressAC,
-//     getUsersTC
-// })(UsersAPIComponent)

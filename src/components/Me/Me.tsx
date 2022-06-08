@@ -1,24 +1,33 @@
 import React, {useEffect} from 'react';
 import {useAppSelector} from "../common/hook/selectorHook";
-import {selectIsAuth, selectIsProfile} from "../../redux/selectors/users-selectors";
 import {getStatus, getUserProfile, savePhoto, saveProfile, updateStatus} from "../../redux/profile-reducer";
 import {useDispatch} from "react-redux";
 import {Profile} from "../Profile/Profile";
 import {useParams} from "react-router-dom";
+import {
+    selectProfile,
+    selectStatus
+} from "../../redux/selectors/profileSelector/profileSelector";
+import {
+    selectIdAuth,
+    selectIsAuth
+} from "../../redux/selectors/authSelector/authSelector";
 
 export const Me = () => {
     const dispatch = useDispatch()
-    const {isAuth, id} = useAppSelector(selectIsAuth)
-    const {profile, status} = useAppSelector(selectIsProfile)
+
+    const isAuth = useAppSelector(selectIsAuth)
+    const id = useAppSelector(selectIdAuth)
+    const profile = useAppSelector(selectProfile)
+    const status = useAppSelector(selectStatus)
+
     let {userId} = useParams()
-    console.log(userId, 'userId')
 
     useEffect(() => {
         if (id) {
             dispatch(getUserProfile(+id))
             dispatch(getStatus(+id))
         }
-
     }, [])
 
     return (
