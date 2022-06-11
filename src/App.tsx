@@ -4,8 +4,7 @@ import {HashRouter, Route, Routes} from "react-router-dom";
 import {UsersAPIComponent} from "./components/Users/UsersContainer";
 import {Login} from "./components/Login/Login";
 import {useDispatch} from "react-redux";
-import {initializeApp} from "./redux/app-reducer";
-import {Preloader} from "./components/common/preloader/Preloader";
+import {Preloader} from "./components/common/Preloader/Preloader";
 import {ProfileContainer} from './components/Profile/ProfileContainer';
 import {Dialogs} from "./components/Dialogs/Dialogs";
 import {Header} from "./components/Header/Header";
@@ -16,6 +15,7 @@ import Music from "./components/Music/Music";
 import {PathNavigation} from "./enums/Navigation";
 import Error from "./components/Error/Error";
 import {selectIsApp} from "./redux/selectors/appSelector/appSelector";
+import {initializeApp} from "./redux/middlewares/app/initializeApp";
 
 export const App = () => {
     const initialized = useAppSelector(selectIsApp)
@@ -39,6 +39,7 @@ export const App = () => {
     if (!initialized) {
         return <Preloader/>
     }
+
     return (
         <>
             <HashRouter>

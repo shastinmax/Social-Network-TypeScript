@@ -3,7 +3,6 @@ import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import {createField, GetStringKeys, Input} from "../common/FormsControl/FormsControl";
 import {required} from "../../utils/validators/validators";
 import {useDispatch} from "react-redux";
-import {login} from "../../redux/auth-reducer";
 import {Navigate} from "react-router-dom";
 import {useAppSelector} from "../common/hook/selectorHook";
 
@@ -13,6 +12,7 @@ import {
     selectCaptchaUrl,
     selectIsAuth
 } from "../../redux/selectors/authSelector/authSelector";
+import {login} from "../../redux/middlewares/auth/login";
 
 type LoginFormOwnProps = {
     captchaUrl: string | null

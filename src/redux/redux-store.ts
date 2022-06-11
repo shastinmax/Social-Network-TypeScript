@@ -3,10 +3,10 @@ import {profileReducer} from "./profile-reducer";
 import {dialogsReducer} from "./dialogs-reducer";
 import {navbarReducer} from "./navbar-reducer";
 import {usersReducer} from "./users-reducer";
-import {authReducer} from "./auth-reducer";
 import thunkMiddleware from "redux-thunk"
 import {reducer as formReducer} from 'redux-form'
-import {appReducer} from "./app-reducer";
+import {appReducer} from "./reducers/app/app-reducer";
+import {authReducer} from "./reducers/auth/auth-reducer";
 
 
 let reducers = combineReducers({

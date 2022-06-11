@@ -2,7 +2,7 @@ import {useDispatch} from "react-redux";
 import {follow, getUsersTC, unfollow} from "../../redux/users-reducer";
 import React, {useEffect} from "react";
 import {Users} from "./Users";
-import {Preloader} from "../common/preloader/Preloader";
+import {Preloader} from "../common/Preloader/Preloader";
 import {useAppSelector} from "../common/hook/selectorHook";
 import {
     selectCurrentPage,
